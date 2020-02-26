@@ -25,7 +25,7 @@ function App() {
             <Route path="/waste-items" component={Wasteitems}/>
             <Route path="/confirmation" component={Confirmation}/>
             {/* joey testing 123 */}
-            {/* sebastian testing 123 */}
+            {/* sebastian 2nd test */}
 
             {/* There is currently no link/button to History. You can access it manually by
                 typing '/history' to the end of 'localhost:3000'. I have only ever worked with 
