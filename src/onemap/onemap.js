@@ -70,6 +70,10 @@ class Onemap extends Component{
             )
     }
 
+    componentDidMount(){
+        this.ThemeDetails()
+    }
+
 
     // These are for geolocation
     getLocation(){
@@ -96,7 +100,6 @@ class Onemap extends Component{
         // Locations of bins can be seen through console log
         // Need to clean up data before markers can be placed, may be too many though :)
         // Also need to figure out how to filter on the map
-        this.ThemeDetails()
         console.log(this.state.bins)
         
 
