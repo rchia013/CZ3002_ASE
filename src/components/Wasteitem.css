@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    text-align: center;
+}
+
+.confirm_button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.textFields{
+    justify-content: center;
+    background: white;
+    border-radius: 3;
+    border: 0;
+    height: 100%;
+    
+
+    color: black;
+}
