@@ -4,7 +4,7 @@ import { base } from '../base.js'
 import firebase from 'firebase'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-import './Wasteitem.css'
+import './Wasteitem/Wasteitem.css'
 import emailjs from 'emailjs-com'
 import { EmailJSResponseStatus } from 'emailjs-com';
 

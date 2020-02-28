@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    
 }
 
 h1{
@@ -24,4 +25,17 @@ h1{
     
 
     color: black;
+}
+
+/* body{
+    background-image: url('https://images.unsplash.com/photo-1500322969630-a26ab6eb64cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExMjU4fQ&w=1000&q=80');
+} */
+
+
+
+section#test{
+    background: url('https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?ixlib=rb-1.2.1&w=1000&q=80')
+    no-repeat center center/
+    cover;
+
 }

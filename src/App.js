@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import Home from './components/Home.js'
-import Wasteitems from './components/Wasteitem.js'
-import Confirmation from './components/Confirmation.js'
-import History from './components/History.js'
+import Home from './pages/Home/Home.js'
+import Wasteitems from './pages/Wasteitem/Wasteitem.js'
+import Confirmation from './pages/Confirmation.js'
+import History from './pages/History.js'
 import GoogleMapPage from './googlemaps/googlemaps.js'
 import Onemap from './onemap/onemap.js'
+import Categorypage from "./pages/Categorypage/Categorypage.js";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 
@@ -22,10 +23,9 @@ function App() {
           <Switch>
             {/* Exact used for home path because if you don't everything directs there */}
             <Route path="/" exact component={Home}/>
+            <Route path="/categorypage" component={Categorypage}/>
             <Route path="/waste-items" component={Wasteitems}/>
             <Route path="/confirmation" component={Confirmation}/>
-            {/* joey testing 123 */}
-            {/* sebastian branching test */}
 
             {/* There is currently no link/button to History. You can access it manually by
                 typing '/history' to the end of 'localhost:3000'. I have only ever worked with 

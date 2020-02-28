@@ -5,6 +5,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import AppBar from '@material-ui/core/AppBar'
 import TextField from '@material-ui/core/TextField'
 import './Wasteitem.css'
+import Navbar from '../../components/navbar/Navbar.js'
 import { Grid } from '@material-ui/core';
 
 class Wasteitem extends Component{
@@ -30,9 +31,12 @@ class Wasteitem extends Component{
     
     return(
         <div class="waste_item_content">
+            <Navbar/>
+            <section id="test">
             {/* MuiThemeProvider only accepts one element, so everyting is wrapped in a div*/}
             <MuiThemeProvider>
             <div>
+                
                 {/* Material UI comes with an AppBar, but I'm not sure if you can use it across
                 multiple pages */}
                 <AppBar title="Select stuff you want to dispose!"/>
@@ -84,8 +88,10 @@ class Wasteitem extends Component{
                         Proceed!
                     </Button>
                 </div>
+            
             </div>
             </MuiThemeProvider>
+            </section>
         </div>
     );
     }

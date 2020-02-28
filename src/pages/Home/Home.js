@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link as RouterLink} from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 import './Home.css'
+import Navbar from '../../components/navbar/Navbar.js'
 
 // This is a class based component (forgot what it's proper name is called). The other option is
 // a functional component. Class based components offer more flexibility though.
@@ -23,16 +24,8 @@ class Home extends Component{
     return(
         <div class="home_content">
 
-            {/* Bar that appears at the top */}
-            <nav class="navbar">
-                {/* Apparently using #home jumps to that section on the page based on Section id */}
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#plastic">Plastic</a></li>
-                    <li><a href="#ewaste">E-Waste</a></li>
-                    <li><a href="#letsgo">Let's Go</a></li>
-                </ul>
-            </nav>
+            {/*import Navbar as a component*/}
+            <Navbar/>
 
             {/* These are the sections that appear on the page. Smooth scrolling is implemented in CSS
                 because everything else is too advanced for me. Removing CSS would just make it a
@@ -57,6 +50,11 @@ class Home extends Component{
                     variant="contained" color="primary" size="large" 
                     component={RouterLink} to="/waste-items">
                         Let's Go!
+                </Button>
+                <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/categorypage">
+                        Self-Recycle
                 </Button>
                 <br/>
                 <Button 
