@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link as RouterLink} from 'react-router-dom';
 import Button from '@material-ui/core/Button'
-import './Home.css'
-import {base} from '../base.js'
+import '../Home/Home.css'
+import {base} from '../../base.js'
 
 
 var firebase = require('firebase');

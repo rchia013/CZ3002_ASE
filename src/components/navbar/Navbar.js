@@ -16,6 +16,7 @@ class Navbar extends Component {
                     <li><a href="#plastic">Plastic</a></li>
                     <li><a href="#ewaste">E-Waste</a></li>
                     <li><a href="#letsgo">Let's Go</a></li>
+                    <li><a href="#profile_details">Profile Details</a></li>
                 </ul>
             </nav>
         </div>

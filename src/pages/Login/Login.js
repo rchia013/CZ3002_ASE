@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import app from '../base.js'
+import app from '../../base.js'
 import { Link as RouterLink} from 'react-router-dom';
 import Button from '@material-ui/core/Button'
-import '../../node_modules/firebaseui/dist/firebaseui.css'
+import '../../../node_modules/firebaseui/dist/firebaseui.css'
 
 
 // Normal import doesn't seem to work
@@ -10,7 +10,7 @@ var firebase = require('firebase');
 var firebaseui = require('firebaseui');
 
 
-  // Initialize the FirebaseUI Widget using Firebase.
+  // Initialize the Fireb   aseUI Widget using Firebase.
     app.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
     var ui = new firebaseui.auth.AuthUI(firebase.auth());
 

@@ -14,6 +14,8 @@ import Test from "./pages/Categorypage/test.js";
 import Category from "./components/category/Category.js";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import GreenShoppingCart from './pages/GreenCart/GreenShoppingCart.js'
+import Login from './pages/Login/Login.js'
+import Profile from './pages/Login/Profile.js'
 
 // This is a functional component. If you need additional functionaility, it can be changed to a
 // class based component. As of now, its just a glorified routing thing so not necessary.
@@ -44,6 +46,8 @@ function App() {
           <Route path="/test" component={Test} />
           <Route path ="/greenshoppingcart" component={GreenShoppingCart} />
           <Route path="/calendar" component={DemoApp} />
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
         </Switch>
       </div>
     </Router>

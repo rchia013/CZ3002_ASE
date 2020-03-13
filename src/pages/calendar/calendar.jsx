@@ -2,7 +2,6 @@ import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
-import Navbar from '../../components/navbar/Navbar.js'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 //import { Dropdown } from 'react-native-material-dropdown';
 
@@ -36,7 +35,7 @@ export default class DemoApp extends React.Component {
     }];
     return (
       <div className='demo-app'>
-        <Navbar/>
+        {/* <Navbar/> */}
 
         <div className='demo-app-calendar'>
         
