@@ -68,6 +68,27 @@ class Home extends Component{
                     component={RouterLink} to="/onemap">
                         View Onemap
                 </Button>
+                <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/lightingcat">
+                        View lightingcat
+                </Button>
+                <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/test">
+                        View test
+                </Button>
+                <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/greenshoppingcart">
+                        GreenShoppingCart
+                        
+                </Button>
+                <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/calendar">
+                        View Calendar
+                </Button>
             </section>
         </div>
     );

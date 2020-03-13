@@ -7,7 +7,13 @@ import History from './pages/History.js'
 import GoogleMapPage from './googlemaps/googlemaps.js'
 import Onemap from './onemap/onemap.js'
 import Categorypage from "./pages/Categorypage/Categorypage.js";
+import DemoApp from './pages/calendar/calendar.jsx'
+//import Plasticcat from "./pages/Categorypage/Plasticcat.js";
+import Lightingcat from "./pages/Categorypage/Lightingcat.js";
+import Test from "./pages/Categorypage/test.js";
+import Category from "./components/category/Category.js";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import GreenShoppingCart from './pages/GreenCart/GreenShoppingCart.js'
 
 // This is a functional component. If you need additional functionaility, it can be changed to a
 // class based component. As of now, its just a glorified routing thing so not necessary.
@@ -34,6 +40,10 @@ function App() {
           <Route path="/history" component={History} />
           <Route path="/map" component={GoogleMapPage} />
           <Route path="/onemap" component={Onemap} />
+          <Route path="/lightingcat" component={Lightingcat} />
+          <Route path="/test" component={Test} />
+          <Route path ="/greenshoppingcart" component={GreenShoppingCart} />
+          <Route path="/calendar" component={DemoApp} />
         </Switch>
       </div>
     </Router>

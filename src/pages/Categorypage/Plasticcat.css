@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: white;
+    color: #ffffff;
+    line-height: 1.6;
+    height: 100vh; /* Matters for scroll behaviour */
+    overflow: hidden; /* Hides scroll bar */
+    
+
+}
+
+
+.polaroid{
+    width: 100px;
+    height: 120px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: 40px;
+
+}
+
+img{
+    height: 100px;
+}
+
+.container{
+    font-size: small;
+    color: black;
+    height: 100px;
+    line-height: 5pt;
+
+
+}
+
+.catlist{
+    display: flex;
+    flex-direction: row;
+    margin-left: 100px;
+}
+
+.catname{
+    font-size: larger;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: black;
+
+    width: 150px;
+    height: 175px;
+    /* padding-left: 50pt;
+    flex: 1;
+    margin-top: 20px; */
+
+    display: flex;
+    align-self: flex-end;
+    vertical-align: middle;
+    
+
+}
+
+#header{
+    line-height: 150px;
+    vertical-align: baseline;
+}
+
+.wholecat{
+    height: 200px;
+    margin-bottom: 50px;
+    display: flex;
+}

@@ -1,14 +1,23 @@
+// var pics =[
+//   "../../components/image/plastic.jpg",
+//   "../../components/image/glass.jpg",
+//   "../../components/image/ewaste.jpg"
+// ]
+
+
 import React, { Component } from 'react';
 
-import first from 'https://superfoodsrx.com/wp-content/uploads/2016/09/reusing-plastic-bottles.jpg'
+import plastic from '../../components/image/plastic.jpg';
+import glass from '../../components/image/glass.jpg';
+import ewaste from '../../components/image/ewaste.jpg';
 
 const tileData = [
 
     {
   
-      img: first,
+      img: plastic,
   
-      title: 'Breakfast',
+      title: 'Plastic',
   
       author: 'jill111',
   
@@ -19,15 +28,25 @@ const tileData = [
       
     },
   
-    // {
+    {
   
-    //   img: src='https://superfoodsrx.com/wp-content/uploads/2016/09/reusing-plastic-bottles.jpg',
+      img: glass,
   
-    //   title: 'Tasty burger',
+      title: 'Glass',
   
-    //   author: 'director90',
+      author: 'director90',
   
-    // },
+    },
+
+    {
+  
+      img: ewaste,
+  
+      title: 'E waste',
+  
+      author: 'director90',
+  
+    }
   
   ];
   
