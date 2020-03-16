@@ -20,6 +20,7 @@
 .navbar ul li{
     margin: 0 1rem;
     padding: 1rem;
+    font-size: large;
 }
 
 .navbar ul li a{
@@ -31,3 +32,4 @@
 .navbar ul li a:hover{
     color: skyblue;
 }
+

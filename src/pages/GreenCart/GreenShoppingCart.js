@@ -14,17 +14,14 @@ class GreenShoppingCart extends Component{
     }
     render(){
         return(
-<<<<<<< HEAD
             <div className="GreenCart">
                 <Navbar/>
                 <div dangerouslySetInnerHTML = {htmlDoc} />
             </div>
                 
 
-=======
 
             <div dangerouslySetInnerHTML = {htmlDoc} />
->>>>>>> 9627e50c63c0fd75b6170be9aaeceefb509e7d78
         );
     }
 

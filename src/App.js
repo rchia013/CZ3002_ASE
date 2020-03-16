@@ -5,7 +5,7 @@ import Wasteitems from './pages/Wasteitem/Wasteitem.js'
 import Confirmation from './pages/Confirmation.js'
 import History from './pages/History.js'
 import GoogleMapPage from './googlemaps/googlemaps.js'
-import Onemap from './onemap/onemap.js'
+import Onemap from './onemap/onemap2.js'
 import Categorypage from "./pages/Categorypage/Categorypage.js";
 import DemoApp from './pages/calendar/calendar.jsx'
 //import Plasticcat from "./pages/Categorypage/Plasticcat.js";
