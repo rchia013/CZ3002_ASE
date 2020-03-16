@@ -6,14 +6,19 @@ import './GreenShoppingCart.html'
 import Navbar from '../../components/navbar/Navbar.js'
 var htmlDoc = {__html: GreenShoppingCart2};
 
+
 class GreenShoppingCart extends Component{
     constructor(props){
         super(props);
     }
     render(){
         return(
-           
-            <div dangerouslySetInnerHTML = {htmlDoc} />
+            <div className="GreenCart">
+                <Navbar/>
+                <div dangerouslySetInnerHTML = {htmlDoc} />
+            </div>
+                
+
         );
     }
 
