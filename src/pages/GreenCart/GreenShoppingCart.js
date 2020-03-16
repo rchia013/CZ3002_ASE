@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GreenShoppingCart2 from './GreenShoppingCart.html';
 import { Link as RouterLink} from 'react-router-dom';
 import './GreenCart.css'
-import './GreenShoppingCart.html'
+//import './GreenShoppingCart.html'
 import Navbar from '../../components/navbar/Navbar.js'
 var htmlDoc = {__html: GreenShoppingCart2};
 
@@ -10,15 +10,21 @@ var htmlDoc = {__html: GreenShoppingCart2};
 class GreenShoppingCart extends Component{
     constructor(props){
         super(props);
+    //    this.htmlDoc = require(props.template)
     }
     render(){
         return(
+<<<<<<< HEAD
             <div className="GreenCart">
                 <Navbar/>
                 <div dangerouslySetInnerHTML = {htmlDoc} />
             </div>
                 
 
+=======
+
+            <div dangerouslySetInnerHTML = {htmlDoc} />
+>>>>>>> 9627e50c63c0fd75b6170be9aaeceefb509e7d78
         );
     }
 
