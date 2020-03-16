@@ -18,6 +18,7 @@ class GreenShoppingCart extends Component{
                 <Navbar/>
                 <div dangerouslySetInnerHTML = {htmlDoc} />
             </div>
+                
         );
     }
 
