@@ -3,6 +3,10 @@ import L from "leaflet";
 import { Map, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
 import "./onemap.css";
 import ewastedata from "./e-waste-recycling-geojson.json";
+import lightingwastedata from "./lighting-waste-collection-points-geojson.json";
+// import { GoogleProvider } from "leaflet-geosearch";
+
+// import "bootstrap/dist/css/bootstrap.min.css";
 // import "leaflet/dist/images/marker-shadow.png";
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -19,14 +23,25 @@ var myIcon = L.icon({
   popupAnchor: [0, -41]
 });
 
+// const provider = new GoogleProvider({
+//   params: {
+//     key: "AIzaSyAwBgI9uqnUAlslEI-48KZbaer7Ih0EUjw"
+//   }
+// });
+
 class Onemap2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
       lat: "",
       lng: "",
-      zoom: 16.5,
-      ewaste: ewastedata
+      zoom: 13.5,
+      ewaste: ewastedata,
+      ewasteNotChecked: true,
+      lightingwaste: lightingwastedata,
+      lightingwasteNotChecked: true,
+      bulkyWaste: null,
+      bulkyWasteNotChecked: true
     };
     this.getLocation = this.getLocation.bind(this);
     this.getCoordinates = this.getCoordinates.bind(this);
@@ -40,7 +55,6 @@ class Onemap2 extends Component {
     ).then(res => res.json());
   }
 
-  // These are for geolocation
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.getCoordinates);
@@ -56,20 +70,56 @@ class Onemap2 extends Component {
     });
   }
 
-  //   componentWillMount() {
-  //     fetch(require("./e-waste-recycling-geojson.json"))
-  //       .then(response => response.json())
-  //       .then(response =>
-  //         this.setState({
-  //           ewaste: response.data
+  MouseOverFeature = (e, layer) => {
+    console.log("MouseOver");
+    var popup = L.popup().setContent(
+      e.sourceTarget.feature.properties.Description
+    );
+    layer.bindPopup(popup).openPopup();
+  };
+
+  MouseOutFeature = (e, layer) => {
+    console.log("MouseOut", e);
+    layer.closePopup();
+  };
+
+  onEachFeature = (feature, layer) => {
+    layer.on({
+      mouseover: e => this.MouseOverFeature(e, layer),
+      mouseout: e => this.MouseOutFeature(e, layer)
+    });
+  };
+
+  handleChangeEwaste = e => {
+    this.setState({ ewasteNotChecked: !this.state.ewasteNotChecked });
+  };
+
+  handleChangeLightingWaste = e => {
+    this.setState({
+      lightingwasteNotChecked: !this.state.lightingwasteNotChecked
+    });
+  };
+
+  // componentDidMount() {
+  //   fetch(
+  //     "https://data.gov.sg/api/action/datastore_search?resource_id=f1a0ffab-0da7-4571-93d0-dbd893e5410c"
+  //   )
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       provider
+  //         .search({
+  //           query: "Singapore 650507"
   //         })
-  //       );
-  //   }
+  //         .then(result => {
+  //           this.setState({ bulkyWaste: result });
+  //         });
+  //     });
+  // }
 
   render() {
     this.getLocation();
     const position = [this.state.lat, this.state.lng];
-    // console.log(this.state.ewaste);
+    console.log(this.state.bulkyWaste);
     return (
       <div>
         <Map className="map" center={position} zoom={this.state.zoom}>
@@ -77,11 +127,50 @@ class Onemap2 extends Component {
             attribution='<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> New OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
             url="https://maps-{s}.onemap.sg/v3/Original/{z}/{x}/{y}.png"
           />
-          <GeoJSON data={this.state.ewaste.features} />
+          {this.state.ewasteNotChecked ? (
+            ""
+          ) : (
+            <GeoJSON
+              data={this.state.ewaste.features}
+              onEachFeature={this.onEachFeature}
+            />
+          )}
+          {this.state.lightingwasteNotChecked ? (
+            ""
+          ) : (
+            <GeoJSON
+              data={this.state.lightingwaste.features}
+              onEachFeature={this.onEachFeature}
+            />
+          )}
           <Marker position={position} icon={myIcon}>
             <Popup>You are currently here!</Popup>
           </Marker>
         </Map>
+
+        <div id="filter-box">
+          <p className="filter">Use the buttons below to filter.</p>
+          <div>
+            <label>
+              <input type="checkbox" onChange={this.handleChangeEwaste}></input>
+              <span>E-Waste</span>
+              <br></br>
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                onChange={this.handleChangeLightingWaste}
+              ></input>
+              <span>Lighting Waste</span>
+              <br></br>
+            </label>
+            {/* <label>
+              <input type="checkbox"></input>
+              <span>Check me out</span>
+              <br></br>
+            </label> */}
+          </div>
+        </div>
       </div>
     );
   }
