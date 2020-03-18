@@ -60,4 +60,52 @@
         </section>
         
     </body>
+<html>
+  <head>
+    <title>The Green Cart | Store</title>
+    <meta name="description" content="This is the description" />
+    <link rel="stylesheet" href="GreenCart.css" />
+    <script src="GreenShoppingCart.js" async></script>
+  </head>
+  <body>
+    <section class="container content-section">
+      <h2 class="section-header">Recyclables</h2>
+      <div class="shop-items">
+        <div class="shop-item">
+          <span class="shop-item-title">Plastic</span>
+          <img class="shop-item-image" src="Images/PlasticBottles.jpg" />
+          <div class="shop-item-details">
+            <span class="shop-item-points">5 points</span>
+            <button class="btn btn-primary shop-item-button" type="button">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+        <div class="shop-item">
+          <span class="shop-item-title">E Waste</span>
+          <img class="shop-item-image" src="Images/e-waste.jpg" />
+          <div class="shop-item-details">
+            <span class="shop-item-points">10 points</span>
+            <button class="btn btn-primary shop-item-button" type="button">
+              ADD TO CART
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container content-section">
+      <h2 class="section-header">GREEN CART</h2>
+      <div class="cart-row">
+        <span class="cart-item cart-header cart-column">ITEM</span>
+        <span class="cart-points cart-header cart-column">POINTS</span>
+        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+      </div>
+      <div class="cart-items"></div>
+      <div class="cart-total">
+        <strong class="cart-total-title">Total</strong>
+        <span class="cart-total-points">0 points</span>
+      </div>
+      <button class="btn btn-primary btn-recycle" type="button">RECYCLE</button>
+    </section>
+  </body>
 </html>

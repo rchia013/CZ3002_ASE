@@ -1,3 +1,27 @@
-.map{
-    height: 100vh;
+.map {
+  height: 100vh;
 }
+
+#filter-box {
+  z-index: 999;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 2px solid grey;
+  border-radius: 0.25rem;
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+}
+/* 
+* {
+  color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 10px;
+} */
