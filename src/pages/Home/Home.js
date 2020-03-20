@@ -27,8 +27,6 @@ class Home extends Component {
     this.checkStatus()
   }
 
-  
-  
   render() {
     return (
       <div class="home_content">

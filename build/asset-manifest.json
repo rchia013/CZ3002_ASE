@@ -1,25 +1,38 @@
 {
   "files": {
-    "main.css": "/static/css/main.255e74e5.chunk.css",
-    "main.js": "/static/js/main.75aae59f.chunk.js",
-    "main.js.map": "/static/js/main.75aae59f.chunk.js.map",
+    "main.css": "/static/css/main.07d28c4f.chunk.css",
+    "main.js": "/static/js/main.6439e9c7.chunk.js",
+    "main.js.map": "/static/js/main.6439e9c7.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.3d71aa3e.js",
     "runtime-main.js.map": "/static/js/runtime-main.3d71aa3e.js.map",
-    "static/css/2.7f75bbe2.chunk.css": "/static/css/2.7f75bbe2.chunk.css",
-    "static/js/2.2ad88a88.chunk.js": "/static/js/2.2ad88a88.chunk.js",
-    "static/js/2.2ad88a88.chunk.js.map": "/static/js/2.2ad88a88.chunk.js.map",
+    "static/css/2.8ed1dbeb.chunk.css": "/static/css/2.8ed1dbeb.chunk.css",
+    "static/js/2.2a753ffd.chunk.js": "/static/js/2.2a753ffd.chunk.js",
+    "static/js/2.2a753ffd.chunk.js.map": "/static/js/2.2a753ffd.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.83d965335869f1fe2a3160e1eb000fa5.js": "/precache-manifest.83d965335869f1fe2a3160e1eb000fa5.js",
+    "precache-manifest.afff6022b139440df34329e43dedb405.js": "/precache-manifest.afff6022b139440df34329e43dedb405.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.7f75bbe2.chunk.css.map": "/static/css/2.7f75bbe2.chunk.css.map",
-    "static/css/main.255e74e5.chunk.css.map": "/static/css/main.255e74e5.chunk.css.map",
-    "static/js/2.2ad88a88.chunk.js.LICENSE.txt": "/static/js/2.2ad88a88.chunk.js.LICENSE.txt"
+    "static/css/2.8ed1dbeb.chunk.css.map": "/static/css/2.8ed1dbeb.chunk.css.map",
+    "static/css/main.07d28c4f.chunk.css.map": "/static/css/main.07d28c4f.chunk.css.map",
+    "static/js/2.2a753ffd.chunk.js.LICENSE.txt": "/static/js/2.2a753ffd.chunk.js.LICENSE.txt",
+    "static/media/GreenCart.css": "/static/media/Booter - Zero Zero.665b855c.woff2",
+    "static/media/PlasticBottles.jpg": "/static/media/PlasticBottles.efc9d0e7.jpg",
+    "static/media/batteries.jpg": "/static/media/batteries.aaced28e.jpg",
+    "static/media/computer.jpg": "/static/media/computer.54882121.jpg",
+    "static/media/e-waste.jpg": "/static/media/e-waste.63200e66.jpg",
+    "static/media/ewaste.jpg": "/static/media/ewaste.5e289c0e.jpg",
+    "static/media/glass.jpg": "/static/media/glass.226c4b79.jpg",
+    "static/media/light.jpg": "/static/media/light.8fd29335.jpg",
+    "static/media/marker-icon.png": "/static/media/marker-icon.71c80642.png",
+    "static/media/phone.jpg": "/static/media/phone.ef85e53c.jpg",
+    "static/media/plastic.jpg": "/static/media/plastic.4214ade8.jpg",
+    "static/media/plasticbag.jpg": "/static/media/plasticbag.ab8f0e1f.jpg",
+    "static/media/shampoo.jpg": "/static/media/shampoo.ec4fa95a.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.3d71aa3e.js",
-    "static/css/2.7f75bbe2.chunk.css",
-    "static/js/2.2ad88a88.chunk.js",
-    "static/css/main.255e74e5.chunk.css",
-    "static/js/main.75aae59f.chunk.js"
+    "static/css/2.8ed1dbeb.chunk.css",
+    "static/js/2.2a753ffd.chunk.js",
+    "static/css/main.07d28c4f.chunk.css",
+    "static/js/main.6439e9c7.chunk.js"
   ]
 }
