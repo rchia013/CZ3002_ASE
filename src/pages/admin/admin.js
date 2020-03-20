@@ -5,7 +5,7 @@ import { base } from "../../base.js";
 import "./admin.css";
 import Button from "@material-ui/core/Button";
 import "../../components/navbar/Navbar.css";
-import app from "../../base.js";
+import { firebaseapp } from "../../base.js";
 import AdminForm from "./adminForm.js";
 
 class Admin extends Component {
@@ -19,7 +19,7 @@ class Admin extends Component {
               <ul>
                 <li>ADMIN</li>
                 <li>
-                  <a onClick={() => app.auth().signOut()} href="/">
+                  <a onClick={() => firebaseapp.auth().signOut()} href="/">
                     Logout
                   </a>
                 </li>

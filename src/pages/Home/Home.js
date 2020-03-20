@@ -2,37 +2,34 @@ import React, { Component } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "./Home.css";
-import app from "../../base.js";
+import { firebaseapp } from "../../base.js";
 import Navbar from "../../components/navbar/Navbar.js";
-var firebase = require("firebase");
 
 // This is a class based component (forgot what it's proper name is called). The other option is
 // a functional component. Class based components offer more flexibility though.
-var loginStatus;
+var loginStatus2=false;
 class Home extends Component {
   // Functions/Methods, if any, go here. See other pages for example
-
+  state ={ user: null }
+  
+  // Checks status and adds user to state
   checkStatus() {
-    var user = app.auth().currentUser;
-
-    if (user) {
-      return true;
-    } else {
-      return false;
-    }
+    firebaseapp.auth().onAuthStateChanged((user) => {
+			if (user!=null) {
+        this.setState({ user: user });
+			} else {
+				this.setState({ user: null });
+      }
+    });
   }
 
+  componentDidMount(){
+    this.checkStatus()
+  }
+
+  
+  
   render() {
-    loginStatus = this.checkStatus();
-
-    // Functions to be run should be put here. And other stuff that I'm probably not aware of.
-    // Note that ComponentWillMount() etc will be above in the function area (see Wasteitem.js)
-    // These special functions will, generally speaking, run before anything is loaded
-
-    // Return is basically the html for whatever you want displayed.
-    // Note that you can only return one html element, so in this case i wrapped everything in
-    // <div class="home_content">
-
     return (
       <div class="home_content">
         {/*import Navbar as a component*/}
@@ -135,45 +132,45 @@ class Home extends Component {
         <section id="profile_details">
           <h1>Profile Details</h1>
           <p>
-            {loginStatus ? (
-              <div>
-                <p> Logged in as {app.auth().currentUser.displayName}</p>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  component={RouterLink}
-                  to="/profile"
-                >
-                  View Profile
-                </Button>
+            {(this.state.user!=null) ? (
+                <div>
+                  <p> Logged in as {this.state.user.displayName}</p>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    component={RouterLink}
+                    to="/profile"
+                  >
+                    View Profile
+                  </Button>
 
-                <br />
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="large"
-                  onClick={() => app.auth().signOut()}
-                  component={RouterLink}
-                  to="/"
-                >
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <div>
-                <p>Not logged in </p>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  component={RouterLink}
-                  to="/login"
-                >
-                  Login
-                </Button>
-              </div>
-            )}
+                  <br />
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="large"
+                    onClick={() => firebaseapp.auth().signOut()}
+                    component={RouterLink}
+                    to="/"
+                  >
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  <p>Not logged in </p>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    component={RouterLink}
+                    to="/login"
+                  >
+                    Login
+                  </Button>
+                </div>
+              )}
           </p>
         </section>
       </div>

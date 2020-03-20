@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GreenShoppingCart from "./pages/GreenCart/GreenShoppingCart.js";
 import Login from "./pages/Login/Login.js";
 import Profile from "./pages/Login/Profile.js";
+import Profile2 from "./pages/Login/Profile2.js";
 import Admin from "./pages/admin/admin.js";
 
 // This is a functional component. If you need additional functionaility, it can be changed to a
@@ -48,7 +49,7 @@ function App() {
           <Route path="/greenshoppingcart" component={GreenShoppingCart} />
           <Route path="/calendar" component={DemoApp} />
           <Route path="/login" component={Login} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={Profile2} />
           <Route path="/admin" component={Admin} />
         </Switch>
       </div>

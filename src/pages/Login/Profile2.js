@@ -2,82 +2,59 @@ import React, { Component } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "../Home/Home.css";
-import { app, base } from "../../base.js";
+import { firebaseapp, base } from "../../base.js";
 import { Redirect } from "react-router";
 import Admin from "../admin/admin.js";
 import Navbar from "../../components/navbar/Navbar";
 
 var firebase = require("firebase");
-var updateOnce = 0;
 var loginStatus = false;
 
-class Profile extends Component {
+class Profile2 extends Component {
   state = {
-    admin: null
+    admin: null,
+    user: null
   };
-  // Checks current login status
-  checkStatus() {
-    var user = firebase.auth().currentUser;
-    console.log(user)
 
-    if (user) {
-      firebase
-        .auth()
-        .currentUser.getIdTokenResult()
+  // Checks status and adds user to state
+  checkStatus() {
+    firebaseapp.auth().onAuthStateChanged((user) => {
+      if (user!=null) {
+        this.setState({ user: user })
+
+        // Dealing with admin
+        firebaseapp.auth().currentUser.getIdTokenResult()
         .then(idTokenResult => {
           this.setState({
             admin: idTokenResult.claims.admin
-          });
-        });
-      return true;
-    } else {
-      return false;
-    }
-  }
+          })
+        })
 
-  componentWillMount(){
-    this.getOrders();
-    this.checkStatus();
-  }
-
-  componentDidMount() {
-    // this.checkStatus();
-    this.getUserOrders();
-    
-  }
-
-  // Reads data from firebase as an object
-  // Can try to clean up this data, super messy in this form
-  getOrders() {
-    console.log("getOrders");
-    base.fetch("orders", {
-      context: this,
-      then(data) {
-        this.setState({ temp: data });
+        console.log("done setting state")
+        this.getUserOrders()
+      } else {
+        this.setState({ user: null });
       }
     });
-    
-    delete this.state.temp;
   }
 
+
+  componentDidMount() {
+    this.checkStatus()
+  }
+
+
   getUserOrders() {
-    base.fetch("orders/" + firebase.auth().currentUser.uid, {
+    base.fetch("orders/" + this.state.user.uid, {
       context: this,
       then(data) {
-        this.setState(data);
+        this.setState({ orderdata: data} );
       }
     });
   }
 
   render() {
     
-
-    // console.log(firebase.auth().currentUser)
-    // this.getUserOrders()
-    //console.log(firebase.auth().currentUser.displayName)
-    // Functions to be run should be put here. And other stuff that I'm probably not aware of.
-    // Note that ComponentWillMount() etc will be above in the function area (see Wasteitem.js)
-    // These special functions will, generally speaking, run before anything is loaded
 
     // Return is basically the html for whatever you want displayed.
     // Note that you can only return one html element, so in this case i wrapped everything in
@@ -94,16 +71,16 @@ class Profile extends Component {
             <div class="user">
               <h1>Profile Details</h1>
               <p class="para">
-                The user is {loginStatus ? "currently" : "not"} logged in
+                Currently {(this.state.user!=null) ? "" : "not"} logged in
               </p>
               <p class="para">
-                {loginStatus ? (
-                  <p>as {firebase.auth().currentUser.displayName}</p>
+                {(this.state.user!=null) ? (
+                  <p>as {this.state.user.displayName}</p>
                 ) : null}
               </p>
               <br />
               <h1>Order History</h1>
-              <p>{JSON.stringify(this.state)}</p>
+              <p>{JSON.stringify(this.state.orderdata)}</p>
               <Button
                 variant="contained"
                 color="primary"
@@ -122,4 +99,4 @@ class Profile extends Component {
 }
 
 // Remember to export so that you can use this component elsewhere
-export default Profile;
+export default Profile2;

@@ -16,10 +16,10 @@ const firebaseConfig = {
   measurementId: "G-9H01WLR7DF"
 };
 
-const app = firebase.initializeApp(firebaseConfig);
-const base = Rebase.createClass(app.database());
+const firebaseapp = firebase.initializeApp(firebaseConfig);
+const base = Rebase.createClass(firebaseapp.database());
 const functions = firebase.functions();
 
-export default app;
+export { firebaseapp };
 export { base };
 export { functions };
