@@ -4,22 +4,49 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import Navbar2 from '../../components/navbar2/navbar2.js'
+import { base } from '../../base.js'
+import firebase from 'firebase'
+
 
 import './main.scss'
 
 export default class DemoApp extends React.Component {
   calendarComponentRef = React.createRef()
-  state = {
-    calendarWeekends: true, 
-    calendarEvents: [ // initial event data
-      { title: 'Event Now', start: new Date() }, 
-      {
-          title: 'My birthday',
-          start: '2020-03-02T10:00:00',
-          end: '2020-03-02T12:00:00'
-      }
+  state = {calendarWeekends: true} // The rest of state is obtained through firebase call
 
-    ]
+
+  getCalDetails() {
+    base.fetch("calendar/", {
+      context: this,
+      then(data) {
+        this.setState({calendarEvents: data});
+      }
+    });
+  }
+
+  updateFirebase = (caldetails) => {
+    // var caldetails = this.state
+    var newCalKey = firebase.database().ref().child('calendar').push().key;
+    var updates = {}
+    updates['/calendar/' + newCalKey] = caldetails
+    return firebase.database().ref().update(updates)
+  }
+
+  componentWillMount(){
+    this.getOrders()
+}
+
+  // Reads data from firebase as an object
+  // Can try to clean up this data, super messy in this form
+  getOrders(){
+      base.fetch('calendar', {
+          context: this,
+          asArray: true,
+          then(data){
+              console.log(data)
+              this.setState({calendarEvents: data})
+          }
+      })
   }
 
   render() {
@@ -33,9 +60,11 @@ export default class DemoApp extends React.Component {
     }, {
       value: '6pm - 9pm'
     }];
+
+    console.log(this.state)
     return (
       <div className='demo-app'>
-        { <Navbar2/> }
+        {/* {//<Navbar2/> } */}
 
         <div className='demo-app-calendar'>
         
@@ -56,6 +85,7 @@ export default class DemoApp extends React.Component {
 
         </div>
 
+
         {/* <Dropdown
         label='time'
         var data ={data}
@@ -73,13 +103,15 @@ export default class DemoApp extends React.Component {
         var title = window.prompt("Enter the title");
         var starttime = window.prompt("Enter the start time");
         var endtime = window.prompt("Enter the end time");
-        this.setState({  // add new event data
-        calendarEvents: this.state.calendarEvents.concat({ // creates a new array
+        var calUpdate = {
           title: title,
           start:arg.dateStr + 'T' + starttime,
           end: arg.dateStr + 'T' + endtime
-        })
+        }
+        this.setState({  // add new event data
+        calendarEvents: this.state.calendarEvents.concat(calUpdate) // creates a new array
       })
+        this.updateFirebase(calUpdate)
     }
   }
 
