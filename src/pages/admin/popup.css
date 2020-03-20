@@ -1,0 +1,46 @@
+.popup {
+  position: absolute;
+  width: 90%;
+  height: 200px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  padding-left: 5px;
+  padding-top: 5px;
+  background-color: lightslategrey;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#space {
+  width: 5%;
+}
+
+.popup\_inner {
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* position: relative;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: auto; */
+  border-radius: 20px;
+  background: white;
+}
+
+#h1x {
+  /* border: 2px solid black */
+  color: white;
+}
+
+#btx {
+  height: 20px;
+  width: 20px;
+}
