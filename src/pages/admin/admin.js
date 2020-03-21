@@ -53,7 +53,7 @@ class Admin extends Component {
               color="primary"
               size="large"
               component={RouterLink}
-              to="/map"
+              to="/vouchers"
             >
               Edit Vouchers
             </Button>
