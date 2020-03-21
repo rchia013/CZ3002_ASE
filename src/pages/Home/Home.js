@@ -30,148 +30,179 @@ class Home extends Component {
   render() {
     return (
       <div class="home_content">
-        {/*import Navbar as a component*/}
-        <Navbar />
+          {/*import Navbar as a component*/}
+          <Navbar />
 
-        {/* These are the sections that appear on the page. Smooth scrolling is implemented in CSS
-                because everything else is too advanced for me. Removing CSS would just make it a
-                normal webpage */}
-        <section id="home">
-          <h1>Welcome!</h1>
-          <p>This is our webapp!</p>
-        </section>
 
-        <section id="plastic">
-          <h1>Plastic</h1>
-          <p>Recycle used bottles and containers!</p>
-        </section>
+            {/* These are the sections that appear on the page. Smooth scrolling is implemented in CSS
+                  because everything else is too advanced for me. Removing CSS would just make it a
+                  normal webpage */}
+          <section id="home">
+            <h1>Welcome!</h1>
+            <p>This is our webapp!</p>
+          </section>
 
-        <section id="ewaste">
-          <h1>E-waste</h1>
-          <p>Recycle batteries and used computers!</p>
-        </section>
-
-        <section id="letsgo">
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/waste-items"
-          >
-            Let's Go!
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/categorypage"
-          >
-            Self-Recycle
-          </Button>
-          <br />
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/map"
-          >
-            View Google Map
-          </Button>
-          <br />
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/onemap"
-          >
-            View Onemap
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/lightingcat"
-          >
-            View lightingcat
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/test"
-          >
-            View test
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/greenshoppingcart"
-          >
-            GreenShoppingCart
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            component={RouterLink}
-            to="/calendar"
-          >
-            View Calendar
-          </Button>
-        </section>
-        <section id="profile_details">
-          <h1>Profile Details</h1>
-          <p>
-            {(this.state.user!=null) ? (
-                <div>
-                  <p> Logged in as {this.state.user.displayName}</p>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    component={RouterLink}
-                    to="/profile"
-                  >
-                    View Profile
-                  </Button>
-
-                  <br />
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="large"
-                    onClick={() => firebaseapp.auth().signOut()}
-                    component={RouterLink}
-                    to="/"
-                  >
-                    Logout
-                  </Button>
+          <section id="plastic">
+            <ul>
+              <li>
+                <div class="section_content">
+                  <h1>Plastic</h1>
+                  <p>Recycle used bottles and containers!</p>
+                  <p><small>Scroll right to see more!</small></p>
                 </div>
-              ) : (
-                <div>
-                  <p>Not logged in </p>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    component={RouterLink}
-                    to="/login"
-                  >
-                    Login
-                  </Button>
+              </li>
+              <li>
+                <div class="section_content">
+                  <h1>What can you recycle?</h1>
+                  <p>Plastic bottles, containers and anything in between!</p>
+                  <p>Just be sure to clean them thoroughly first for proper recycling!</p>
                 </div>
-              )}
-          </p>
-        </section>
-      </div>
+              </li>
+            </ul>
+          </section>
+
+          <section id="ewaste">
+            <ul>
+              <li>
+                <div class="section_content">
+                  <h1>E-waste</h1>
+                  <p>Recycle batteries and used computers!</p>
+                  <p><small>Scroll right to see more!</small></p>
+                </div>
+              </li>
+              <li>
+                <div class="section_content">
+                  <h1>What can you recycle?</h1>
+                  <p>Batteries, TVs, laptops and many more!</p>
+                  <p>For bulky items, we recommend scheduling a pickup. Our experts will
+                      handle the rest!
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <section id="letsgo">
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to="/waste-items"
+            >
+              Let's Go!
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to="/categorypage"
+            >
+              Self-Recycle
+            </Button>
+            <br />
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to="/map"
+            >
+              View Google Map
+            </Button>
+            <br />
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to="/onemap"
+            >
+              View Onemap
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to="/lightingcat"
+            >
+              View lightingcat
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to="/test"
+            >
+              View test
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to="/greenshoppingcart"
+            >
+              GreenShoppingCart
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to="/calendar"
+            >
+              View Calendar
+            </Button>
+          </section>
+          <section id="profile_details">
+            <h1>Profile Details</h1>
+            <p>
+              {(this.state.user!=null) ? (
+                  <div>
+                    <p> Logged in as {this.state.user.displayName}</p>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      component={RouterLink}
+                      to="/profile"
+                    >
+                      View Profile
+                    </Button>
+
+                    <br />
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      size="large"
+                      onClick={() => firebaseapp.auth().signOut()}
+                      component={RouterLink}
+                      to="/"
+                    >
+                      Logout
+                    </Button>
+                  </div>
+                ) : (
+                  <div>
+                    <p>Not logged in </p>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="large"
+                      component={RouterLink}
+                      to="/login"
+                    >
+                      Login
+                    </Button>
+                  </div>
+                )}
+            </p>
+          </section>
+          </div>
     );
   }
 }

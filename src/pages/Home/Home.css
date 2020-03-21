@@ -1,8 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #333;
@@ -17,10 +12,12 @@ body {
   height: 100vh; /* For some reason, use 100vh here instead of 100% */
 
   /* CSS Smooth Scroll */
+  overflow-x: hidden;
   overflow-y: scroll;
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
 }
+
 
 .navbar {
   position: fixed;
@@ -63,30 +60,73 @@ section {
   width: 100%;
   height: 100vh;
   scroll-snap-align: center;
+  overflow-x:hidden;
+  background-color: #333;
 }
 
 section h1 {
   font-size: 4rem;
+  color: #f4f4f4;
 }
 
 section p {
   font-size: 1.5rem;
+  color: #f4f4f4;
+}
+
+section p small {
+  font-size: 1rem;
+  color: #f4f4f4;
+}
+
+section ul {
+  scroll-snap-type: x mandatory;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  max-width: 100vw;
+}
+
+section ul::-webkit-scrollbar {
+  display: none;
+}
+
+section ul li {
+  min-width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  text-align: center;
+  position: relative;
+}
+
+.section_content {
+  position: absolute;
+  top: 50%;
+  /* transform: translateY(-50%); */
+  text-align: center;
+  color: white;
+  width: 100%;
+  left: 0;
+  font-size: calc(1rem + 3vw);
 }
 
 /* Section Images */
 section#home {
   background: url("https://i.ytimg.com/vi/XBPjVzSoepo/maxresdefault.jpg")
     no-repeat center center/ cover;
+  box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset; /*Handles tint*/
 }
 
 section#plastic {
   background: url("https://superfoodsrx.com/wp-content/uploads/2016/09/reusing-plastic-bottles.jpg")
     no-repeat center center/ cover;
+  box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
 }
 
 section#ewaste {
   background: url("https://cms.qz.com/wp-content/uploads/2017/01/electronicwaste.jpeg?quality=75&strip=all&w=1600&h=900&crop=1")
-    no-repeat center center/ cover;
+    no-repeat center center/ cover;  
+  box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
 }
 
 .user {

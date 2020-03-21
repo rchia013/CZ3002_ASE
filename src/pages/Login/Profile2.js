@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import "../Home/Home.css";
 import { firebaseapp, base } from "../../base.js";
 import { Redirect } from "react-router";
 import Admin from "../admin/admin.js";
 import Navbar from "../../components/navbar/Navbar";
+import './Profile2.css'
+
+import Table from 'react-bootstrap/Table'
+
+
 
 var firebase = require("firebase");
 var loginStatus = false;
@@ -38,7 +42,6 @@ class Profile2 extends Component {
     });
   }
 
-
   componentDidMount() {
     this.checkStatus()
   }
@@ -47,6 +50,7 @@ class Profile2 extends Component {
   getUserOrders() {
     base.fetch("orders/" + this.state.user.uid, {
       context: this,
+      asArray: true,
       then(data) {
         this.setState({ orderdata: data} );
       }
@@ -54,45 +58,77 @@ class Profile2 extends Component {
   }
 
   render() {
+    var temporders = [{"name": "test1"},{"name":"test2"}]
     
+    
+    const listItems = temporders.map((d) => <li key={d.name}>{d.name}</li>)
+    
+    
+    var temporders2 = this.state.orderdata
+    if (temporders2!=null){
+      console.log(temporders2)
+      var listItems2 = (
+        <tbody>
+            {temporders2.map((d) => <tr>
+              <td>{d.key}</td>
+              <td>{d.batteries}</td>
+              <td>{d.plastic_bottle}</td>
+            </tr>)}
+        </tbody>)
+    } else
+    {
+      var listItems2 = (<p>Nothing yet2</p>);
+    }
 
     // Return is basically the html for whatever you want displayed.
     // Note that you can only return one html element, so in this case i wrapped everything in
     // <div class="home_content">
     return (
       <div>
+        <div class="profile_navbar"><Navbar /></div>
         {this.state.admin ? (
-          <div class="home_content">
+          <div class="admin_content">
             <Admin />
           </div>
         ) : (
-          <div class="home_content">
-            <Navbar></Navbar>
+          <div class="profile_content">
             <div class="user">
-              <h1>Profile Details</h1>
-              <p class="para">
-                Currently {(this.state.user!=null) ? "" : "not"} logged in
-              </p>
-              <p class="para">
-                {(this.state.user!=null) ? (
-                  <p>as {this.state.user.displayName}</p>
-                ) : null}
-              </p>
+              {(this.state.user!=null) ? (<h1>Welcome {this.state.user.displayName}</h1>) 
+                                     : (<h1>Currently not logged in</h1>)}
               <br />
-              <h1>Order History</h1>
-              <p>{JSON.stringify(this.state.orderdata)}</p>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                component={RouterLink}
-                to="/"
-              >
-                Home
-              </Button>
+              <div class="orderHistory">
+                <h2>Order History</h2>
+                <Table striped bordered hover variant="dark">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Batteries</th>
+                      <th>Plastic bottles</th>
+                    </tr>
+                  </thead>
+                  {listItems2}
+                </Table>
+              </div>
+              <div class="test_button">
+                <Button
+                  variant="contained"
+                  // color="inherit"
+                  size="large"
+                  component={RouterLink}
+                  to="/"
+                >
+                  Home
+                </Button>
+              </div>
             </div>
           </div>
         )}
+
+        
+        
+        
+        
+
       </div>
     );
   }
