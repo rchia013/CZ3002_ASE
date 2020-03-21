@@ -18,6 +18,7 @@ import Login from "./pages/Login/Login.js";
 import Profile from "./pages/Login/Profile.js";
 import Profile2 from "./pages/Login/Profile2.js";
 import Admin from "./pages/admin/admin.js";
+import Vouchers from "./pages/vouchers/vouchers.js";
 
 // This is a functional component. If you need additional functionaility, it can be changed to a
 // class based component. As of now, its just a glorified routing thing so not necessary.
@@ -51,6 +52,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile2} />
           <Route path="/admin" component={Admin} />
+          <Route path="/vouchers" component={Vouchers} />
         </Switch>
       </div>
     </Router>
