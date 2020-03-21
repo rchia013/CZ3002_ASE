@@ -8,12 +8,8 @@ h1{
     text-align: center;
 }
 
-.confirm_button{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+section p{
+    color: black;
 }
 
 .textFields{

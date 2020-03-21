@@ -73,6 +73,7 @@ class Profile2 extends Component {
               <td>{d.key}</td>
               <td>{d.batteries}</td>
               <td>{d.plastic_bottle}</td>
+              <td>{d.glass}</td>
             </tr>)}
         </tbody>)
     } else
@@ -104,6 +105,7 @@ class Profile2 extends Component {
                       <th>Order ID</th>
                       <th>Batteries</th>
                       <th>Plastic bottles</th>
+                      <th>Glass</th>
                     </tr>
                   </thead>
                   {listItems2}

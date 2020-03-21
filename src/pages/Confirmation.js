@@ -4,7 +4,6 @@ import { firebaseapp, base } from '../base.js'
 import firebase from 'firebase'
 import Button from '@material-ui/core/Button'
 import emailjs from 'emailjs-com'
-// import { EmailJSResponseStatus } from 'emailjs-com';
 
 // This component receives Props (aka variables/state) from previous page(Wasteitem)
 // It prints the state from the previous page, passed through the Link from react-router
@@ -22,12 +21,6 @@ class Confirmation extends Component{
         this.setState(
             this.props.location.state
         )
-        // this.setState({user_id: firebase.auth().currentUser.uid})
-    }
-
-    // Based on my experimenation, this seems to run more often? Some complicated shit going on here!
-    // Something to do with react-app lifecycles
-    componentWillMount(){
         this.wasteRef = base.syncState('waste', {
             context: this,
             state: 'waste'
@@ -47,6 +40,10 @@ class Confirmation extends Component{
         var user_id = user.uid
         var user_name = user.displayName
 
+        delete this.state.updating_qty
+        delete this.state.glass_dialog
+        delete this.state.plastic_dialog
+        delete this.state.ewaste_dialog
         var orderdetails = this.state
         var newOrderKey = firebase.database().ref().child('orders').push().key;
         var updates = {}
@@ -67,14 +64,15 @@ class Confirmation extends Component{
 
   render(){
     // console.log is useful for debugging, you can see it update in Chrome under Inspect Element > Console
-    
+    console.log(this.state)
     return(
         <div class="confirmation_page">
 
                 {/* This is an example of how to print from this.state. 
                     Remember to wrap in {} when you do it. */}                
-                <p>No of bottles: {this.state.plastic_bottle}</p>
-                <p>No of batteries: {this.state.batteries}</p>
+                {(this.state.plastic_bottle!=null)?<p>No of bottles: {this.state.plastic_bottle}</p>:null}
+                {(this.state.batteries!=null)?<p>No of batteries: {this.state.batteries}</p>:null}
+                {(this.state.glass!=null)?<p>No of glass: {this.state.glass}</p>:null}
 
                 {/*<TextField class="textFields"
                     style={{ margin: 8, width: 200 }}
