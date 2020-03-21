@@ -7,7 +7,6 @@ import TextField from '@material-ui/core/TextField'
 import './Wasteitem.css'
 import Navbar from '../../components/navbar/Navbar.js'
 import { Grid, Container, Paper } from '@material-ui/core';
-import { firebaseapp } from '../../base.js'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';

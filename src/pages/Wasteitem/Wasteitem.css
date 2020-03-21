@@ -8,7 +8,7 @@ h1{
     text-align: center;
 }
 
-section p{
+section#test p{
     color: black;
 }
 
@@ -18,8 +18,6 @@ section p{
     border-radius: 3;
     border: 0;
     height: 100%;
-    
-
     color: black;
 }
 

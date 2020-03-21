@@ -4,6 +4,9 @@ import { firebaseapp, base } from '../base.js'
 import firebase from 'firebase'
 import Button from '@material-ui/core/Button'
 import emailjs from 'emailjs-com'
+import { makeStyles, Grid, Container, Paper } from '@material-ui/core';
+import { sizing } from '@material-ui/system';
+import './Confirmation.css'
 
 // This component receives Props (aka variables/state) from previous page(Wasteitem)
 // It prints the state from the previous page, passed through the Link from react-router
@@ -13,6 +16,8 @@ class Confirmation extends Component{
     
     // State for Confirmation depends on props passed from Wasteitem
     state = {}
+
+    
 
 
     // This runs when component mounts (basically when it appears on the page
@@ -65,14 +70,53 @@ class Confirmation extends Component{
   render(){
     // console.log is useful for debugging, you can see it update in Chrome under Inspect Element > Console
     console.log(this.state)
+    
     return(
         <div class="confirmation_page">
 
                 {/* This is an example of how to print from this.state. 
-                    Remember to wrap in {} when you do it. */}                
-                {(this.state.plastic_bottle!=null)?<p>No of bottles: {this.state.plastic_bottle}</p>:null}
-                {(this.state.batteries!=null)?<p>No of batteries: {this.state.batteries}</p>:null}
-                {(this.state.glass!=null)?<p>No of glass: {this.state.glass}</p>:null}
+                    Remember to wrap in {} when you do it. */}
+                {/* <Grid
+                container
+                direction="column"
+                justify="flex-start"
+                alignItems="center"
+                spacing={3}> */}
+                    
+                    <Grid
+                    container
+                    direction="column"
+                    justify="flex-start"
+                    alignItems="center"
+                    spacing={3}>
+                        
+                        <Grid item 
+                        className="orderGrid"
+                        direction="column"
+                        justify="left"
+                        alignItems="left">
+                        <Paper className="paperback">
+                        <h3>GreenCart</h3>
+                        {(this.state.plastic_bottle!=null)?<p>No of bottles: {this.state.plastic_bottle}</p>:null}
+                        
+                        {(this.state.batteries!=null)?<p>No of batteries: {this.state.batteries}</p>:null}
+                        
+                        
+                        {(this.state.glass!=null)?<p>No of glass: {this.state.glass}</p>:null}
+                        </Paper>
+                        </Grid>
+                        <Button 
+                            variant="contained" color="primary" size="large"  
+                            onClick={() => this.updateFirebase()}
+                            component={RouterLink} to="/">
+                            Confirm!
+                        </Button>
+                    </Grid>
+                    
+                    
+
+                {/* </Grid>                 */}
+                
 
                 {/*<TextField class="textFields"
                     style={{ margin: 8, width: 200 }}
@@ -85,14 +129,7 @@ class Confirmation extends Component{
                     onClick runs this.updateFirebase (see above) which adds the info to the
                     Firebase database. I don't understand the syntax but something like this
                     works */}
-                <div class="confirm_button">
-                    <Button 
-                        variant="contained" color="primary" size="large"  
-                        onClick={() => this.updateFirebase()}
-                        component={RouterLink} to="/">
-                        Confirm!
-                    </Button>
-                </div>
+                
         </div>
     );
     }
