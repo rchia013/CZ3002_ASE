@@ -18,14 +18,14 @@ class Vouchers extends Component {
     desc: "",
     cost: null,
     error: false,
-    vouchers: null
+    vouchers: null,
+    titleError: false
   };
 
   handleTitle = e => {
     this.setState({
       title: e.target.value
     });
-    console.log(this.state.title);
   };
 
   handleDesc = e => {
@@ -40,8 +40,19 @@ class Vouchers extends Component {
     });
   };
 
+  handleDelete = e => {
+    firebaseapp
+      .database()
+      .ref("vouchers/" + e.target.id)
+      .remove();
+  };
+
   handleSubmit = e => {
-    if (this.state.title === "" || this.state.desc === "") {
+    if (
+      this.state.title === "" ||
+      this.state.desc === "" ||
+      this.state.cost === null
+    ) {
       this.setState({
         error: true
       });
@@ -66,7 +77,8 @@ class Vouchers extends Component {
     document.getElementById("form1").reset();
     this.setState({
       desc: "",
-      title: ""
+      title: "",
+      cost: null
     });
   };
 
@@ -92,7 +104,7 @@ class Vouchers extends Component {
             });
           });
 
-        console.log("done setting state");
+        // console.log("done setting state");
       } else {
         this.setState({ user: null });
       }
@@ -109,7 +121,7 @@ class Vouchers extends Component {
   }
 
   render() {
-    console.log(this.state.vouchers);
+    // console.log(this.state.vouchers);
     var temp = null;
     if (this.state.vouchers != null) {
       temp = Object.keys(this.state.vouchers).map(key => (
@@ -127,6 +139,9 @@ class Vouchers extends Component {
           <div style={{ color: "red" }}>
             Cost: {this.state.vouchers[key]["cost"]}
           </div>
+          <button id={key} onClick={this.handleDelete}>
+            Delete
+          </button>
         </div>
       ));
     }
