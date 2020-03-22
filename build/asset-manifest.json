@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.28916519.chunk.css",
-    "main.js": "/static/js/main.1457b65c.chunk.js",
-    "main.js.map": "/static/js/main.1457b65c.chunk.js.map",
+    "main.css": "/static/css/main.633790cc.chunk.css",
+    "main.js": "/static/js/main.97ca64cf.chunk.js",
+    "main.js.map": "/static/js/main.97ca64cf.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.3d71aa3e.js",
     "runtime-main.js.map": "/static/js/runtime-main.3d71aa3e.js.map",
     "static/css/2.8ed1dbeb.chunk.css": "/static/css/2.8ed1dbeb.chunk.css",
-    "static/js/2.6741b8b0.chunk.js": "/static/js/2.6741b8b0.chunk.js",
-    "static/js/2.6741b8b0.chunk.js.map": "/static/js/2.6741b8b0.chunk.js.map",
+    "static/js/2.050e80d4.chunk.js": "/static/js/2.050e80d4.chunk.js",
+    "static/js/2.050e80d4.chunk.js.map": "/static/js/2.050e80d4.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.d06622ede182e2708d2766cefcd32f34.js": "/precache-manifest.d06622ede182e2708d2766cefcd32f34.js",
+    "precache-manifest.fc32b756c34221ebd0dfeb190f35bef5.js": "/precache-manifest.fc32b756c34221ebd0dfeb190f35bef5.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.8ed1dbeb.chunk.css.map": "/static/css/2.8ed1dbeb.chunk.css.map",
-    "static/css/main.28916519.chunk.css.map": "/static/css/main.28916519.chunk.css.map",
-    "static/js/2.6741b8b0.chunk.js.LICENSE.txt": "/static/js/2.6741b8b0.chunk.js.LICENSE.txt",
-    "static/media/GreenCart.css": "/static/media/Booter - Zero Zero.665b855c.woff2",
+    "static/css/main.633790cc.chunk.css.map": "/static/css/main.633790cc.chunk.css.map",
+    "static/js/2.050e80d4.chunk.js.LICENSE.txt": "/static/js/2.050e80d4.chunk.js.LICENSE.txt",
+    "static/media/Wasteitem copy.css": "/static/media/Booter - Zero Zero.665b855c.woff2",
     "static/media/PlasticBottles.jpg": "/static/media/PlasticBottles.efc9d0e7.jpg",
     "static/media/batteries.jpg": "/static/media/batteries.aaced28e.jpg",
     "static/media/computer.jpg": "/static/media/computer.54882121.jpg",
@@ -31,8 +31,8 @@
   "entrypoints": [
     "static/js/runtime-main.3d71aa3e.js",
     "static/css/2.8ed1dbeb.chunk.css",
-    "static/js/2.6741b8b0.chunk.js",
-    "static/css/main.28916519.chunk.css",
-    "static/js/main.1457b65c.chunk.js"
+    "static/js/2.050e80d4.chunk.js",
+    "static/css/main.633790cc.chunk.css",
+    "static/js/main.97ca64cf.chunk.js"
   ]
 }

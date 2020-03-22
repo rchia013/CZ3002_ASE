@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Home from "./pages/Home/Home.js";
-import Wasteitems from "./pages/Wasteitem/Wasteitem.js";
+import Wasteitems from "./pages/Wasteitem/Wasteitem copy.js";
 import Confirmation from "./pages/Confirmation.js";
 import History from "./pages/History.js";
 import GoogleMapPage from "./googlemaps/googlemaps.js";

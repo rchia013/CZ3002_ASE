@@ -6,7 +6,7 @@ class Navbar extends Component {
     return (
       <div class="navbar">
         {/* Bar that appears at the top */}
-        <nav class="navbar">
+        <nav class="navbarnav">
           <ul>
             <li>
               <a href="/">Home</a>

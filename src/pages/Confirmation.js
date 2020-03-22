@@ -45,10 +45,6 @@ class Confirmation extends Component{
         var user_id = user.uid
         var user_name = user.displayName
 
-        delete this.state.updating_qty
-        delete this.state.glass_dialog
-        delete this.state.plastic_dialog
-        delete this.state.ewaste_dialog
         var orderdetails = this.state
         var newOrderKey = firebase.database().ref().child('orders').push().key;
         var updates = {}
@@ -64,8 +60,6 @@ class Confirmation extends Component{
         emailjs.send('gmail','template_8MKL7Ui0_clone', templateParams, 'user_v3HTSBe6LX8JIwU6pC5w0')
         return firebase.database().ref().update(updates)
     }
-
-
 
   render(){
     // console.log is useful for debugging, you can see it update in Chrome under Inspect Element > Console
@@ -97,12 +91,16 @@ class Confirmation extends Component{
                         alignItems="left">
                         <Paper className="paperback">
                         <h3>GreenCart</h3>
-                        {(this.state.plastic_bottle!=null)?<p>No of bottles: {this.state.plastic_bottle}</p>:null}
+                        {(this.state.Plastic!=null)?<p>No of bottles: {this.state.Plastic}</p>:null}
                         
-                        {(this.state.batteries!=null)?<p>No of batteries: {this.state.batteries}</p>:null}
+                        {(this.state.Batteries!=null)?<p>No of batteries: {this.state.Batteries}</p>:null}
                         
                         
-                        {(this.state.glass!=null)?<p>No of glass: {this.state.glass}</p>:null}
+                        {(this.state.Glass!=null)?<p>No of glass: {this.state.Glass}</p>:null}
+                        
+                        {(this.state['E Waste']!=null)?<p>No of eWaste: {this.state['E Waste']}</p>:null}
+
+                        {(this.state.points!=null)?<p>Total points: {this.state.points}</p>:null}
                         </Paper>
                         </Grid>
                         <Button 
