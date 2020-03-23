@@ -10,9 +10,17 @@ import firebase from 'firebase'
 
 import './main.scss'
 
-export default class DemoApp extends React.Component {
+export default class Calendar extends React.Component {
+
+  constructor(props) {
+    super(props);
+    // Don't call this.setState() here!
+    this.state = { calendarWeekends: true, calendarEvents:[]};
+    // this.handleUpdate = this.handleUpdate.bind(this);
+  }
+  
   calendarComponentRef = React.createRef()
-  state = {calendarWeekends: true} // The rest of state is obtained through firebase call
+  // state = {calendarWeekends: true} // The rest of state is obtained through firebase call
 
 
   getCalDetails() {
@@ -24,30 +32,33 @@ export default class DemoApp extends React.Component {
     });
   }
 
-  updateFirebase = (caldetails) => {
-    // var caldetails = this.state
-    var newCalKey = firebase.database().ref().child('calendar').push().key;
-    var updates = {}
-    updates['/calendar/' + newCalKey] = caldetails
-    return firebase.database().ref().update(updates)
-  }
+  // updateFirebase = (caldetails) => {
+  //   // var caldetails = this.state
+  //   var newCalKey = firebase.database().ref().child('calendar').push().key;
+  //   var updates = {}
+  //   updates['/calendar/' + newCalKey] = caldetails
+  //   return firebase.database().ref().update(updates)
+  // }
 
-  componentWillMount(){
-    this.getOrders()
-}
+  componentDidUpdate(prevProps){
+    if (this.props.calEvents!=prevProps.calEvents){
+      this.setState({calendarEvents: this.state.calendarEvents.concat(this.props.calEvents)})
+      console.log("different")
+    }
+  }
 
   // Reads data from firebase as an object
   // Can try to clean up this data, super messy in this form
-  getOrders(){
-      base.fetch('calendar', {
-          context: this,
-          asArray: true,
-          then(data){
-              console.log(data)
-              this.setState({calendarEvents: data})
-          }
-      })
-  }
+  // getOrders(){
+  //     base.fetch('calendar', {
+  //         context: this,
+  //         asArray: true,
+  //         then(data){
+  //             console.log(data)
+  //             this.setState({calendarEvents: data})
+  //         }
+  //     })
+  // }
 
   render() {
 
@@ -61,7 +72,8 @@ export default class DemoApp extends React.Component {
       value: '6pm - 9pm'
     }];
 
-    console.log(this.state)
+    // console.log(this.props)
+    // console.log(this.state)
     return (
       <div className='demo-app'>
         {/* {//<Navbar2/> } */}
@@ -80,7 +92,7 @@ export default class DemoApp extends React.Component {
             ref={ this.calendarComponentRef }
             weekends={ this.state.calendarWeekends }
             events={ this.state.calendarEvents }
-            dateClick={ this.handleDateClick }
+            dateClick={ this.props.handleUpdate }
             />
 
         </div>
@@ -96,25 +108,6 @@ export default class DemoApp extends React.Component {
       
     )
   }
-
-
-  handleDateClick = (arg) => {
-    if (window.confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-        var title = window.prompt("Enter the title");
-        var starttime = window.prompt("Enter the start time");
-        var endtime = window.prompt("Enter the end time");
-        var calUpdate = {
-          title: title,
-          start:arg.dateStr + 'T' + starttime,
-          end: arg.dateStr + 'T' + endtime
-        }
-        this.setState({  // add new event data
-        calendarEvents: this.state.calendarEvents.concat(calUpdate) // creates a new array
-      })
-        this.updateFirebase(calUpdate)
-    }
-  }
-
   
 
 }
