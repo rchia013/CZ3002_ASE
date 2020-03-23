@@ -64,7 +64,7 @@ export default class DemoApp extends React.Component {
     console.log(this.state)
     return (
       <div className='demo-app'>
-        {/* {//<Navbar2/> } */}
+        {<Navbar2/> }
 
         <div className='demo-app-calendar'>
         

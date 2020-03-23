@@ -4,8 +4,11 @@ import "./Navbar.css";
 class Navbar extends Component {
   render() {
     return (
+      
       <div class="navbar">
         {/* Bar that appears at the top */}
+        
+        <img style={{maxHeight: '60px', maxWidth: '90px'}}src = "/logo.jpg"/>
         <nav class="navbarnav">
           <ul>
             <li>
