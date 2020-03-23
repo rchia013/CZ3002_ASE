@@ -14,7 +14,7 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
     })
     .then(() => {
       return {
-        message: "Successfully added user as admin",
+        message: "Successfully added user as admin.",
         success: true
       };
     })

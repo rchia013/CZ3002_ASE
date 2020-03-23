@@ -137,7 +137,7 @@ class Vouchers extends Component {
           </h2>
           <div>{this.state.vouchers[key]["desc"]}</div>
           <div style={{ color: "red" }}>
-            Cost: {this.state.vouchers[key]["cost"]}
+            Cost: {this.state.vouchers[key]["cost"]} points
           </div>
           <button id={key} onClick={this.handleDelete}>
             Delete
