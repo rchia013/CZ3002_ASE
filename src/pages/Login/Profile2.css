@@ -4,15 +4,16 @@ body {
     color: #ffffff;
 }
 
-p {
-    color:#ffffff;
-}
-h1 {
-    color:#ffffff;
-}
+.profile_page{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
 
-h2 {
-    color:whitesmoke;
+  /* Smooth scroll */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 .profile_navbar{
@@ -34,6 +35,40 @@ h2 {
     justify-content: center;
     text-align: center;
 }
+
+
+.MuiFormControl-root.MuiTextField-root.edit-particulars {
+  width:100%;
+}
+
+.MuiPaper-root.particulars-paper{
+  width: 80%;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.user_welcome{
+  display: flex;
+  width: 90vw;
+  justify-self: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user_welcome p{
+  color:#777;
+  font-size: 1rem;
+  text-align: left;
+  padding: 0.1rem;
+  padding-left: 1rem;
+}
+
+.user_welcome h3{
+  color:#777;
+  font-size: 1.5rem;
+}
+
 
 /* bootstrap table */
 .table {

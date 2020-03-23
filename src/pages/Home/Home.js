@@ -86,8 +86,11 @@ class Home extends Component {
               variant="contained"
               color="primary"
               size="large"
-              component={RouterLink}
-              to="/waste-items"
+              component={RouterLink} 
+              to={{
+                  pathname:'/waste-items', 
+                  state: {selfrecycle: false} 
+              }}
             >
               Let's Go!
             </Button>
@@ -96,11 +99,15 @@ class Home extends Component {
               color="primary"
               size="large"
               component={RouterLink}
-              to="/categorypage"
+              to="/onemap"
             >
               Self-Recycle
             </Button>
+            
+            
             <br />
+            <br />
+            <h3> Not useful buttons </h3>
             <Button
               variant="contained"
               color="primary"
@@ -110,7 +117,6 @@ class Home extends Component {
             >
               View Google Map
             </Button>
-            <br />
             <Button
               variant="contained"
               color="primary"

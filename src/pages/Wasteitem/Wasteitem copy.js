@@ -15,6 +15,12 @@ class Wasteitem extends Component{
     // This is a state that holds the current values of variables we are interested in.
     // In this case, they are count for plastic bottles and batteries
     state = {points:0, tab: 0}
+
+    componentDidMount(){
+        this.setState(
+            this.props.location.state
+        )
+    }
     
     // Handle Change to text fields
     // Honestly not entirely clear how this works, but I believe it's the handleChange('[input]')

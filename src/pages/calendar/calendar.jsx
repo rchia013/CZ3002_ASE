@@ -42,7 +42,7 @@ export default class Calendar extends React.Component {
 
   componentDidUpdate(prevProps){
     if (this.props.calEvents!=prevProps.calEvents){
-      this.setState({calendarEvents: this.state.calendarEvents.concat(this.props.calEvents)})
+      this.setState({calendarEvents: [this.props.calEvents]})
       console.log("different")
     }
   }

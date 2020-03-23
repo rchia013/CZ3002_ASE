@@ -17,9 +17,7 @@ class Confirmation extends Component{
     
     // State for Confirmation depends on props passed from Wasteitem
     state = { calendarEvents: null, address: "", zip: "", phone: ""  }
-
     
-
 
     // This runs when component mounts (basically when it appears on the page
     componentDidMount(){
@@ -31,20 +29,43 @@ class Confirmation extends Component{
             context: this,
             state: 'waste'
         })
+
+        this.checkStatus()
     }
 
     componentWillUnmount(){
         base.removeBinding(this.wasteRef)
     }
 
+    submissionCondition(){
+        // Condition checking for scheduled pickups
+        if (this.state.user==null){
+            return false
+        } else if (this.state.selfrecycle==true){
+            return true
+        }
+        else if (this.state.calendarEvents==null){
+            return false
+        } else if ((this.state.address=="") || (this.state.phone=="") || (this.state.zip=="")){
+            return false
+        } else{
+            return true
+        }
+    }
+
     // Send update to firebase
     // Can also be tweaked to include completion callback
     updateFirebase = () => {
-        // Handling user auth
-        var user = firebaseapp.auth().currentUser
-        var user_email = user.email
-        var user_id = user.uid
-        var user_name = user.displayName
+
+        // Handling user details
+        var user_email = this.state.user.email
+        var user_id = this.state.user.uid
+        var user_name = this.state.user.displayName
+
+        // Removing unnecessary info
+        delete this.state.user
+        delete this.state.userDetails
+        delete this.state.tab
 
         var orderdetails = this.state
         var newOrderKey = firebase.database().ref().child('orders').push().key;
@@ -60,6 +81,40 @@ class Confirmation extends Component{
         };
         emailjs.send('gmail','template_8MKL7Ui0_clone', templateParams, 'user_v3HTSBe6LX8JIwU6pC5w0')
         return firebase.database().ref().update(updates)
+    }
+
+    // Handles user particulars
+    getUserDetails(){
+        base.fetch(this.state.user.uid + "/", {
+          context: this,
+          //asArray: true,
+          then(data) {
+            if (data != null){
+              this.setState({ userDetails: data });
+            }
+          }
+        });
+    }
+
+    appendDetails(address, zip, phone) {
+        console.log(address)
+        console.log(zip)
+        console.log(phone)
+        this.setState({ address: address,
+                        zip: zip,
+                        phone: phone })
+    }
+
+    checkStatus() {
+        firebaseapp.auth().onAuthStateChanged((user) => {
+                if (user!=null) {
+                    this.setState({ user: user });
+                    this.getUserDetails()
+                } else {
+                    this.setState({ user: null });
+          }
+        });
+
     }
 
 
@@ -87,6 +142,7 @@ class Confirmation extends Component{
   render(){
     // console.log is useful for debugging, you can see it update in Chrome under Inspect Element > Console
     console.log(this.state)
+    console.log(this.state.userDetails)
     
     return(
         <div class="confirmation_page">      
@@ -114,33 +170,57 @@ class Confirmation extends Component{
                 </Paper>                
                 </Grid>
 
-                <Grid item 
-                className="orderGrid"
-                direction="column"
-                justify="center"
-                alignItems="left">
-                <Paper className="paperback">
-                    <form>
-                        <h3> Schedule Pickup Details </h3>
-                    <TextField className="schedule-form" id="address" label="Address" variant="outlined" margin="normal" onChange={this.handleTextChange("address")} />
-                    <TextField className="schedule-form" id="zip" label="ZIP Code" variant="outlined" margin="normal" onChange={this.handleTextChange("zip")} />
-                    <TextField className="schedule-form" id="phone" label="Contact No" variant="outlined" margin="normal" onChange={this.handleTextChange("phone")} />
-                    </form>
-                    <Button className="append-user-details" variant="contained" color="primary" size="large" color="auto">
-                        Use my details
-                    </Button>
-                </Paper>
-                </Grid>
 
+                {this.state.selfrecycle ? null :
+                    <Grid item 
+                    className="orderGrid"
+                    direction="column"
+                    justify="center"
+                    alignItems="left">
+                    <Paper className="paperback">
+                        <form>
+                            <h3> Schedule Pickup Details </h3>
+                        <TextField className="schedule-form" id="address" label="Address" 
+                                    variant="outlined" margin="normal" value={this.state.address}
+                                    onChange={this.handleTextChange("address")} />
+                        <TextField className="schedule-form" id="zip" label="ZIP Code" 
+                                    variant="outlined" margin="normal" value={this.state.zip}
+                                    onChange={this.handleTextChange("zip")} />
+                        <TextField className="schedule-form" id="phone" label="Contact No" 
+                                    variant="outlined" margin="normal" value={this.state.phone}
+                                    onChange={this.handleTextChange("phone")} />
+                        </form>
+                        {(this.state.userDetails!=null)?
+                        <Button className="append-user-details" variant="contained" 
+                                color="primary" size="large" color="auto"
+                                onClick={() => this.appendDetails(this.state.userDetails.address,
+                                    this.state.userDetails.zip, this.state.userDetails.phone)}>
+                            Use my details
+                        </Button>:
+                        <Button className="append-user-details" variant="contained" 
+                                color="primary" size="large" color="auto" disabled>
+                            Cant Use my details
+                        </Button>}
+                    </Paper>
+                    </Grid>}
+                
+
+                {(this.submissionCondition())?
                 <Button 
                     variant="contained" color="primary" size="large" color="auto" 
                     onClick={() => this.updateFirebase()}
                     component={RouterLink} to="/">
                     Confirm!
-                </Button>
+                </Button>:
+                <Button 
+                    variant="contained" color="primary" size="large" color="auto" 
+                    disabled>
+                    Confirm!
+                </Button>}
             </Grid>
-                    
-            <Calendar calEvents={this.state.calendarEvents} handleUpdate={this.getCalUpdate}/>
+
+            {this.state.selfrecycle==true ? null :
+            <Calendar calEvents={this.state.calendarEvents} handleUpdate={this.getCalUpdate}/>}
 
             </div>
         </div>
