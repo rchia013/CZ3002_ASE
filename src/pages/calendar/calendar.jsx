@@ -5,9 +5,9 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import Navbar2 from '../../components/navbar2/navbar2.js'
 import { base } from '../../base.js'
-import firebase from 'firebase'
+import firebase from 'firebase' 
 
-
+ 
 import './main.scss'
 
 export default class Calendar extends React.Component {

@@ -7,7 +7,7 @@ import emailjs from 'emailjs-com'
 import Calendar from './calendar/calendar.jsx'
 import { makeStyles, Grid, TextField, Paper } from '@material-ui/core';
 import { sizing } from '@material-ui/system';
-import './Confirmation.css'
+import './Confirmation.css' 
 
 // This component receives Props (aka variables/state) from previous page(Wasteitem)
 // It prints the state from the previous page, passed through the Link from react-router
