@@ -20,7 +20,7 @@
 .waste_selection{
     display: flex;
     width: 90vw;
-    top: 60px;
+    top: 70px;
     position:relative;
     justify-content: center;
     align-items: top;
@@ -92,7 +92,8 @@ html, body {
 
 .btn {
     text-align: center;
-    vertical-align: middle;
+    justify-self: center;
+    /* vertical-align: middle; */
     padding: .67em .67em;
     cursor: pointer;
 }
@@ -119,25 +120,31 @@ html, body {
     text-align: center;
     font-weight: bold;
     font-size: 1.5em;
-    color: #f4f4f4;
+    color:black;
     margin-bottom: 15px;
 }
 
 .shop-item-image {
     height: 250px;
     width: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 5px;
 }
 
 .shop-item-details {
     display: flex;
-    align-items: center;
+    justify-content: center;
+    align-content: center;
     padding: 5px;
 }
 
 .shop-item-points {
+    display: flex;
+    width: 50%;
     flex-grow: 1;
-    color: #f4f4f4;
+    color: black;
 }
 
 .shop-items {
@@ -248,4 +255,9 @@ html, body {
     font-size: 1.5em;
     text-align: center;
     width: 10.5em;
+}
+
+.MuiPaper-root.shop-item-paper.MuiPaper-elevation3{
+    width: 100%;
+
 }

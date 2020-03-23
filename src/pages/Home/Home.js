@@ -33,7 +33,6 @@ class Home extends Component {
           {/*import Navbar as a component*/}
           <Navbar />
 
-
             {/* These are the sections that appear on the page. Smooth scrolling is implemented in CSS
                   because everything else is too advanced for me. Removing CSS would just make it a
                   normal webpage */}
