@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link as RouterLink} from 'react-router-dom';
+import { AppBar, Tabs, Tab, Paper} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import './Wasteitem copy.css'
 import Navbar from '../../components/navbar/Navbar.js'
@@ -13,78 +14,22 @@ class Wasteitem extends Component{
 
     // This is a state that holds the current values of variables we are interested in.
     // In this case, they are count for plastic bottles and batteries
-    state = {points:0}
+    state = {points:0, tab: 0}
     
     // Handle Change to text fields
     // Honestly not entirely clear how this works, but I believe it's the handleChange('[input]')
-    // which determines which fields are updated in props. Something like that :)
-    
-    handleSubmitandClose = input => e => {
-        console.log(input)
-        if (this.state.updating_qty==null){
-            this.setState({dialog: false});
-        } else{
-            var new_qty = this.state.updating_qty
-            this.setState({plastic_dialog: false, ewaste_dialog: false, glass_dialog: false, [input]: new_qty, updating_qty: null})
-        }
-    }
-
-    componentDidMount(){
-        this.ready();
-    }
-
-
-    /* ------------------------------------------------------------------------------------ */
-    ready(){
-        // Button for removing item from cart
-        var removeCartItemButtons = document.getElementsByClassName('btn-danger')
-        for(var i =0; i<removeCartItemButtons.length; i++){
-            var button = removeCartItemButtons[i]
-            button.addEventListener('click', this.removeCartItem)
-        }
-    
-        // Textfield for cart item qty
-        var quantityInputs = document.getElementsByClassName('cart-quantity-input')
-        for( var i =0; i<quantityInputs.length; i++){
-            var input = quantityInputs[i]
-            input.addEventListener('change', this.quantityChanged)
-        }
-        
-        // Button for adding to cart (waste selection)
-        var addToCartButtons = document.getElementsByClassName('shop-item-button')
-        for(var i=0; i<addToCartButtons.length; i++){
-            var button = addToCartButtons[i]
-            button.addEventListener('click', this.addToCartClicked)
-        }
-    
-        // Essentially submit button
-        var el = document.getElementsByClassName('btn-recycle')[0];
-        if(el){
-            el.addEventListener('click', this.recycleClicked);
-        }
-    }
-    
-    // Function for recycling -- need to change
-    // recycleClicked = event => {
-    //     alert("Thank you for recycling")
-    //     var cartItems = document.getElementsByClassName('cart-items')[0]
-    //     while(cartItems.hasChildNodes){
-    //         cartItems.removeChild(cartItems.firstChild)
-    //     }
-    //     this.updateCartTotal()
-    // } 
+    // which determines which fields are updated in props. Something like that :)    
     
     // Function for button removing cart item
     removeCartItem = event => {
         var buttonClicked = event.target
+        var shopItem = buttonClicked.parentElement.parentElement
+        var cartDetails = shopItem.getElementsByClassName('cart-item')[0]
+        var title = cartDetails.getElementsByClassName('cart-item-title')[0].innerText
+        // Handling state
+        this.setState({[title]: 0})
         buttonClicked.parentElement.parentElement.remove()
         this.updateCartTotal()
-
-        // Handling state
-        // var shopItem = button.parentElement.parentElement
-        // var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText
-        // this.setState({[title]: 0})
-
     }
     
     // Function for textfield
@@ -159,9 +104,10 @@ class Wasteitem extends Component{
             total = total + (points*quantity)
 
             // Handling state (points only)
-            this.setState({points: total, [title]: quantity})
+            this.setState({[title]: quantity})
         
         }
+        this.setState({points: total})
         document.getElementsByClassName('cart-total-points')[0].innerText = total + ' points'
 
         
@@ -169,55 +115,89 @@ class Wasteitem extends Component{
     
     /* ------------------------------------------------------------------------------------ */
 
+    // For tabs
+    handleChange = (event, newValue) => {
+        this.setState({tab: newValue});
+    }
+
+
   render(){
     console.log(this.state)
+
+    
     
     return(
         <div>
             <Navbar/>
             <div class="waste_item_content">
-            
-
-            <div class="waste_selection">
-                <div class="waste_items">
-                <h2 class="section-header">Recyclables</h2>
-                <div class="shop-items">
-                    <div class="shop-item">
-                        <span class="shop-item-title">Plastic</span>
-                        <img class="shop-item-image" src={plasticImg} />
-                        <div class="shop-item-details">
-                            <span class="shop-item-points">5 points</span>
-                            <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                <div class="waste_selection">
+                    <div class="waste_items">
+                    <AppBar position="static" color="auto">
+                        <Tabs value={this.state.tab} onChange={this.handleChange} aria-label="simple tabs example">
+                            {/* Add tabs here */}
+                            <Tab label="Plastic"  />
+                            <Tab label="E Waste"  />
+                            <Tab label="Glass" />
+                        </Tabs>
+                    </AppBar>
+                    {/* Hi Joey! Look here! */}
+                    <div class="shop-items">
+                        {/* Copy enclosed for tabs + content
+                            If you are creating a new tab, remember to change the value. Current largest is 2
+                            Look above for tab details
+                            
+                            For images, look at import plasticImg from '....' at the top as reference 
+                            If you are changing details, adding stuff, just edit the innerHTMLs. The js portion
+                            above handles the rest */}
+                        {(this.state.tab == 0) ?
+                        <Paper elevation={3} square className="shop-item-paper">
+                        <div class="shop-item">
+                            <span class="shop-item-title">Plastic</span>
+                            <img class="shop-item-image" src={plasticImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">5 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="shop-item">
-                        <span class="shop-item-title">Batteries</span>
-                        <img class="shop-item-image" src={eWasteImg} />
-                        <div class="shop-item-details">
-                            <span class="shop-item-points">5 points</span>
-                            <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                        </Paper> : null}
+                        {/* Copy up till here (end of enclosed area) */}
+                        
+                        {(this.state.tab == 1) ?
+                        <Paper elevation={3} square className="shop-item-paper">
+                        <div class="shop-item">
+                            <span class="shop-item-title">Batteries</span>
+                            <img class="shop-item-image" src={eWasteImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">5 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
                         </div>
-                    </div>
-                
-                    <div class="shop-item">
-                        <span class="shop-item-title">Glass</span>
-                        <img class="shop-item-image" src={glassImg} />
-                        <div class="shop-item-details">
-                            <span class="shop-item-points">5 points</span>
-                            <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                        <div class="shop-item">
+                            <span class="shop-item-title">E Waste</span>
+                            <img class="shop-item-image" src={eWasteImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">10 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="shop-item">
-                        <span class="shop-item-title">E Waste</span>
-                        <img class="shop-item-image" src={eWasteImg} />
-                        <div class="shop-item-details">
-                            <span class="shop-item-points">10 points</span>
-                            <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                        </Paper> : null}
+                        
+                        {(this.state.tab == 2) ?
+                        <Paper elevation={3} square className="shop-item-paper">
+                        <div class="shop-item">
+                            <span class="shop-item-title">Glass</span>
+                            <img class="shop-item-image" src={glassImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">5 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
                         </div>
+                        </Paper> : null}
                     </div>
                 </div>
-            </div>
+
+
+                
 
             <div class="greencart">
                 <h2 class="section-header">GREEN CART</h2>
@@ -231,6 +211,15 @@ class Wasteitem extends Component{
                     <strong class="cart-total-title">Total</strong>
                     <span class="cart-total-points">0 points</span>
                 </div>
+
+                {/* Conditional rendering for button */}
+                {(this.state.points == 0) ?
+                <Button 
+                    className="btn-recycle"
+                    disabled
+                    variant="contained" color="auto" size="large">
+                    RECYCLE
+                </Button> :
                 <Button 
                     className="btn-recycle"
                     variant="contained" color="auto" size="large" 
@@ -240,9 +229,8 @@ class Wasteitem extends Component{
                         state: this.state
                     }}>
                     RECYCLE
-                </Button>
+                </Button>}
             </div>
-
             </div>
 
             </div>
