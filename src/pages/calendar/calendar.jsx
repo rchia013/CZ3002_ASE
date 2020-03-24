@@ -6,6 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import Navbar2 from '../../components/navbar2/navbar2.js'
 import { base } from '../../base.js'
 import firebase from 'firebase'
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 import './main.scss'
@@ -49,6 +50,15 @@ export default class DemoApp extends React.Component {
       })
   }
 
+  // eventRender() {
+  //   var tooltip = new Tooltip(info.el, {
+  //     title: info.event.extendedProps.description,
+  //     placement: 'top',
+  //     trigger: 'hover',
+  //     container: 'body'
+  //   });
+  // }
+
   render() {
 
     let data = [{
@@ -77,19 +87,31 @@ export default class DemoApp extends React.Component {
               right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
             }}
             plugins={[ dayGridPlugin, timeGridPlugin, interactionPlugin ]}
-            ref={ this.calendarComponentRef }
+            //ref={ this.calendarComponentRef }
             weekends={ this.state.calendarWeekends }
             events={ this.state.calendarEvents }
             dateClick={ this.handleDateClick }
             />
+            
+            
 
         </div>
+        
+        <form onSubmit={this.handleSubmit}>
+        <label>
+          Choose a Time:
+          <select value={this.state.value} onChange={this.handleChange}>          
+            <option value="9:00:00">9am-12pm</option>
+            <option value="12:00:00">12pm-3pm</option>
+            <option value="15:00:00">3pm-6pm</option>
+            <option value="18:00:00">6pm-9pm</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+        </form>
+        
 
 
-        {/* <Dropdown
-        label='time'
-        var data ={data}
-        /> */}
       </div>
 
       
@@ -100,13 +122,15 @@ export default class DemoApp extends React.Component {
 
   handleDateClick = (arg) => {
     if (window.confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-        var title = window.prompt("Enter the title");
-        var starttime = window.prompt("Enter the start time");
-        var endtime = window.prompt("Enter the end time");
+        var title = window.prompt("Enter the title")
+        var starttime = window.prompt("Enter the start time")
+        var intStarttime = parseInt(starttime);
+        var intEndtime = intStarttime + 3;
+        var endtime = intEndtime.toString();
         var calUpdate = {
           title: title,
-          start:arg.dateStr + 'T' + starttime,
-          end: arg.dateStr + 'T' + endtime
+          start:arg.dateStr + 'T' + starttime + ":00:00",
+          end: arg.dateStr + 'T'  +  endtime + ":00:00" ,
         }
         this.setState({  // add new event data
         calendarEvents: this.state.calendarEvents.concat(calUpdate) // creates a new array
@@ -114,6 +138,8 @@ export default class DemoApp extends React.Component {
         this.updateFirebase(calUpdate)
     }
   }
+
+
 
   
 
