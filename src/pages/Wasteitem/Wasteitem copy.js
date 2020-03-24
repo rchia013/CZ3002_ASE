@@ -3,7 +3,7 @@ import { Link as RouterLink} from 'react-router-dom';
 import { AppBar, Tabs, Tab, Paper} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import './Wasteitem copy.css'
-import Navbar from '../../components/navbar/Navbar.js'
+import Navbar2 from '../../components/navbar2/navbar2.js'
 import plasticImg from '../GreenCart/Images/PlasticBottles.jpg'
 import eWasteImg from '../GreenCart/Images/e-waste.jpg'
 import glassImg from '../GreenCart/Images/glass.jpg'
@@ -134,7 +134,7 @@ class Wasteitem extends Component{
     
     return(
         <div>
-            <Navbar/>
+            <Navbar2/>
             <div class="waste_item_content">
                 <div class="waste_selection">
                     <div class="waste_items">

@@ -5,6 +5,7 @@ import firebase from 'firebase'
 import Button from '@material-ui/core/Button'
 import emailjs from 'emailjs-com'
 import Calendar from './calendar/calendar.jsx'
+import Navbar2 from './../components/navbar2/navbar2.js'
 import { makeStyles, Grid, TextField, Paper } from '@material-ui/core';
 import { sizing } from '@material-ui/system';
 import './Confirmation.css' 
@@ -145,7 +146,9 @@ class Confirmation extends Component{
     console.log(this.state.userDetails)
     
     return(
-        <div class="confirmation_page">      
+        <div class="confirmation_page">
+            
+            {<Navbar2/> }      
             <div class="confirmation_content">
             <Grid
             container
