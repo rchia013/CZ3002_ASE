@@ -67,7 +67,7 @@ class Profile2 extends Component {
   }
 
   getUserDetails(){
-    base.fetch(this.state.user.uid + "/", {
+    base.fetch("users" + this.state.user.uid + "/", {
       context: this,
       //asArray: true,
       then(data) {
@@ -110,7 +110,7 @@ class Profile2 extends Component {
         phone: this.state.phone
       }
       var updates = {}
-      updates[ this.state.user.uid + '/' ] = userDetailsUpdate
+      updates[ 'users/' + this.state.user.uid + '/' ] = userDetailsUpdate
 
       this.setState({ dialog: false, userDetails: userDetailsUpdate })
 
@@ -144,13 +144,14 @@ class Profile2 extends Component {
     // Note that you can only return one html element, so in this case i wrapped everything in
     // <div class="home_content">
     return (
-      <div class="profile_page">
+      <div >
         <div class="profile_navbar"><Navbar /></div>
         {this.state.admin ? (
           <div class="admin_content">
             <Admin />
           </div>
         ) : (
+          <div class="profile_page">
           <div class="profile_content">
             <section class="user">
               {(this.state.user!=null) ? 
@@ -227,7 +228,7 @@ class Profile2 extends Component {
               </div>
 
             </section>
-              
+              </div>
           </div>
         )}
 
