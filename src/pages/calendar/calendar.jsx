@@ -3,7 +3,6 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
-import Navbar2 from '../../components/navbar2/navbar2.js'
 import { base } from '../../base.js'
 import firebase from 'firebase'
 import Tooltip from '@material-ui/core/Tooltip';
@@ -87,7 +86,6 @@ export default class Calendar extends React.Component {
     // console.log(this.state)
     return (
       <div className='demo-app'>
-        {<Navbar2/> }
 
         <div className='demo-app-calendar'>
         

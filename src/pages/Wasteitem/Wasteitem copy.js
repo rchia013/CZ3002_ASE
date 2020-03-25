@@ -15,7 +15,10 @@ import computerImg from '../../components/image/computer.jpg'
 import lightbulbImg from '../../components/image/light.jpg'
 import florescenttubeImg from '../../components/image/florescenttube.jpg'
 import fairylightsImg from '../../components/image/fairylights.jpg'
-
+import Navbar2 from '../../components/navbar2/navbar2.js'
+import plasticImg from '../GreenCart/Images/PlasticBottles.jpg'
+import eWasteImg from '../GreenCart/Images/e-waste.jpg'
+import glassImg from '../GreenCart/Images/glass.jpg'
 
 
 
@@ -143,7 +146,7 @@ class Wasteitem extends Component{
     
     return(
         <div>
-            <Navbar/>
+            <Navbar2/>
             <div class="waste_item_content">
                 <div class="waste_selection">
                     <div class="waste_items">
