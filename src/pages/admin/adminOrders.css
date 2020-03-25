@@ -12,7 +12,35 @@
     /* overflow-y: scroll; */
 }
 
-.table{
-    justify-self: center;
-    width: 100%;
+.orderHistory h2{
+    color: #f4f4f4
+}
+
+.MuiPaper-root.admin_order_table_paper{
+    max-height: 80%;
+    max-width: 80%;
+}
+.MuiTableContainer-root.admin_order_table_container{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.MuiTableCell-root.MuiTableCell-head.address,
+.MuiTableCell-root.MuiTableCell-body.address{
+  min-width: 25rem;
+  /* border: darkgrey; */
+}
+
+.MuiTableCell-root {
+    border:1px solid rgba(224, 224, 224, .5);
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.approved-btn{
+    background-color: #bad4aa;
+    font-weight: bold;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.approve-btn{
+    background-color: lightcoral;
+    font-weight: bold;
 }

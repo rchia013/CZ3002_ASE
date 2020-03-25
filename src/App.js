@@ -20,6 +20,7 @@ import Profile2 from "./pages/Login/Profile2.js";
 import Admin from "./pages/admin/admin.js";
 import Vouchers from "./pages/vouchers/vouchers.js";
 import Adminorders from "./pages/admin/adminOrders.js"
+import Adminschedule from "./pages/admin/adminSchedule"
 
 // This is a functional component. If you need additional functionaility, it can be changed to a
 // class based component. As of now, its just a glorified routing thing so not necessary.
@@ -55,6 +56,7 @@ function App() {
           <Route path="/admin" component={Admin} />
           <Route path="/vouchers" component={Vouchers} />
           <Route path="/adminorders" exact component={Adminorders} />
+          <Route path="/adminschedule" exact component={Adminschedule} />
         </Switch>
       </div>
     </Router>
