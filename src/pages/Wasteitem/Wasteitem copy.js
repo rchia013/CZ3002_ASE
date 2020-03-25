@@ -4,9 +4,18 @@ import { AppBar, Tabs, Tab, Paper} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import './Wasteitem copy.css'
 import Navbar from '../../components/navbar/Navbar.js'
-import plasticImg from '../GreenCart/Images/PlasticBottles.jpg'
-import eWasteImg from '../GreenCart/Images/e-waste.jpg'
-import glassImg from '../GreenCart/Images/glass.jpg'
+import plasticImg from '../../components/image/plastic.jpg'
+import plasticbagImg from '../../components/image/plasticbag.jpg'
+import shampooImg from '../../components/image/shampoo.jpg'
+import masonjarImg from '../../components/image/masonjar.jpg'
+import glassbottleImg from '../../components/image/glassbottles.jpg'
+import batteriesImg from '../../components/image/batteries.jpg'
+import phonesImg from '../../components/image/phone.jpg'
+import computerImg from '../../components/image/computer.jpg'
+import lightbulbImg from '../../components/image/light.jpg'
+import florescenttubeImg from '../../components/image/florescenttube.jpg'
+import fairylightsImg from '../../components/image/fairylights.jpg'
+
 
 
 
@@ -142,8 +151,9 @@ class Wasteitem extends Component{
                         <Tabs value={this.state.tab} onChange={this.handleChange} aria-label="simple tabs example">
                             {/* Add tabs here */}
                             <Tab label="Plastic"  />
-                            <Tab label="E Waste"  />
+                            <Tab label="E-Waste"  />
                             <Tab label="Glass" />
+                            <Tab label="Lighting" />
                         </Tabs>
                     </AppBar>
                     {/* Hi Joey! Look here! */}
@@ -158,8 +168,24 @@ class Wasteitem extends Component{
                         {(this.state.tab == 0) ?
                         <Paper elevation={3} square className="shop-item-paper">
                         <div class="shop-item">
-                            <span class="shop-item-title">Plastic</span>
+                            <span class="shop-item-title">Plastic Bottles</span>
                             <img class="shop-item-image" src={plasticImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">5 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
+                        </div>
+                        <div class="shop-item">
+                            <span class="shop-item-title">Plastic Bag</span>
+                            <img class="shop-item-image" src={plasticbagImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">5 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
+                        </div>
+                        <div class="shop-item">
+                            <span class="shop-item-title">Shampoo Bottles</span>
+                            <img class="shop-item-image" src={shampooImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
@@ -172,15 +198,23 @@ class Wasteitem extends Component{
                         <Paper elevation={3} square className="shop-item-paper">
                         <div class="shop-item">
                             <span class="shop-item-title">Batteries</span>
-                            <img class="shop-item-image" src={eWasteImg} />
+                            <img class="shop-item-image" src={batteriesImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
                         <div class="shop-item">
-                            <span class="shop-item-title">E Waste</span>
-                            <img class="shop-item-image" src={eWasteImg} />
+                            <span class="shop-item-title">Phones</span>
+                            <img class="shop-item-image" src={phonesImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">10 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
+                        </div>
+                        <div class="shop-item">
+                            <span class="shop-item-title">Computer</span>
+                            <img class="shop-item-image" src={computerImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">10 points</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
@@ -191,8 +225,46 @@ class Wasteitem extends Component{
                         {(this.state.tab == 2) ?
                         <Paper elevation={3} square className="shop-item-paper">
                         <div class="shop-item">
-                            <span class="shop-item-title">Glass</span>
-                            <img class="shop-item-image" src={glassImg} />
+                            <span class="shop-item-title">Mason Jar</span>
+                            <img class="shop-item-image" src={masonjarImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">5 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
+                        </div>
+                        <div class="shop-item">
+                            <span class="shop-item-title">Glass Bottles</span>
+                            <img class="shop-item-image" src={glassbottleImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">5 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
+                        </div>
+
+                        </Paper> : null}
+
+
+                        {(this.state.tab == 3) ?
+                        <Paper elevation={3} square className="shop-item-paper">
+                        <div class="shop-item">
+                            <span class="shop-item-title">Light Bulb</span>
+                            <img class="shop-item-image" src={lightbulbImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">5 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
+                        </div>
+                        <div class="shop-item">
+                            <span class="shop-item-title">Florescent Tubes</span>
+                            <img class="shop-item-image" src={florescenttubeImg} />
+                            <div class="shop-item-details">
+                                <span class="shop-item-points">5 points</span>
+                                <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
+                            </div>
+                        </div>
+                        <div class="shop-item">
+                            <span class="shop-item-title">Fairy Lights</span>
+                            <img class="shop-item-image" src={fairylightsImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
