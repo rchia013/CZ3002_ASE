@@ -81,6 +81,47 @@ class Home extends Component {
             </ul>
           </section>
 
+          <section id="glass">
+            <ul>
+              <li>
+                <div class="section_content">
+                  <h1>Glass</h1>
+                  <p>Recycle any glass material!</p>
+                  <p><small>Scroll right to see more!</small></p>
+                </div>
+              </li>
+              <li>
+                <div class="section_content">
+                  <h1>What can you recycle?</h1>
+                  <p>Glass jar, glass bottles and many more!</p>
+                  <p>For any broken glass fragments, we recommend scheduling a pickup. Our experts will
+                      handle the rest! For Self-recycling, we recommend recycling at any recycling bins nearest to you!
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <section id="lighting">
+            <ul>
+              <li>
+                <div class="section_content">
+                  <h1>Lighting</h1>
+                  <p>Recycle any lighting!</p>
+                  <p><small>Scroll right to see more!</small></p>
+                </div>
+              </li>
+              <li>
+                <div class="section_content">
+                  <h1>What can you recycle?</h1>
+                  <p>Florescent Tubes, light bulbs, fairy lights and many more!</p>
+                  <p>For multiple items with accumulative weight of more than 15kg, we recommend scheduling a pick up!
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </section>
+
           <section id="letsgo">
             <Button
               variant="contained"

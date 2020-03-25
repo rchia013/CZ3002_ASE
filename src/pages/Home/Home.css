@@ -111,7 +111,8 @@ section ul li {
 
 /* Section Images */
 section#home {
-  background: url("https://i.ytimg.com/vi/XBPjVzSoepo/maxresdefault.jpg")
+  background: url("https://beegreen.eco.br/wp-content/uploads/2019/05/chega-de-lixo-promova-a-sustentabilidade-tenha-uma-vida-sustentavel-e-diminua-o-impacto-ambiental-com-metodos-ecologicos-1.jpg")
+
     no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset; /*Handles tint*/
 }
@@ -123,7 +124,18 @@ section#plastic {
 }
 
 section#ewaste {
-  background: url("https://cms.qz.com/wp-content/uploads/2017/01/electronicwaste.jpeg?quality=75&strip=all&w=1600&h=900&crop=1")
+  background: url("designer-desk-essentials-preview.jpg")
+    no-repeat center center/ cover;  
+  box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
+}
+
+section#lighting {
+  background: url("https://www.lightmyspace.co.uk/images/home/LMSWeb-SlideBanner-1.jpg")
+    no-repeat center center/ cover;  
+  box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
+}
+section#glass {
+  background: url("https://23pxcp3u31lgiybw92v8rma1-wpengine.netdna-ssl.com/wp-content/uploads/2016/06/glass-recycling-header.jpg")
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
 }
