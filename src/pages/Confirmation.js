@@ -122,7 +122,8 @@ class Confirmation extends Component{
     // Function passed to Calendar component
     getCalUpdate = (arg) => {
         if (window.confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-            var title = window.prompt("Enter the title");
+            // var title = window.prompt("Enter the title");
+            var title = "Schedule pickup"
             var starttime = window.prompt("Enter the start time");
             var endtime = window.prompt("Enter the end time");
             var calUpdate = {
