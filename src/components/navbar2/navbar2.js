@@ -13,7 +13,6 @@ class Navbar2 extends Component {
             <div class="navbar">
                 {/* Bar that appears at the top */}
                 <nav class="navbar">
-                <img style={{maxHeight: '60px', maxWidth: '90px'}}src = "/logo.jpg"/>
                     {/* Apparently using #home jumps to that section on the page based on Section id */}
                     <ul>
                         <li><Link to = "/">Home</Link></li>
