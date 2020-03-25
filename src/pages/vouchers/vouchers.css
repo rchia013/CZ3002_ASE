@@ -33,6 +33,9 @@ body {
 }
 h1 {
   width: 100%;
+  display: flex;
+  justify-content: center;
+  color: white;
 }
 
 .heading2 {
