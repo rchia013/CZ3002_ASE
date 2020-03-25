@@ -128,18 +128,20 @@ section#ewaste {
   background: url("designer-desk-essentials-preview.jpg")
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
+  filter: brightness(1.5);
 }
 
 section#lighting {
   background: url("https://www.advantageair.com.au/wp-content/uploads/2017/09/iStock-655447016-1.jpg")
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
-  filter: brightness(2.5);
+  filter: brightness(2.2);
 }
 section#glass {
   background: url('/glass(1).jpg')
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
+  filter: brightness(1.4);
 }
 
 .letsgopage {
