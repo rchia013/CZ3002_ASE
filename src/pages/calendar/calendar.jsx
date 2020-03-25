@@ -108,19 +108,7 @@ export default class Calendar extends React.Component {
 
         </div>
         
-        <form onSubmit={this.handleSubmit}>
-        <label>
-          Choose a Time:
-          <select value={this.state.value} onChange={this.handleChange}>          
-            <option value="9:00:00">9am-12pm</option>
-            <option value="12:00:00">12pm-3pm</option>
-            <option value="15:00:00">3pm-6pm</option>
-            <option value="18:00:00">6pm-9pm</option>
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-        </form>
-        
+      
 
 
       </div>
