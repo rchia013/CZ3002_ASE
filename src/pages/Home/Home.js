@@ -105,63 +105,7 @@ class Home extends Component {
             </Button>
             
             
-            <br />
-            <br />
-            <h3> Not useful buttons </h3>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              component={RouterLink}
-              to="/map"
-            >
-              View Google Map
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              component={RouterLink}
-              to="/onemap"
-            >
-              View Onemap
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              component={RouterLink}
-              to="/lightingcat"
-            >
-              View lightingcat
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              component={RouterLink}
-              to="/test"
-            >
-              View test
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              component={RouterLink}
-              to="/greenshoppingcart"
-            >
-              GreenShoppingCart
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              component={RouterLink}
-              to="/calendar"
-            >
-              View Calendar
-            </Button>
+           
           </section>
           <section id="profile_details">
             <h1>Profile Details</h1>
