@@ -118,7 +118,7 @@ section#home {
 }
 
 section#plastic {
-  background: url("https://superfoodsrx.com/wp-content/uploads/2016/09/reusing-plastic-bottles.jpg")
+  background: url("https://image.freepik.com/free-photo/plastic-bottles-blue-background-recycling-saving-earth-concept-environmental-problems_72679-169.jpg")
     no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
 }
@@ -130,12 +130,13 @@ section#ewaste {
 }
 
 section#lighting {
-  background: url("https://www.lightmyspace.co.uk/images/home/LMSWeb-SlideBanner-1.jpg")
+  background: url("https://www.advantageair.com.au/wp-content/uploads/2017/09/iStock-655447016-1.jpg")
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
+  filter: brightness(2.5);
 }
 section#glass {
-  background: url("https://23pxcp3u31lgiybw92v8rma1-wpengine.netdna-ssl.com/wp-content/uploads/2016/06/glass-recycling-header.jpg")
+  background: url('/glass(1).jpg')
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
 }
