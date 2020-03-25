@@ -133,14 +133,12 @@ export default class Calendar extends React.Component {
 
   handleDateClick = (arg) => {
     if (window.confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
-        // var title = window.prompt("Enter the title")
-        var title = "Schedule pickup"
         var starttime = window.prompt("Enter the start time")
         var intStarttime = parseInt(starttime);
         var intEndtime = intStarttime + 3;
         var endtime = intEndtime.toString();
         var calUpdate = {
-          title: title,
+          title: "Scheduled Delivery",
           start:arg.dateStr + 'T' + starttime + ":00:00",
           end: arg.dateStr + 'T'  +  endtime + ":00:00" ,
         }

@@ -16,9 +16,6 @@ import lightbulbImg from '../../components/image/light.jpg'
 import florescenttubeImg from '../../components/image/florescenttube.jpg'
 import fairylightsImg from '../../components/image/fairylights.jpg'
 import Navbar2 from '../../components/navbar2/navbar2.js'
-import plasticImg from '../GreenCart/Images/PlasticBottles.jpg'
-import eWasteImg from '../GreenCart/Images/e-waste.jpg'
-import glassImg from '../GreenCart/Images/glass.jpg'
 
 
 
