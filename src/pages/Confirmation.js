@@ -62,6 +62,7 @@ class Confirmation extends Component{
         var user_email = this.state.user.email
         var user_id = this.state.user.uid
         var user_name = this.state.user.displayName
+        
 
         // Removing unnecessary info
         delete this.state.user
@@ -70,6 +71,7 @@ class Confirmation extends Component{
 
         var orderdetails = this.state
         var newOrderKey = firebase.database().ref().child('orders').push().key;
+        console.log(orderdetails)
         var updates = {}
         updates['/orders/' + user_id + '/' + newOrderKey] = orderdetails
         // Firebase updated
@@ -109,7 +111,7 @@ class Confirmation extends Component{
     checkStatus() {
         firebaseapp.auth().onAuthStateChanged((user) => {
                 if (user!=null) {
-                    this.setState({ user: user });
+                    this.setState({ user: user, name: user.displayName, id: user.uid });
                     this.getUserDetails()
                 } else {
                     this.setState({ user: null });
