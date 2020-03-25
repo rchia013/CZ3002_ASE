@@ -19,8 +19,8 @@
 
 .waste_selection{
     display: flex;
-    width: 90vw;
-    top: 70px;
+    width: 100vw;
+    top: 10vh;
     position:relative;
     justify-content: center;
     align-items: top;
@@ -80,13 +80,13 @@ html, body {
     
 }
 .section-header {
-    font-family: "Metal Mania";
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: normal;
     color: #f4f4f4;
     text-align: center;
-    font-size: 2.5em;
+    font-size: 1.9em;
     margin-top: 0em;
-
+    background-color: rgb(76, 84, 90);
 }
 
 
@@ -102,7 +102,7 @@ html, body {
 
 .btn-primary {
     color: black;
-    background-color: #56CCF2;
+    background-color: #bad4aa;
     border: none;
     border-radius: .3em;
     font-weight: bold;
@@ -111,7 +111,12 @@ html, body {
 
 
 .shop-item {
-    margin: 10px;
+
+    background-color: #e9d7be;
+}
+
+.shop-items {
+    background-color: #bad4aa;
 }
 
 .shop-item-title {
@@ -131,6 +136,7 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .shop-item-details {
@@ -145,6 +151,7 @@ html, body {
     width: 50%;
     flex-grow: 1;
     color: black;
+    margin-left: 25px;
 }
 
 .shop-items {
@@ -206,21 +213,21 @@ html, body {
 
 .btn-danger {
     color: white;
-    background-color: #EB5757;
+    background-color: slategrey;
     border: none;
     border-radius: .3em;
     font-weight: bold;
 }
 
 .btn-danger:hover {
-    background-color: #CC4C4C;
+    background-color: slategrey;
 }
 
 .cart-quantity-input {
     height: 34px;
     width: 50px;
     border-radius: 5px;
-    border: 1px solid #56CCF2;
+    border: 1px solid #bad4aa;
     background-color: #eee;
     color: #333;
     padding: 0;
@@ -255,6 +262,12 @@ html, body {
     font-size: 1.5em;
     text-align: center;
     width: 10.5em;
+    position: inherit;
+    background-color: #99c97b;
+}
+
+.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiPaper-elevation4 {
+    background-color: #f3ebdf;
 }
 
 .MuiPaper-root.shop-item-paper.MuiPaper-elevation3{

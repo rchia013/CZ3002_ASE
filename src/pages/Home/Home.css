@@ -128,6 +128,43 @@ section#ewaste {
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
 }
 
+.letsgopage {
+  width: 100%;
+}
+
+.selfrecycle{
+  float: left;
+  background: url('../../components/image/selfrec.png');
+  background-repeat: no-repeat;
+  background-size: 80% 50%;
+  background-position: center;
+  box-shadow: 0 3000px rgba(rgba(rgba(rgba(232, 211, 163, 1)))) inset;
+  height: 100vh;
+  width: 50%;
+}
+
+.schedulepickup {
+  top: 60px;
+  float: right;
+  background: url('../../components/image/recyclingtruck.png');
+  display: flex;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: 70% 50%;
+  background-position: center;
+  box-shadow: 0 3000px rgba(rgba(rgba(rgba(232, 211, 163, 1)))) inset;
+  height: 100%;
+  width: 50%;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge{
+  height: 10vh;
+  top: 80%;
+  background-color: #bad4aa;
+
+}
+
+
 .user {
   margin-top: 100px;
 }

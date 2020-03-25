@@ -27,6 +27,8 @@ class Home extends Component {
     this.checkStatus()
   }
 
+  
+
   render() {
     return (
       <div class="home_content">
@@ -82,27 +84,35 @@ class Home extends Component {
           </section>
 
           <section id="letsgo">
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              component={RouterLink} 
-              to={{
-                  pathname:'/waste-items', 
-                  state: {selfrecycle: false} 
-              }}
-            >
-              Let's Go!
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              component={RouterLink}
-              to="/onemap"
-            >
-              Self-Recycle
-            </Button>
+            <div class="letsgopage">
+              <div class="schedulepickup">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  component={RouterLink} 
+                  to={{
+                      pathname:'/waste-items', 
+                      state: {selfrecycle: false} 
+                  }}
+                >
+                  Schedule Pick Up
+                </Button>
+              </div>
+              <div class="selfrecycle">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  component={RouterLink}
+                  to="/onemap"
+                >
+                  Self-Recycle
+                </Button>
+              </div>
+            </div>
+
+
             
             
            
