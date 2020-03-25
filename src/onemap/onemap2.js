@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import L from "leaflet";
+import "./onemap.css";
 import { Map, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
 import "./onemap.css";
 import ewastedata from "./e-waste-recycling-geojson.json";
 import lightingwastedata from "./lighting-waste-collection-points-geojson.json";
+import Navbar from "../components/navbar2/navbar2.js";
 
 
 import { Link as RouterLink} from 'react-router-dom';
@@ -122,11 +124,14 @@ class Onemap2 extends Component {
   // }
 
   render() {
+    
     this.getLocation();
     const position = [this.state.lat, this.state.lng];
     console.log(this.state.bulkyWaste);
     return (
+      
       <div class="map-container">
+        <Navbar />
         <div class="map-contents">
         <Map className="map" center={position} zoom={this.state.zoom}>
           <TileLayer

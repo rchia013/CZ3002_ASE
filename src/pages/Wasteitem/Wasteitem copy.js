@@ -3,7 +3,7 @@ import { Link as RouterLink} from 'react-router-dom';
 import { AppBar, Tabs, Tab, Paper} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import './Wasteitem copy.css'
-import Navbar from '../../components/navbar/Navbar.js'
+import Navbar from '../../components/navbar2/navbar2.js'
 import plasticImg from '../../components/image/plastic.jpg'
 import plasticbagImg from '../../components/image/plasticbag.jpg'
 import shampooImg from '../../components/image/shampoo.jpg'

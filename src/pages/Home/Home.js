@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "./Home.css";
 import { firebaseapp } from "../../base.js";
-import Navbar from "../../components/navbar/Navbar.js";
+import Navbar from "../../components/navbar2/navbar2.js";
 
 // This is a class based component (forgot what it's proper name is called). The other option is
 // a functional component. Class based components offer more flexibility though.

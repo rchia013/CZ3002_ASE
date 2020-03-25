@@ -142,6 +142,8 @@ section#glass {
 
 .letsgopage {
   width: 100%;
+  background-color: #839776;
+  box-shadow: 0 3000px rgba(rgba(rgba(rgba(0, 0, 0, 0.4)))) inset;
 }
 
 .selfrecycle{
