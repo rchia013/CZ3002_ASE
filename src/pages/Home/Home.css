@@ -192,3 +192,11 @@ section#glass {
   display: flex;
   justify-content: center;
 }
+
+
+section#profile_details {
+  background: url("https://image.freepik.com/free-photo/recycling-emblem-around-trash-black-background_23-2148115739.jpg")
+    no-repeat center center/ cover;
+  box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
+  filter: brightness(1.5);
+}
