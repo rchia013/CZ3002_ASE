@@ -67,7 +67,7 @@ class Profile2 extends Component {
   }
 
   getUserDetails(){
-    base.fetch(this.state.user.uid + "/", {
+    base.fetch("users" + this.state.user.uid + "/", {
       context: this,
       //asArray: true,
       then(data) {
@@ -110,7 +110,7 @@ class Profile2 extends Component {
         phone: this.state.phone
       }
       var updates = {}
-      updates[ this.state.user.uid + '/' ] = userDetailsUpdate
+      updates[ 'users/' + this.state.user.uid + '/' ] = userDetailsUpdate
 
       this.setState({ dialog: false, userDetails: userDetailsUpdate })
 
