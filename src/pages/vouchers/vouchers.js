@@ -41,6 +41,20 @@ class Vouchers extends Component {
   };
 
   handleDelete = e => {
+    var target = e.target.id;
+    firebaseapp
+      .database()
+      .ref("users")
+      .on("value", snap => {
+        var updates = {};
+        snap.forEach(function(child) {
+          updates["/users/" + child.key + "/vouchers/" + target] = null;
+          firebaseapp
+            .database()
+            .ref()
+            .update(updates);
+        });
+      });
     firebaseapp
       .database()
       .ref("vouchers/" + e.target.id)
@@ -63,7 +77,8 @@ class Vouchers extends Component {
         .update(
           {
             desc: this.state.desc,
-            cost: this.state.cost
+            cost: this.state.cost,
+            count: 100
           },
           function(error) {
             if (error) {
@@ -125,7 +140,7 @@ class Vouchers extends Component {
     var temp = null;
     if (this.state.vouchers != null) {
       temp = Object.keys(this.state.vouchers).map(key => (
-        <div class="vouchers">
+        <div class="vouchers" style={{ backgroundColor: "lightgrey" }}>
           <h2
             style={{
               display: "flex",
