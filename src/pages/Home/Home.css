@@ -121,33 +121,34 @@ section#plastic {
   background: url("https://image.freepik.com/free-photo/plastic-bottles-blue-background-recycling-saving-earth-concept-environmental-problems_72679-169.jpg")
     no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
-  filter: brightness(1.5);
+  filter: brightness(1.1);
 }
 
 section#ewaste {
   background: url("designer-desk-essentials-preview.jpg")
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
-  filter: brightness(1.5);
+  filter: brightness(1.1);
 }
 
 section#lighting {
   background: url("https://www.advantageair.com.au/wp-content/uploads/2017/09/iStock-655447016-1.jpg")
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
-  filter: brightness(2.2);
+  filter: brightness(1.25);
 }
 section#glass {
   background: url('/glass(1).jpg')
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
-  filter: brightness(1.4);
+  filter: brightness(1.1);
 }
 
 .letsgopage {
   width: 100%;
   background-color: #839776;
-  box-shadow: 0 3000px rgba(rgba(rgba(rgba(0, 0, 0, 0.4)))) inset;
+  box-shadow: 0 3000px rgba(0, 0, 0, 0.1) inset;
+  filter: brightness(1.1);
 }
 
 .selfrecycle{
@@ -156,7 +157,7 @@ section#glass {
   background-repeat: no-repeat;
   background-size: 80% 50%;
   background-position: center;
-  box-shadow: 0 3000px rgba(rgba(rgba(rgba(232, 211, 163, 1)))) inset;
+  /* box-shadow: 0 3000px rgba(232, 211, 163, 1) inset; */
   height: 100vh;
   width: 50%;
 }
@@ -170,7 +171,7 @@ section#glass {
   background-repeat: no-repeat;
   background-size: 70% 50%;
   background-position: center;
-  box-shadow: 0 3000px rgba(rgba(rgba(rgba(232, 211, 163, 1)))) inset;
+  /* box-shadow: 0 3000px rgba(232, 211, 163, 1) inset; */
   height: 100%;
   width: 50%;
 }
@@ -198,5 +199,5 @@ section#profile_details {
   background: url("https://image.freepik.com/free-photo/recycling-emblem-around-trash-black-background_23-2148115739.jpg")
     no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
-  filter: brightness(1.5);
+  filter: brightness(1.1);
 }

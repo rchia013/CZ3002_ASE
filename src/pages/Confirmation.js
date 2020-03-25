@@ -42,14 +42,15 @@ class Confirmation extends Component{
         // Condition checking for scheduled pickups
         if (this.state.user==null){
             return false
-        } else if (this.state.selfrecycle==true){
+
+        // Self recycle selected, or weight requirement not met
+        } else if ((this.state.selfrecycle==true)||(this.state.weight<10)){
             return true
         }
-        else if (this.state.calendarEvents==null){
+        // No date, address, phone or zip
+        else if ((this.state.calendarEvents==null)||(this.state.address=="") || (this.state.phone=="") || (this.state.zip==""))
             return false
-        } else if ((this.state.address=="") || (this.state.phone=="") || (this.state.zip=="")){
-            return false
-        } else{
+        else{
             return true
         }
     }
@@ -180,10 +181,12 @@ class Confirmation extends Component{
                             {((this.state['Florescent Tubes']!=null) || (this.state['Florescent Tubes']!=null))?<p>No of Florescent Tubes: {this.state['Florescent Tubes']}</p>:null}
                             {((this.state['Fairy Lights']!=null) || (this.state['Fairy Lights']!=null))?<p>No of Fary Lights: {this.state['Fairy Lights']}</p>:null}
                             {(this.state.points!=null)?<p>Total points: {this.state.points}</p>:null}
+                            {(this.state.weight!=null)?<p>Total weight: {this.state.weight}kg</p>:null}
+                            <p><small>Note that minimum of 10kg is required for scheduled orders</small></p>
                         </Paper>
                         </Grid>
 
-                        {this.state.selfrecycle ? null :
+                        {((this.state.selfrecycle==true)||(this.state.weight<10)) ? null :
                             <Grid className="orderGrid_item" item>
                             <Paper className="paperback">
                                 <form>
@@ -198,7 +201,7 @@ class Confirmation extends Component{
                                             variant="outlined" margin="normal" value={this.state.phone}
                                             onChange={this.handleTextChange("phone")} />
                                 </form>
-                                {((this.state.userDetails==null) ||  (Object.entries(this.state.userDetails).length==0))?
+                                {((this.state.userDetails==null) ||  (Object.entries(this.state.userDetails).length<=1))?
                                 <Button className="append-user-details" variant="contained" 
                                     color="primary" size="large" color="auto" disabled>
                                     Cant Use my details
@@ -216,25 +219,37 @@ class Confirmation extends Component{
 
                         <Grid item
                         >
-                        {(this.submissionCondition())?
-                        <Button 
-                            className="confirm_btn"
-                            variant="contained" color="primary" size="large" color="auto" 
-                            onClick={() => this.updateFirebase()}
-                            component={RouterLink} to="/">
-                            Confirm!
-                        </Button>:
+                        {(this.submissionCondition()) ?
+
+                            ((this.state.weight<10) ?
+                                // Case where weight <10, display onemap
+                                <Button 
+                                    className="confirm_btn"
+                                    variant="contained" color="primary" size="large" color="auto" 
+                                    onClick={() => this.updateFirebase()}
+                                    component={RouterLink} to={{ pathname:"/onemap", state: {displayselfrecycle:false} }}>
+                                    Confirm!
+                                </Button>:
+                                <Button 
+                                    className="confirm_btn"
+                                    variant="contained" color="primary" size="large" color="auto" 
+                                    onClick={() => this.updateFirebase()}
+                                    component={RouterLink} to="/">
+                                    Confirm!
+                                </Button>) :
+
                         <Button 
                             className="confirm_btn"
                             variant="contained" color="primary" size="large" color="auto" 
                             disabled>
                             Confirm!
                         </Button>}
+
                         </Grid>
                     </Grid> 
                 </Grid>
 
-                {this.state.selfrecycle==true ? null : <Grid className="calendarGrid">
+                {((this.state.selfrecycle==true)||(this.state.weight<10)) ? null : <Grid className="calendarGrid">
                 <Calendar calEvents={this.state.calendarEvents} handleUpdate={this.getCalUpdate}/></Grid>}
 
                 </div>
