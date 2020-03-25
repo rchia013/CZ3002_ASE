@@ -4,6 +4,11 @@ import { Map, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
 import "./onemap.css";
 import ewastedata from "./e-waste-recycling-geojson.json";
 import lightingwastedata from "./lighting-waste-collection-points-geojson.json";
+
+
+import { Link as RouterLink} from 'react-router-dom';
+import Button from '@material-ui/core/Button'
+
 // import { GoogleProvider } from "leaflet-geosearch";
 
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -121,7 +126,8 @@ class Onemap2 extends Component {
     const position = [this.state.lat, this.state.lng];
     console.log(this.state.bulkyWaste);
     return (
-      <div>
+      <div class="map-container">
+        <div class="map-contents">
         <Map className="map" center={position} zoom={this.state.zoom}>
           <TileLayer
             attribution='<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> New OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
@@ -171,6 +177,32 @@ class Onemap2 extends Component {
             </label> */}
           </div>
         </div>
+
+        <Button
+          className="onemapBtns"
+          variant="contained"
+          color="auto"
+          size="large"
+          component={RouterLink}
+          to="/"
+        >
+          Home
+        </Button>
+
+        <Button
+          className="onemapBtns"
+          variant="contained"
+          color="auto"
+          size="large"
+          component={RouterLink} 
+          to={{
+              pathname:'/waste-items', 
+              state: {selfrecycle: true} 
+          }}>
+          Proceed
+        </Button>
+        </div>
+        
       </div>
     );
   }

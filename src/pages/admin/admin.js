@@ -43,7 +43,7 @@ class Admin extends Component {
               color="primary"
               size="large"
               component={RouterLink}
-              to="/map"
+              to="/adminorders"
             >
               View User History
             </Button>

@@ -1,19 +1,9 @@
-*{
-    margin: 0;
-    padding: 0;
-    
-}
-
-h1{
+/* h1{
     text-align: center;
 }
 
-.confirm_button{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+section#test p{
+    color: black;
 }
 
 .textFields{
@@ -22,20 +12,25 @@ h1{
     border-radius: 3;
     border: 0;
     height: 100%;
-    
-
     color: black;
 }
 
-/* body{
-    background-image: url('https://images.unsplash.com/photo-1500322969630-a26ab6eb64cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExMjU4fQ&w=1000&q=80');
-} */
 
 
+.waste_item_content{
+    display:flex;
+    overflow-y: scroll;
+}
 
+.waste_selection{
+    display: flex;
+    position:relative;
+    width: 100vw;
+
+}
 section#test{
     background: url('https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?ixlib=rb-1.2.1&w=1000&q=80')
     no-repeat center center/
     cover;
-
-}
+    height:100vh;
+} */
