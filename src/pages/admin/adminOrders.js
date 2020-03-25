@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { firebaseapp, base } from "../../base.js";
+import './adminOrders.css'
 
 
 import Table from 'react-bootstrap/Table'
@@ -14,7 +15,8 @@ class adminOrders extends Component {
   state = {
     admin: null,
     user: null,
-    dialog: false
+    dialog: false,
+    orderdata: []
   };
 
   // Checks status and adds user to state
@@ -33,6 +35,8 @@ class adminOrders extends Component {
 
         console.log("done setting state")
         this.getOrders()
+        console.log("got orders")
+
       } else {
         this.setState({ user: null });
       }
@@ -49,28 +53,58 @@ class adminOrders extends Component {
       context: this,
       asArray: true,
       then(data) {
-        this.setState({ orderdata: data} );
+        this.setState({ userdata: data} );
+
+        
+          var userList = data
+          if (userList!=null){
+            console.log("getting userdata")
+            console.log(userList.length)
+            for(var i=0; i<userList.length; i++){
+              console.log(i)
+              this.getUserOrders(userList[i].key)
+            }
+          }
       }
-    });
+    })
   }
     
 
+  getUserOrders(arg) {
+    base.fetch("orders/" + arg, {
+      context: this,
+      asArray: true,
+      then(data) {
+        var updatedorderdata = this.state.orderdata.concat(data)
+        console.log('orderdata')
+        console.log(updatedorderdata)
+        this.setState({ orderdata: updatedorderdata });
+      }
+    });
+  }
+
   render() {
     console.log(this.state)
-    
 
     // Table rows
-    var temporders2 = this.state.orderdata
-    console.log(temporders2)
-    if (temporders2!=null){
-      console.log(temporders2)
+    var userOrders = this.state.orderdata
+    if (userOrders!=null){
       var listItems2 = (
         <tbody>
-            {temporders2.map((d) => <tr>
-              <td>{d.key}</td>
-              <td>{d.batteries}</td>
-              <td>{d.plastic_bottle}</td>
-              <td>{d.key.glass}</td>
+            {userOrders.map((d) => <tr>
+              <td>{d.name}</td>
+              <td>{d['Plastic Bottles']}</td>
+              <td>{d['Plastic Bag']}</td>
+              <td>{d['Shampoo Bottles']}</td>
+              <td>{d['Batteries']}</td>
+              <td>{d['Phones']}</td>
+              <td>{d['Computer']}</td>
+              <td>{d['Mason Jar']}</td>
+              <td>{d['Glass Bottles']}</td>
+              <td>{d['Light Bulb']}</td>
+              <td>{d['Florescent Tubes']}</td>
+              <td>{d['Fairy Lights']}</td>
+              <td>{d['points']}</td>
             </tr>)}
         </tbody>)
     } else
@@ -82,16 +116,25 @@ class adminOrders extends Component {
     // Note that you can only return one html element, so in this case i wrapped everything in
     // <div class="home_content">
     return (
-      <div class="profile_page">
+      <div class="admin_userorder">
             <section class="orderHistory">
               <h2>Order History</h2>
-              <Table striped bordered hover variant="dark">
+              <Table class="ordertable" striped bordered hover variant="dark" responsive>
                 <thead>
                   <tr>
-                    <th>Order ID</th>
+                    <th>Name</th>
+                    <th>Plastic Bottles</th>
+                    <th>Plastic Bag</th>
+                    <th>Shampoo Bottles</th>
                     <th>Batteries</th>
-                    <th>Plastic bottles</th>
-                    <th>Glass</th>
+                    <th>Phones</th>
+                    <th>Computer</th>
+                    <th>Mason Jar</th>
+                    <th>Glass Bottles</th>
+                    <th>Light Bulb</th>
+                    <th>Florescent Tubes</th>
+                    <th>Fairy Lights</th>
+                    <th>Points</th>
                   </tr>
                 </thead>
                 {listItems2}
@@ -107,9 +150,7 @@ class adminOrders extends Component {
                   Home
                 </Button>
               </div>
-
             </section>
-              
           </div>
         )
     }
