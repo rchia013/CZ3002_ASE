@@ -38,9 +38,7 @@ class adminOrders extends Component {
           })
         })
 
-        console.log("done setting state")
         this.getOrders()
-        console.log("got orders")
 
       } else {
         this.setState({ user: null });
@@ -63,10 +61,7 @@ class adminOrders extends Component {
         
           var userList = data
           if (userList!=null){
-            console.log("getting userdata")
-            console.log(userList.length)
             for(var i=0; i<userList.length; i++){
-              console.log(i)
               this.getUserOrders(userList[i].key)
             }
           }
@@ -96,6 +91,8 @@ class adminOrders extends Component {
         updates['/orders/' + user_id + '/' + orderID + '/approved'] = true
         return firebase.database().ref().update(updates)
       })
+    console.log("approved submit")
+    this.getOrders()
     // Firebase updated
   }
 
@@ -104,7 +101,10 @@ class adminOrders extends Component {
 
     // Table rows
     var userOrders = this.state.orderdata
+    console.log("userOrders")
+    console.log(userOrders)
     if (userOrders!=null){
+      console.log("updating again")
       var listItems2 = (
         <TableBody>
             {userOrders.map((d) =>

@@ -57,6 +57,16 @@ class Admin extends Component {
             >
               Edit Vouchers
             </Button>
+            <Button
+              classes={{ label: "admin-components" }}
+              variant="contained"
+              color="primary"
+              size="large"
+              component={RouterLink}
+              to="/adminitems"
+            >
+              Edit Waste Selection
+            </Button>
           </div>
         </div>
         <AdminForm></AdminForm>
