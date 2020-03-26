@@ -107,21 +107,9 @@ class Onemap2 extends Component {
     });
   };
 
-  // componentDidMount() {
-  //   fetch(
-  //     "https://data.gov.sg/api/action/datastore_search?resource_id=f1a0ffab-0da7-4571-93d0-dbd893e5410c"
-  //   )
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       provider
-  //         .search({
-  //           query: "Singapore 650507"
-  //         })
-  //         .then(result => {
-  //           this.setState({ bulkyWaste: result });
-  //         });
-  //     });
-  // }
+  componentDidMount() {
+    this.setState(this.props.location.state)
+  }
 
   render() {
     
@@ -193,7 +181,7 @@ class Onemap2 extends Component {
         >
           Home
         </Button>
-
+        {(this.state.displayselfrecycle==null) ?
         <Button
           className="onemapBtns"
           variant="contained"
@@ -205,7 +193,7 @@ class Onemap2 extends Component {
               state: {selfrecycle: true} 
           }}>
           Proceed
-        </Button>
+        </Button> : null }
         </div>
         
       </div>

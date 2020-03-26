@@ -1,17 +1,17 @@
 .confirmation_page{
     display: flex;
     height:100vh;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
-    align-items: center;
+    overflow-y: scroll;
 }
 
 .confirmation_content{
     display: flex;
-    height:100vh;
+    height:90vh;
     width: 90vw;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .confirmation_content p{
@@ -21,6 +21,7 @@
 .MuiPaper-root.paperback.MuiPaper-elevation1.MuiPaper-rounded {
     width:90%; 
     padding: 2rem;
+    /* margin: 2rem; */
 }
 
 .MuiFormControl-root.MuiTextField-root.schedule-form {
@@ -33,6 +34,25 @@
 }
 
 .orderGrid {
-    padding:.5rem;
+    /* padding:.5rem; */
     width:90%;
+    justify-content: center;
+}
+
+.MuiGrid-root.Checkout,
+.MuiGrid-root.calendarGrid{
+    padding-top: 12vh;
+}
+
+.MuiGrid-root.orderGrid_item {
+    width:100%;
+}
+
+.MuiGrid-root.calendarGrid{
+    z-index: 0;
+}
+
+.navbar{
+    width:100%;
+    z-index: 1;
 }

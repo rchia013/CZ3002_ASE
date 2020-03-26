@@ -4,7 +4,6 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import { base } from '../../base.js'
-import firebase from 'firebase'
 import Tooltip from '@material-ui/core/Tooltip';
 
 
@@ -43,8 +42,13 @@ export default class Calendar extends React.Component {
 
   componentDidUpdate(prevProps){
     if (this.props.calEvents!=prevProps.calEvents){
-      this.setState({calendarEvents: [this.props.calEvents]})
+      if (Array.isArray(this.props.calEvents))
+        this.setState({calendarEvents: this.props.calEvents})
+      else
+        this.setState({calendarEvents: [this.props.calEvents]})
       console.log("different")
+      console.log(this.state.calendarEvents)
+      this.forceUpdate()
     }
   }
 
@@ -63,7 +67,7 @@ export default class Calendar extends React.Component {
 
   // eventRender() {
   //   var tooltip = new Tooltip(info.el, {
-  //     title: info.event.extendedProps.description,
+  //     title: info.event.extendedProps.key,
   //     placement: 'top',
   //     trigger: 'hover',
   //     container: 'body'
@@ -83,7 +87,8 @@ export default class Calendar extends React.Component {
     }];
 
     // console.log(this.props)
-    // console.log(this.state)
+    console.log("current state")
+    console.log(this.state)
     return (
       <div className='demo-app'>
 

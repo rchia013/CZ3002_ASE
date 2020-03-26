@@ -1,0 +1,37 @@
+.admin_schedule_container{
+    display:flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.admin_schedule{
+    margin-top: 10vh;
+    height: 90vh;
+    width: 90vw;
+    /* overflow-y: scroll; */
+}
+
+.header h2{
+    color: #f4f4f4
+}
+
+.calendar-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:75vh;
+    width:90vw;
+}
+
+.MuiPaper-root.admin_order_table_paper{
+    max-height: 80%;
+    max-width: 80%;
+}
+
+.adminSchedule_home_btn{
+    margin:0;
+}

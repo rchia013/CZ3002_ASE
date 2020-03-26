@@ -42,14 +42,15 @@ class Confirmation extends Component{
         // Condition checking for scheduled pickups
         if (this.state.user==null){
             return false
-        } else if (this.state.selfrecycle==true){
+
+        // Self recycle selected, or weight requirement not met
+        } else if ((this.state.selfrecycle==true)||(this.state.weight<10)){
             return true
         }
-        else if (this.state.calendarEvents==null){
+        // No date, address, phone or zip
+        else if ((this.state.calendarEvents==null)||(this.state.address=="") || (this.state.phone=="") || (this.state.zip==""))
             return false
-        } else if ((this.state.address=="") || (this.state.phone=="") || (this.state.zip=="")){
-            return false
-        } else{
+        else{
             return true
         }
     }
@@ -88,21 +89,19 @@ class Confirmation extends Component{
 
     // Handles user particulars
     getUserDetails(){
-        base.fetch(this.state.user.uid + "/", {
-          context: this,
-          //asArray: true,
-          then(data) {
-            if (data != null){
-              this.setState({ userDetails: data });
+        console.log("fetching user details")
+        base.fetch("users/" + this.state.user.uid , {
+            context: this,
+            //asArray: true,
+            then(data) {
+              if (data != null){
+                this.setState({ userDetails: data });
+              }
             }
-          }
-        });
+          });
     }
 
     appendDetails(address, zip, phone) {
-        console.log(address)
-        console.log(zip)
-        console.log(phone)
         this.setState({ address: address,
                         zip: zip,
                         phone: phone })
@@ -149,85 +148,111 @@ class Confirmation extends Component{
     console.log(this.state.userDetails)
     
     return(
-        <div class="confirmation_page">
-            
-            {<Navbar2/> }      
-            <div class="confirmation_content">
-            <Grid
-            container
-            direction="column"
-            justify="flex-start"
-            alignItems="center"
-            spacing={3}>
-                
-                <Grid item 
-                className="orderGrid"
+        <div>
+            <Navbar2/>
+            <div class="confirmation_page">  
+                <div class="confirmation_content">
+                <Grid
+                className="Checkout"
+                container
                 direction="column"
-                justify="center"
-                alignItems="center"
-                alignContent="center">
-                <Paper className="paperback">
-                    <h3>GreenCart</h3>
-                    {(this.state.Plastic!=null)?<p>No of bottles: {this.state.Plastic}</p>:null}
-                    {(this.state.Batteries!=null)?<p>No of batteries: {this.state.Batteries}</p>:null}                
-                    {(this.state.Glass!=null)?<p>No of glass: {this.state.Glass}</p>:null}
-                    {(this.state['E Waste']!=null)?<p>No of eWaste: {this.state['E Waste']}</p>:null}
-                    {(this.state.points!=null)?<p>Total points: {this.state.points}</p>:null}
-                </Paper>                
-                </Grid>
-
-
-                {this.state.selfrecycle ? null :
-                    <Grid item 
+                justify="flex-start"
+                alignItems="center">
+                    
+                    <Grid 
+                    container 
                     className="orderGrid"
                     direction="column"
                     justify="center"
-                    alignItems="left">
-                    <Paper className="paperback">
-                        <form>
-                            <h3> Schedule Pickup Details </h3>
-                        <TextField className="schedule-form" id="address" label="Address" 
-                                    variant="outlined" margin="normal" value={this.state.address}
-                                    onChange={this.handleTextChange("address")} />
-                        <TextField className="schedule-form" id="zip" label="ZIP Code" 
-                                    variant="outlined" margin="normal" value={this.state.zip}
-                                    onChange={this.handleTextChange("zip")} />
-                        <TextField className="schedule-form" id="phone" label="Contact No" 
-                                    variant="outlined" margin="normal" value={this.state.phone}
-                                    onChange={this.handleTextChange("phone")} />
-                        </form>
-                        {(this.state.userDetails!=null)?
-                        <Button className="append-user-details" variant="contained" 
-                                color="primary" size="large" color="auto"
-                                onClick={() => this.appendDetails(this.state.userDetails.address,
-                                    this.state.userDetails.zip, this.state.userDetails.phone)}>
-                            Use my details
-                        </Button>:
-                        <Button className="append-user-details" variant="contained" 
-                                color="primary" size="large" color="auto" disabled>
-                            Cant Use my details
+                    alignItems="center"
+                    spacing={3}>
+                        <Grid className="orderGrid_item" item>
+                        <Paper className="paperback">
+                            <h3>GreenCart</h3>
+                            {((this.state['Plastic Bottles']==0) || (this.state['Plastic Bottles']!=null))?<p>No of Plastic Bottles: {this.state['Plastic Bottles']}</p>:null}
+                            {((this.state['Plastic Bag']!=null) || (this.state['Plastic Bag']!=null))?<p>No of Plastic Bags: {this.state['Plastic Bag']}</p>:null}                
+                            {((this.state['Shampoo Bottles']!=null) || (this.state['Shampoo Bottles']!=null))?<p>No of Shampoo Bottles: {this.state['Shampoo Bottles']}</p>:null}
+                            {((this.state['Batteries']!=null) || (this.state['Batteries']!=null))?<p>No of Batteries: {this.state['Batteries']}</p>:null}
+                            {((this.state['Phones']!=null) || (this.state['Phones']!=null))?<p>No of Phones: {this.state['Phones']}</p>:null}
+                            {((this.state['Computer']!=null) || (this.state['Computer']!=null))?<p>No of Computers: {this.state['Computer']}</p>:null}
+                            {((this.state['Mason Jar']!=null) || (this.state['Mason Jar']!=null))?<p>No of Mason Jars: {this.state['Mason Jar']}</p>:null}
+                            {((this.state['Glass Bottles']!=null) || (this.state['Glass Bottles']!=null))?<p>No of Glass Bottles: {this.state['Glass Bottles']}</p>:null}
+                            {((this.state['Light Bulb']!=null) || (this.state['Light Bulb']!=null))?<p>No of Light Bulb: {this.state['Light Bulb']}</p>:null}
+                            {((this.state['Florescent Tubes']!=null) || (this.state['Florescent Tubes']!=null))?<p>No of Florescent Tubes: {this.state['Florescent Tubes']}</p>:null}
+                            {((this.state['Fairy Lights']!=null) || (this.state['Fairy Lights']!=null))?<p>No of Fary Lights: {this.state['Fairy Lights']}</p>:null}
+                            {(this.state.points!=null)?<p>Total points: {this.state.points}</p>:null}
+                            {(this.state.weight!=null)?<p>Total weight: {this.state.weight}kg</p>:null}
+                            <p><small>Note that minimum of 10kg is required for scheduled orders</small></p>
+                        </Paper>
+                        </Grid>
+
+                        {((this.state.selfrecycle==true)||(this.state.weight<10)) ? null :
+                            <Grid className="orderGrid_item" item>
+                            <Paper className="paperback">
+                                <form>
+                                    <h3> Schedule Pickup Details </h3>
+                                <TextField className="schedule-form" id="address" label="Address" 
+                                            variant="outlined" margin="normal" value={this.state.address}
+                                            onChange={this.handleTextChange("address")} />
+                                <TextField className="schedule-form" id="zip" label="ZIP Code" 
+                                            variant="outlined" margin="normal" value={this.state.zip}
+                                            onChange={this.handleTextChange("zip")} />
+                                <TextField className="schedule-form" id="phone" label="Contact No" 
+                                            variant="outlined" margin="normal" value={this.state.phone}
+                                            onChange={this.handleTextChange("phone")} />
+                                </form>
+                                {((this.state.userDetails==null) ||  (Object.entries(this.state.userDetails).length<=1))?
+                                <Button className="append-user-details" variant="contained" 
+                                    color="primary" size="large" color="auto" disabled>
+                                    Cant Use my details
+                                </Button>
+                                :
+                                <Button className="append-user-details" variant="contained" 
+                                    color="primary" size="large" color="auto"
+                                    onClick={() => this.appendDetails(this.state.userDetails.address,
+                                                    this.state.userDetails.zip, this.state.userDetails.phone)}>
+                                    Use my details
+                                </Button>
+                                }
+                            </Paper>
+                            </Grid>}
+
+                        <Grid item
+                        >
+                        {(this.submissionCondition()) ?
+
+                            ((this.state.weight<10) ?
+                                // Case where weight <10, display onemap
+                                <Button 
+                                    className="confirm_btn"
+                                    variant="contained" color="primary" size="large" color="auto" 
+                                    onClick={() => this.updateFirebase()}
+                                    component={RouterLink} to={{ pathname:"/onemap", state: {displayselfrecycle:false} }}>
+                                    Confirm!
+                                </Button>:
+                                <Button 
+                                    className="confirm_btn"
+                                    variant="contained" color="primary" size="large" color="auto" 
+                                    onClick={() => this.updateFirebase()}
+                                    component={RouterLink} to="/">
+                                    Confirm!
+                                </Button>) :
+
+                        <Button 
+                            className="confirm_btn"
+                            variant="contained" color="primary" size="large" color="auto" 
+                            disabled>
+                            Confirm!
                         </Button>}
-                    </Paper>
-                    </Grid>}
-                
 
-                {(this.submissionCondition())?
-                <Button 
-                    variant="contained" color="primary" size="large" color="auto" 
-                    onClick={() => this.updateFirebase()}
-                    component={RouterLink} to="/">
-                    Confirm!
-                </Button>:
-                <Button 
-                    variant="contained" color="primary" size="large" color="auto" 
-                    disabled>
-                    Confirm!
-                </Button>}
-            </Grid>
+                        </Grid>
+                    </Grid> 
+                </Grid>
 
-            {this.state.selfrecycle==true ? null :
-            <Calendar calEvents={this.state.calendarEvents} handleUpdate={this.getCalUpdate}/>}
+                {((this.state.selfrecycle==true)||(this.state.weight<10)) ? null : <Grid className="calendarGrid">
+                <Calendar calEvents={this.state.calendarEvents} handleUpdate={this.getCalUpdate}/></Grid>}
 
+                </div>
             </div>
         </div>
     );

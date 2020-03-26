@@ -4,8 +4,13 @@ import Button from "@material-ui/core/Button";
 import { firebaseapp, base } from "../../base.js";
 import './adminOrders.css'
 
-
-import Table from 'react-bootstrap/Table'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import { Paper } from '@material-ui/core';
 
 
 
@@ -83,6 +88,17 @@ class adminOrders extends Component {
     });
   }
 
+  approveOrder(user_id, addPoints, orderID){
+    var userpointsRef = firebaseapp.database().ref('/users/' + user_id + '/points')
+    userpointsRef.once('value').then(function(snapshot){
+        var updates = {}
+        updates['/users/' + user_id + '/points'] = addPoints + snapshot.val()
+        updates['/orders/' + user_id + '/' + orderID + '/approved'] = true
+        return firebase.database().ref().update(updates)
+      })
+    // Firebase updated
+  }
+
   render() {
     console.log(this.state)
 
@@ -90,23 +106,40 @@ class adminOrders extends Component {
     var userOrders = this.state.orderdata
     if (userOrders!=null){
       var listItems2 = (
-        <tbody>
-            {userOrders.map((d) => <tr>
-              <td>{d.name}</td>
-              <td>{d['Plastic Bottles']}</td>
-              <td>{d['Plastic Bag']}</td>
-              <td>{d['Shampoo Bottles']}</td>
-              <td>{d['Batteries']}</td>
-              <td>{d['Phones']}</td>
-              <td>{d['Computer']}</td>
-              <td>{d['Mason Jar']}</td>
-              <td>{d['Glass Bottles']}</td>
-              <td>{d['Light Bulb']}</td>
-              <td>{d['Florescent Tubes']}</td>
-              <td>{d['Fairy Lights']}</td>
-              <td>{d['points']}</td>
-            </tr>)}
-        </tbody>)
+        <TableBody>
+            {userOrders.map((d) =>
+            <TableRow>              
+              <TableCell align="right">{d.key}</TableCell>
+              <TableCell className="name" align="right">{d.name}</TableCell>
+              <TableCell align="right">{d['Plastic Bottles']}</TableCell>
+              <TableCell align="right">{d['Plastic Bag']}</TableCell>
+              <TableCell align="right">{d['Shampoo Bottles']}</TableCell>
+              <TableCell align="right">{d['Batteries']}</TableCell>
+              <TableCell align="right">{d['Phones']}</TableCell>
+              <TableCell align="right">{d['Computer']}</TableCell>
+              <TableCell align="right">{d['Mason Jar']}</TableCell>
+              <TableCell align="right">{d['Glass Bottles']}</TableCell>
+              <TableCell align="right">{d['Light Bulb']}</TableCell>
+              <TableCell align="right">{d['Florescent Tubes']}</TableCell>
+              <TableCell align="right">{d['Fairy Lights']}</TableCell>
+              <TableCell align="right">{d.address}</TableCell>
+              <TableCell align="right">{d.zip}</TableCell>
+              <TableCell align="right">{d.phone}</TableCell>
+              <TableCell align="right">{d['points']}</TableCell>
+            
+
+              {/* For order approval */}
+              <TableCell align="right">{((d.approved == null) || (d.approved !=true)) ? 
+              <Button className="approve-btn" variant="contained" color="auto" size="large" onClick={()=>this.approveOrder(d.id, d.points, d.key)}>
+                Approve
+              </Button>:
+              <Button className="approved-btn" variant="contained" color="auto" size="large" disabled>
+                Approved
+              </Button>
+              }</TableCell>
+
+            </TableRow>)}
+        </TableBody>)
     } else
     {
       var listItems2 = (<p>Nothing yet</p>);
@@ -118,27 +151,36 @@ class adminOrders extends Component {
     return (
       <div class="admin_userorder">
             <section class="orderHistory">
-              <h2>Order History</h2>
-              <Table class="ordertable" striped bordered hover variant="dark" responsive>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Plastic Bottles</th>
-                    <th>Plastic Bag</th>
-                    <th>Shampoo Bottles</th>
-                    <th>Batteries</th>
-                    <th>Phones</th>
-                    <th>Computer</th>
-                    <th>Mason Jar</th>
-                    <th>Glass Bottles</th>
-                    <th>Light Bulb</th>
-                    <th>Florescent Tubes</th>
-                    <th>Fairy Lights</th>
-                    <th>Points</th>
-                  </tr>
-                </thead>
-                {listItems2}
-              </Table>
+              <h2>User Orders</h2>
+              <Paper className="admin_order_table_paper">
+                <TableContainer className="admin_order_table_container">
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Order ID</TableCell>
+                        <TableCell className="name">Name</TableCell>
+                        <TableCell align="right">Plastic Bottles</TableCell>
+                        <TableCell align="right">Plastic Bag</TableCell>
+                        <TableCell align="right">Shampoo Bottles</TableCell>
+                        <TableCell align="right">Batteries</TableCell>
+                        <TableCell align="right">Phones</TableCell>
+                        <TableCell align="right">Computer</TableCell>
+                        <TableCell align="right">Mason Jar</TableCell>
+                        <TableCell align="right">Glass Bottles</TableCell>
+                        <TableCell align="right">Light Bulb</TableCell>
+                        <TableCell align="right">Florescent Tubes</TableCell>
+                        <TableCell align="right">Fairy Lights</TableCell>
+                        <TableCell className="address" align="right">Address</TableCell>
+                        <TableCell align="right">ZIP</TableCell>
+                        <TableCell align="right">Contact No</TableCell>
+                        <TableCell align="right">Points Earned</TableCell>
+                        <TableCell align="center">Approval</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    {listItems2}
+                  </Table>
+                </TableContainer>
+              </Paper>
               <div class="test_button">
                 <Button
                   variant="contained"

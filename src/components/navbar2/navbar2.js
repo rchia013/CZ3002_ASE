@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import "../navbar/Navbar.css";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import Home from '../../pages/Home/Home.js';
      
 
@@ -12,16 +12,14 @@ class Navbar2 extends Component {
     return (
             <div class="navbar">
                 {/* Bar that appears at the top */}
-                <nav class="navbar">
-                <img style={{maxHeight: '60px', maxWidth: '90px'}}src = "/logo.jpg"/>
-                    {/* Apparently using #home jumps to that section on the page based on Section id */}
-                    <ul>
-                        <li><Link to = "/">Home</Link></li>
-                        <li><Link to = "/onemap"> Self-Recycle </Link></li>
-                        <li><Link to = "/waste-items">Schedule Pick-Up</Link></li>
-                        <li><Link to = "/profile">My Account</Link></li>
-                    </ul>
-                </nav>
+                {/* Apparently using #home jumps to that section on the page based on Section id */}
+                <ul>
+                    <li><RouterLink to =  "/">Home</RouterLink></li>
+                    <li><RouterLink to={{ pathname:'/onemap', state: {selfrecycle: true}}}> Self-Recycle </RouterLink></li>
+                    {/* <li><RouterLink to = '/waste-items'>Schedule Pick-Up</RouterLink></li> */}
+                    <li><RouterLink to={{ pathname:'/waste-items', state: {selfrecycle: false}}}>Schedule Pick-Up</RouterLink></li>
+                    <li><RouterLink to = "/profile">My Account</RouterLink></li>
+                </ul>
             </div>
     );
 

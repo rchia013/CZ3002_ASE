@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import { firebaseapp, base } from "../../base.js";
 import { Redirect } from "react-router";
 import Admin from "../admin/admin.js";
-import Navbar from "../../components/navbar/Navbar";
+import Navbar2 from "../../components/navbar2/navbar2";
 import './Profile2.css'
 
 import Dialog from '@material-ui/core/Dialog';
@@ -13,10 +13,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Grid, TextField, Paper } from '@material-ui/core';
-
-import Table from 'react-bootstrap/Table'
-
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 var firebase = require("firebase");
 var loginStatus = false;
@@ -30,21 +32,23 @@ class Profile2 extends Component {
 
   // Checks status and adds user to state
   checkStatus() {
-    firebaseapp.auth().onAuthStateChanged((user) => {
-      if (user!=null) {
-        this.setState({ user: user })
+    firebaseapp.auth().onAuthStateChanged(user => {
+      if (user != null) {
+        this.setState({ user: user });
 
         // Dealing with admin
-        firebaseapp.auth().currentUser.getIdTokenResult()
-        .then(idTokenResult => {
-          this.setState({
-            admin: idTokenResult.claims.admin
-          })
-        })
+        firebaseapp
+          .auth()
+          .currentUser.getIdTokenResult()
+          .then(idTokenResult => {
+            this.setState({
+              admin: idTokenResult.claims.admin
+            });
+          });
 
-        console.log("done setting state")
-        this.getUserOrders()
-        this.getUserDetails()
+        console.log("done setting state");
+        this.getUserOrders();
+        this.getUserDetails();
       } else {
         this.setState({ user: null });
       }
@@ -52,89 +56,106 @@ class Profile2 extends Component {
   }
 
   componentDidMount() {
-    this.checkStatus()
+    this.checkStatus();
   }
-
 
   getUserOrders() {
     base.fetch("orders/" + this.state.user.uid, {
       context: this,
       asArray: true,
       then(data) {
-        this.setState({ orderdata: data} );
+        this.setState({ orderdata: data });
       }
     });
   }
 
   getUserDetails(){
-    base.fetch("users" + this.state.user.uid + "/", {
+    base.fetch("users/" + this.state.user.uid , {
       context: this,
       //asArray: true,
       then(data) {
-        if (data != null){
-          this.setState({ userDetails: data, address: data.address,
-                          zip: data.zip, phone: data.phone });
+        if (data != null) {
+          this.setState({
+            userDetails: data,
+            address: data.address,
+            zip: data.zip,
+            phone: data.phone
+          });
         }
       }
     });
   }
 
-
   // For editing particulars
   handleTextChange = input => e => {
-      this.setState({[input]: e.target.value})
-  }
-
+    this.setState({ [input]: e.target.value });
+  };
 
   handleClickOpen = e => {
-    this.setState({dialog: true})
-  }
+    this.setState({ dialog: true });
+  };
 
-  handleClose = e =>  {
-    if(this.state.userDetails!=null){
-      this.setState({ dialog: false, address: this.state.userDetails.address,
-                      zip: this.state.userDetails.zip, phone: this.state.userDetails.phone });
-    } 
-    else {
-      this.setState({ dialog: false, address: "",
-        zip: "", phone: "" });
+  handleClose = e => {
+    if (this.state.userDetails != null) {
+      this.setState({
+        dialog: false,
+        address: this.state.userDetails.address,
+        zip: this.state.userDetails.zip,
+        phone: this.state.userDetails.phone
+      });
+    } else {
+      this.setState({ dialog: false, address: "", zip: "", phone: "" });
     }
   };
 
   // Updates user details to firebase database
   handleSubmitandClose = e => {
-      
-      var userDetailsUpdate = {
-        address: this.state.address,
-        zip: this.state.zip,
-        phone: this.state.phone
-      }
-      var updates = {}
-      updates[ 'users/' + this.state.user.uid + '/' ] = userDetailsUpdate
+    var userDetailsUpdate = {
+      address: this.state.address,
+      zip: this.state.zip,
+      phone: this.state.phone
+    };
+    var updates = {};
+    updates["users/" + this.state.user.uid] = userDetailsUpdate;
 
-      this.setState({ dialog: false, userDetails: userDetailsUpdate })
+    this.setState({ dialog: false, userDetails: userDetailsUpdate });
 
-      return firebase.database().ref().update(updates)
-  }
-    
+    return firebase
+      .database()
+      .ref()
+      .update(updates);
+  };
 
   render() {
-    console.log(this.state)
-    
+
+    console.log(this.state);
 
     // Table rows
-    var temporders2 = this.state.orderdata
-    if (temporders2!=null){
-      console.log(temporders2)
+    var temporders2 = this.state.orderdata;
+    if (temporders2 != null) {
+      console.log(temporders2);
       var listItems2 = (
-        <tbody>
-            {temporders2.map((d) => <tr>
-              <td>{d.key}</td>
-              <td>{d.batteries}</td>
-              <td>{d.plastic_bottle}</td>
-              <td>{d.glass}</td>
-            </tr>)}
-        </tbody>)
+        <TableBody>
+            {temporders2.map((d) => 
+            <TableRow>
+              <TableCell align="right">{d.key}</TableCell>
+              <TableCell align="right">{d['Plastic Bottles']}</TableCell>
+              <TableCell align="right">{d['Plastic Bag']}</TableCell>
+              <TableCell align="right">{d['Shampoo Bottles']}</TableCell>
+              <TableCell align="right">{d['Batteries']}</TableCell>
+              <TableCell align="right">{d['Phones']}</TableCell>
+              <TableCell align="right">{d['Computer']}</TableCell>
+              <TableCell align="right">{d['Mason Jar']}</TableCell>
+              <TableCell align="right">{d['Glass Bottles']}</TableCell>
+              <TableCell align="right">{d['Light Bulb']}</TableCell>
+              <TableCell align="right">{d['Florescent Tubes']}</TableCell>
+              <TableCell align="right">{d['Fairy Lights']}</TableCell>
+              <TableCell align="right">{d.address}</TableCell>
+              <TableCell align="right">{d.zip}</TableCell>
+              <TableCell align="right">{d.phone}</TableCell>
+              <TableCell align="right">{((d.approved == null) || (d.approved !=true)) ? <p class="table_text">Pending</p> : d['points']}</TableCell>
+            </TableRow>)}
+        </TableBody>)
     } else
     {
       var listItems2 = (<p>Nothing yet</p>);
@@ -145,7 +166,7 @@ class Profile2 extends Component {
     // <div class="home_content">
     return (
       <div >
-        <div class="profile_navbar"><Navbar /></div>
+        <div class="profile_navbar"><Navbar2 /></div>
         {this.state.admin ? (
           <div class="admin_content">
             <Admin />
@@ -159,10 +180,12 @@ class Profile2 extends Component {
                 <h1>Welcome {this.state.user.displayName}</h1>
                 <Paper className="particulars-paper">
                     <h3>My Particulars</h3>
-                    {(this.state.userDetails!=null)?<p>Address: {this.state.userDetails.address}</p>:<p>Address: Nothing yet!</p>}
-                    {(this.state.userDetails!=null)?<p>ZIP Code: S{this.state.userDetails.zip}</p>:<p>ZIP Code: Nothing yet!</p>}                
-                    {(this.state.userDetails!=null)?<p>Phone: {this.state.userDetails.phone}</p>:<p>Phone: Nothing yet!</p>}
-                    {(this.state.userDetails!=null)?<p>Total points: {this.state.userDetails.points}</p>:<p>Total points: Nothing yet!</p>}
+                    { ((this.state.userDetails==null) ||  (Object.entries(this.state.userDetails).length==0))?
+                        <p class="empty-description">Nothing yet! Click on Edit Particulars to update!</p> :
+                        <p>Address: {this.state.userDetails.address} <br />
+                            ZIP Code: S{this.state.userDetails.zip} <br />
+                            Phone: {this.state.userDetails.phone} <br />
+                            Total points: {this.state.userDetails.points}</p>}
                 </Paper>
                 <Button
                   variant="contained"
@@ -203,18 +226,36 @@ class Profile2 extends Component {
                   </Dialog>
             </section>
             <section class="orderHistory">
+              <div class="userorderHistory">
               <h2>Order History</h2>
-              <Table striped bordered hover variant="dark">
-                <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>Batteries</th>
-                    <th>Plastic bottles</th>
-                    <th>Glass</th>
-                  </tr>
-                </thead>
-                {listItems2}
-              </Table>
+              <Paper className="user_order_table_paper">
+                <TableContainer className="user_order_table_container">
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Order ID</TableCell>
+                        <TableCell align="right">Plastic Bottles</TableCell>
+                        <TableCell align="right">Plastic Bag</TableCell>
+                        <TableCell align="right">Shampoo Bottles</TableCell>
+                        <TableCell align="right">Batteries</TableCell>
+                        <TableCell align="right">Phones</TableCell>
+                        <TableCell align="right">Computer</TableCell>
+                        <TableCell align="right">Mason Jar</TableCell>
+                        <TableCell align="right">Glass Bottles</TableCell>
+                        <TableCell align="right">Light Bulb</TableCell>
+                        <TableCell align="right">Florescent Tubes</TableCell>
+                        <TableCell align="right">Fairy Lights</TableCell>
+                        <TableCell className="address" align="right">Address</TableCell>
+                        <TableCell align="right">ZIP</TableCell>
+                        <TableCell align="right">Contact No</TableCell>
+                        <TableCell align="right">Points Earned</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    {listItems2}
+                  </Table>
+                </TableContainer>
+              </Paper>
+
               <div class="test_button">
                 <Button
                   variant="contained"
@@ -226,17 +267,11 @@ class Profile2 extends Component {
                   Home
                 </Button>
               </div>
-
+              </div>
             </section>
               </div>
           </div>
         )}
-
-        
-        
-        
-        
-
       </div>
     );
   }

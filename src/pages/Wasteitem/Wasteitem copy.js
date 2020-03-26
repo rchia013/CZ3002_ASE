@@ -63,13 +63,14 @@ class Wasteitem extends Component{
         var shopItem = button.parentElement.parentElement
         var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText
         var points = shopItem.getElementsByClassName('shop-item-points')[0].innerText
+        var weight = shopItem.getElementsByClassName('shop-item-weight')[0].innerText
         var imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src
-        this.addItemToCart(title, points, imageSrc)
+        this.addItemToCart(title, points, weight, imageSrc)
         this.updateCartTotal()
     }
     
     // Called by above function
-    addItemToCart(title, points, imageSrc){
+    addItemToCart(title, points, weight, imageSrc){
         var cartRow = document.createElement('div')
         cartRow.classList.add('cart-row') //add into the cart horizontally
         var cartItems = document.getElementsByClassName('cart-items')[0]
@@ -88,10 +89,14 @@ class Wasteitem extends Component{
             <span class="cart-item-title">${title}</span>
         </div>
         <span class="cart-points cart-column">${points}</span>
+        <span class="cart-weight cart-column">${weight}</span>
         <div class="cart-quantity cart-column">
             <input class="cart-quantity-input" type="number" value="1">
             <button class="btn btn-danger" type="button">REMOVE</button>
-        </div>`
+        </div> `
+        
+        
+
         cartRow.innerHTML = cartRowContents //adding the whole html format into the cart
         cartItems.append(cartRow)
         //code below is used to make the new remove btn and quantity button works. The original remove and qty btn is already loaded when the page started but not the new buttons
@@ -106,24 +111,33 @@ class Wasteitem extends Component{
     updateCartTotal(){
         var cartItemContainer = document.getElementsByClassName('cart-items')[0]
         var cartRows = cartItemContainer.getElementsByClassName('cart-row')
-        var total = 0
+        var totalpoints = 0
+        var totalweight = 0
+
         for(var i=0; i<cartRows.length; i++){
             var cartRow = cartRows[i]
             var cartDetails =cartRow.getElementsByClassName('cart-item')[0]
             var title = cartDetails.getElementsByClassName('cart-item-title')[0].innerText
             var pointElement =cartRow.getElementsByClassName('cart-points')[0]
+            var weightElement =cartRow.getElementsByClassName('cart-weight')[0]
             var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
             //var points = parseInteger(pointElement.innerText.replace('points',''))
+            var weight = parseInt(weightElement.innerText.replace('weight',''))
             var points = parseInt(pointElement.innerText.replace('points',''))
             var quantity = quantityElement.value
-            total = total + (points*quantity)
+            totalpoints = totalpoints + (points*quantity)
+            totalweight = totalweight + (weight*quantity)
 
             // Handling state (points only)
             this.setState({[title]: quantity})
+            this.setState({[title]: weight})
+
         
         }
-        this.setState({points: total})
-        document.getElementsByClassName('cart-total-points')[0].innerText = total + ' points'
+        this.setState({points: totalpoints})
+        this.setState({weight: totalweight})
+        document.getElementsByClassName('cart-total-points')[0].innerText = totalpoints + ' points'
+        document.getElementsByClassName('cart-total-weight')[0].innerText = totalweight + ' kg'
 
         
     }
@@ -148,7 +162,7 @@ class Wasteitem extends Component{
                 <div class="waste_selection">
                     <div class="waste_items">
                     <AppBar position="static" color="auto">
-                        <Tabs value={this.state.tab} onChange={this.handleChange} aria-label="simple tabs example">
+                        <Tabs variant = "fullWidth" value={this.state.tab} onChange={this.handleChange} aria-label="simple tabs example">
                             {/* Add tabs here */}
                             <Tab label="Plastic"  />
                             <Tab label="E-Waste"  />
@@ -167,11 +181,13 @@ class Wasteitem extends Component{
                             above handles the rest */}
                         {(this.state.tab == 0) ?
                         <Paper elevation={3} square className="shop-item-paper">
+                            <div class="shop-items">
                         <div class="shop-item">
                             <span class="shop-item-title">Plastic Bottles</span>
                             <img class="shop-item-image" src={plasticImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -180,6 +196,7 @@ class Wasteitem extends Component{
                             <img class="shop-item-image" src={plasticbagImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -188,19 +205,23 @@ class Wasteitem extends Component{
                             <img class="shop-item-image" src={shampooImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
+                        </div>
                         </div>
                         </Paper> : null}
                         {/* Copy up till here (end of enclosed area) */}
                         
                         {(this.state.tab == 1) ?
                         <Paper elevation={3} square className="shop-item-paper">
+                            <div class="shop-items">
                         <div class="shop-item">
                             <span class="shop-item-title">Batteries</span>
                             <img class="shop-item-image" src={batteriesImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -209,6 +230,7 @@ class Wasteitem extends Component{
                             <img class="shop-item-image" src={phonesImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">10 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -217,18 +239,22 @@ class Wasteitem extends Component{
                             <img class="shop-item-image" src={computerImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">10 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
+                        </div>
                         </div>
                         </Paper> : null}
                         
                         {(this.state.tab == 2) ?
                         <Paper elevation={3} square className="shop-item-paper">
+                            <div class="shop-items">
                         <div class="shop-item">
                             <span class="shop-item-title">Mason Jar</span>
                             <img class="shop-item-image" src={masonjarImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -237,20 +263,23 @@ class Wasteitem extends Component{
                             <img class="shop-item-image" src={glassbottleImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
-
+                        </div>                                
                         </Paper> : null}
 
 
                         {(this.state.tab == 3) ?
                         <Paper elevation={3} square className="shop-item-paper">
+                            <div class="shop-items">
                         <div class="shop-item">
                             <span class="shop-item-title">Light Bulb</span>
                             <img class="shop-item-image" src={lightbulbImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -259,6 +288,7 @@ class Wasteitem extends Component{
                             <img class="shop-item-image" src={florescenttubeImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -267,8 +297,10 @@ class Wasteitem extends Component{
                             <img class="shop-item-image" src={fairylightsImg} />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">5 points</span>
+                                <span class="shop-item-weight">1 kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
+                        </div>
                         </div>
                         </Paper> : null}
                     </div>
@@ -282,12 +314,17 @@ class Wasteitem extends Component{
                 <div class="cart-row">
                     <span class="cart-item cart-header cart-column">ITEM</span>
                     <span class="cart-points cart-header cart-column">POINTS</span>
+                    <span class="cart-weight cart-header cart-column">WEIGHT</span>
                     <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                    
                 </div>
                 <div class="cart-items" />
                 <div class="cart-total">
-                    <strong class="cart-total-title">Total</strong>
+                    <strong class="cart-total-title">Total Points:</strong>
                     <span class="cart-total-points">0 points</span>
+                    <strong class="divider">|</strong>
+                    <strong class="cart-total-title">Total Weight:</strong>
+                    <span class="cart-total-weight">0 kg</span>
                 </div>
 
                 {/* Conditional rendering for button */}

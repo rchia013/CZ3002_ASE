@@ -147,7 +147,10 @@ class Home extends Component {
                   color="primary"
                   size="large"
                   component={RouterLink}
-                  to="/onemap"
+                  to={{
+                    pathname:'/onemap', 
+                    state: {selfrecycle: true} 
+                }}
                 >
                   Self-Recycle
                 </Button>
