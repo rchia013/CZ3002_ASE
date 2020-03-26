@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import "./Home.css";
 import { firebaseapp } from "../../base.js";
 import Navbar from "../../components/navbar2/navbar2.js";
+import { green, white } from '@material-ui/core/colors';
 
 // This is a class based component (forgot what it's proper name is called). The other option is
 // a functional component. Class based components offer more flexibility though.
@@ -159,48 +160,97 @@ class Home extends Component {
            
           </section>
           <section id="profile_details">
-            <h1>Profile Details</h1>
-            <p>
-              {(this.state.user!=null) ? (
-                  <div>
-                    <p> Logged in as {this.state.user.displayName}</p>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      component={RouterLink}
-                      to="/profile"
-                    >
-                      View Profile
-                    </Button>
+            <div class="bigger_div">
+              <div class="profile_container">
+                <div class="profile_header">
+                  <h1>Start Recycling With Us Now</h1>
+                </div>
+              </div>
 
-                    <br />
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      size="large"
-                      onClick={() => firebaseapp.auth().signOut()}
-                      component={RouterLink}
-                      to="/"
-                    >
-                      Logout
-                    </Button>
-                  </div>
-                ) : (
-                  <div>
-                    <p>Not logged in </p>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
-                      component={RouterLink}
-                      to="/login"
-                    >
-                      Login
-                    </Button>
-                  </div>
-                )}
-            </p>
+                <div class="login_details">
+                  <p>
+                    {(this.state.user!=null) ? (
+                      <span class="button_span">
+                        <div>
+                          <p> Logged in as {this.state.user.displayName}</p>
+                          <Button
+                            variant="contained"
+                            color="white"
+                            size="large"
+                            component={RouterLink}
+                            to="/profile"
+                          >
+                            View Profile
+                          </Button>
+
+
+                        <div class="schedulepickupzz">
+                          <Button
+                            variant="contained"
+                            color="white"
+                            size="large"
+                            component={RouterLink} 
+                            to={{
+                                pathname:'/waste-items', 
+                                state: {selfrecycle: false} 
+                            }}
+                          >
+                            Schedule Pick Up
+                          </Button>
+                        </div>
+
+                        <div class="selfrecyclezz">
+                          <Button
+                            variant="contained"
+                            color="white"
+                            size="large"
+                            component={RouterLink}
+                            to="/onemap"
+                          >
+                            Self-Recycle
+                          </Button>
+                        </div>
+                      
+
+                          <br />
+                          <Button
+                            variant="contained"
+                            color="white"
+                            size="large"
+                            onClick={() => firebaseapp.auth().signOut()}
+                            component={RouterLink}
+                            to="/"
+                          >
+                            Logout
+                          </Button>
+                        </div>
+
+                        </span>
+                      ) : (
+                        <div>
+                          <p>Not logged in </p>
+                          <Button
+                            variant="contained"
+                            color="white"
+                            size="large"
+                            component={RouterLink}
+                            to="/login"
+                          >
+                            Login
+                          </Button>
+                        </div>
+                      )}
+                  </p>
+                </div>
+
+             
+
+              <div class="profile_image">
+                <img style={{minHeight: '300px', minWidth: '300px'}} src={require("../../components/image/recycle.png")}/>
+              </div>
+            </div>
+
+
           </section>
           </div>
     );

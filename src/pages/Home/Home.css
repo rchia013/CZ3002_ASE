@@ -121,7 +121,7 @@ section#plastic {
   background: url("https://image.freepik.com/free-photo/plastic-bottles-blue-background-recycling-saving-earth-concept-environmental-problems_72679-169.jpg")
     no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
-  filter: brightness(1.5);
+  filter: brightness(1.2);
 }
 
 section#ewaste {
@@ -134,7 +134,7 @@ section#lighting {
   background: url("https://www.advantageair.com.au/wp-content/uploads/2017/09/iStock-655447016-1.jpg")
     no-repeat center center/ cover;  
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
-  filter: brightness(2.5);
+  filter: brightness(1.5);
 }
 section#glass {
   background: url('/glass(1).jpg')
@@ -142,9 +142,13 @@ section#glass {
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
 }
 
+section#profile_details {
+  background-color: #2b8fad;
+}
+
 .letsgopage {
   width: 100%;
-  background-color: #839776;
+  background-color: #2fc9d4;
   box-shadow: 0 3000px rgba(rgba(rgba(rgba(0, 0, 0, 0.4)))) inset;
 }
 
@@ -176,9 +180,11 @@ section#glass {
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge{
   height: 10vh;
   top: 80%;
-  background-color: #bad4aa;
+  background-color: #338a91;
+  color: #f4f4f4;
 
 }
+
 
 
 .user {
@@ -189,4 +195,43 @@ section#glass {
   margin: auto;
   display: flex;
   justify-content: center;
+}
+
+.profile_header {
+  float: left;
+}
+
+.profile_container {
+  float: left;
+  width: 40%;
+  margin-left: 130px;
+  margin-top: 170px;
+}
+
+.bigger_div {
+  height: 100vh;
+  width: 100vw;
+}
+
+.profile_image {
+  float: right;
+  margin-top: 15%;
+  margin-right: 10%;
+  height: 30vh;
+  width: 30vw;
+}
+
+.button_span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  width: 50%;
+}
+
+.login_details {
+  width: 30vw;
+  height: 20%;
+  float: left;
+  top: 100%;
 }

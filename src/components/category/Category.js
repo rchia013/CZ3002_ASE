@@ -13,7 +13,7 @@ class Category extends Component {
       return ( 
 
           <div className="polaroid">
-            <img src={require("../../components/image/" + this.props.pic + ".jpg")}/>
+            <img src={require("../../components/image/" + this.props.pic + ".jpg")} height="250" width="150"/>
             <div className="container">
               
               <p>{this.props.name}</p>
