@@ -18,7 +18,6 @@ body {
   scroll-snap-type: y mandatory;
 }
 
-
 .navbar {
   position: fixed;
   top: 0;
@@ -41,6 +40,10 @@ body {
   padding: 1rem;
 }
 
+.extra {
+  width: 60%;
+}
+
 .navbar ul li a {
   text-decoration: none;
   text-transform: uppercase;
@@ -60,7 +63,7 @@ section {
   width: 100%;
   height: 100vh;
   scroll-snap-align: center;
-  overflow-x:hidden;
+  overflow-x: hidden;
   background-color: #333;
 }
 
@@ -112,7 +115,6 @@ section ul li {
 /* Section Images */
 section#home {
   background: url("https://beegreen.eco.br/wp-content/uploads/2019/05/chega-de-lixo-promova-a-sustentabilidade-tenha-uma-vida-sustentavel-e-diminua-o-impacto-ambiental-com-metodos-ecologicos-1.jpg")
-
     no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset; /*Handles tint*/
 }
@@ -125,32 +127,32 @@ section#plastic {
 }
 
 section#ewaste {
-  background: url("designer-desk-essentials-preview.jpg")
-    no-repeat center center/ cover;  
+  background: url("designer-desk-essentials-preview.jpg") no-repeat center
+    center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
   filter: brightness(1.1);
 }
 
 section#lighting {
   background: url("https://www.advantageair.com.au/wp-content/uploads/2017/09/iStock-655447016-1.jpg")
-    no-repeat center center/ cover;  
+    no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
   filter: brightness(1.25);
 }
 section#glass {
-  background: url('/glass(1).jpg')
-    no-repeat center center/ cover;  
+  background: url("/glass(1).jpg") no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
   filter: brightness(1.1);
 }
 
 section#profile_details {
   background-color: #2b8fad;
+  height: 100%;
   /* background: url("https://image.freepik.com/free-photo/recycling-emblem-around-trash-black-background_23-2148115739.jpg")
     no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
   filter: brightness(1.1); */
-  }
+}
 
 .letsgopage {
   width: 100%;
@@ -161,9 +163,9 @@ section#profile_details {
   filter: brightness(1.1);
 }
 
-.selfrecycle{
+.selfrecycle {
   float: left;
-  background: url('../../components/image/selfrec.png');
+  background: url("../../components/image/selfrec.png");
   background-repeat: no-repeat;
   background-size: 80% 50%;
   background-position: center;
@@ -175,7 +177,7 @@ section#profile_details {
 .schedulepickup {
   top: 60px;
   float: right;
-  background: url('../../components/image/recyclingtruck.png');
+  background: url("../../components/image/recyclingtruck.png");
   display: flex;
   justify-content: center;
   background-repeat: no-repeat;
@@ -186,15 +188,11 @@ section#profile_details {
   width: 50%;
 }
 
-.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge{
+#pickupbutton,
+#recyclebutton {
   height: 10vh;
   top: 80%;
-  background-color: #338a91;
-  color: #f4f4f4;
-
 }
-
-
 
 .user {
   margin-top: 100px;
@@ -207,10 +205,8 @@ section#profile_details {
 }
 
 .profile_header {
-  float: left;
-  width: 40%;
-  margin-left: 130px;
-  margin-top: 170px;
+  width: 100%;
+  /* height: 30%; */
 }
 
 /* .profile_container {
@@ -221,47 +217,24 @@ section#profile_details {
 } */
 
 .bigger_div {
-  height: 100vh;
-  width: 100vw;
-}
-
-.profile_image {
-  float: right;
-  margin-top: 0%;
-  margin-right: 5%;
-  height: 30vh;
-  width: 30vw;
-  top: 0%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .button_span {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-top: 16px;
-  width: 90%;
+  width: 100%;
 }
 
 .login_details {
-  width: 60vw;
-  height: 100vh;
-  float: bottom;
-  margin-left: 0%;
-  margin-right: 0%;
-  padding-right: 0%;
-}
-
-/* .details {
-  height: 100%;
+  display: flex;
+  justify-content: center;
   width: 100%;
-} */
-
-.logout_button {
-  float: left;
-
-
 }
 
 .subdetails {
-  float: left;
+  margin-top: 10px;
 }
