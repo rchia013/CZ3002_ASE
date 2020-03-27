@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { firebaseapp } from "../../base.js";
 import { Button } from "@material-ui/core";
+import emailjs from 'emailjs-com'
 import { Link as RouterLink } from "react-router-dom";
 import "../Home/Home.css";
 import "./vouchers.css";
@@ -69,6 +70,15 @@ class RVouchers extends Component {
           .child("vouchers")
           .child(temp)
           .update({ name: temp });
+
+        // Sending voucher email
+        const templateParams = {
+          to_name: this.state.user.displayName,
+          to_email: this.state.user.email,
+          voucher_name: temp,
+          email_content: this.state.vouchers[temp]["desc"]
+        };
+        emailjs.send('gmail','template_8MKL7Ui0', templateParams, 'user_v3HTSBe6LX8JIwU6pC5w0')
       }
     });
   };
@@ -139,6 +149,7 @@ class RVouchers extends Component {
     if (this.state.loaded) {
       var tempArray = Object.keys(this.state.userCurrentVouchers);
       if (this.state.vouchers != null) {
+        console.log(this.state.vouchers)
         temp = Object.keys(this.state.vouchers).map(key => {
           if (tempArray.includes(key)) {
             return (

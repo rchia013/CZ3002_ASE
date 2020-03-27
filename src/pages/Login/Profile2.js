@@ -194,6 +194,15 @@ class Profile2 extends Component {
                   onClick={this.handleClickOpen}
                 >
                   Edit Particulars
+                </Button>
+                <Button
+                  variant="contained"
+                  color="auto"
+                  size="large"
+                  component={RouterLink}
+                  to="/redeemvouchers"
+                >
+                  Redeem Vouchers
                 </Button>    
                 <p><small>Scroll down to see Order History</small></p>
               </div>) 
