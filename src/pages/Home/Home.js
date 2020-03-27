@@ -164,71 +164,76 @@ class Home extends Component {
           </section>
           <section id="profile_details">
             <div class="bigger_div">
-              <div class="profile_container">
+              {/* <div class="profile_container"> */}
                 <div class="profile_header">
                   <h1>Start Recycling With Us Now</h1>
                 </div>
-              </div>
+              {/* </div> */}
 
                 <div class="login_details">
-                  <p>
+                  {/* <p class="details"> */}
                     {(this.state.user!=null) ? (
-                      <span class="button_span">
-                        <div>
-                          <p> Logged in as {this.state.user.displayName}</p>
-                          <Button
-                            variant="contained"
-                            color="white"
-                            size="large"
-                            component={RouterLink}
-                            to="/profile"
-                          >
-                            View Profile
-                          </Button>
+                      <div class="extra">
+                        <p class="subdetails"> Logged in as {this.state.user.displayName}</p>
+                        <span class="button_span">
+                          
+                          <div>
+                            
+                            <Button
+                              variant="contained"
+                              color="white"
+                              size="large"
+                              component={RouterLink}
+                              to="/profile"
+                            >
+                              View Profile
+                            </Button>
+                            </div>
 
+                          <div class="schedulepickupzz">
+                            <Button
+                              variant="contained"
+                              color="white"
+                              size="large"
+                              component={RouterLink} 
+                              to={{
+                                  pathname:'/waste-items', 
+                                  state: {selfrecycle: false} 
+                              }}
+                            >
+                              Schedule Pick Up
+                            </Button>
+                          </div>
 
-                        <div class="schedulepickupzz">
-                          <Button
-                            variant="contained"
-                            color="white"
-                            size="large"
-                            component={RouterLink} 
-                            to={{
-                                pathname:'/waste-items', 
-                                state: {selfrecycle: false} 
-                            }}
-                          >
-                            Schedule Pick Up
-                          </Button>
+                          <div class="selfrecyclezz">
+                            <Button
+                              variant="contained"
+                              color="white"
+                              size="large"
+                              component={RouterLink}
+                              to="/onemap"
+                            >
+                              Self-Recycle
+                            </Button>
+                          </div>
+                        
+                          <div class="logout_button">
+                            {/* <br /> */}
+                              <Button
+                                variant="contained"
+                                color="white"
+                                size="large"
+                                onClick={() => firebaseapp.auth().signOut()}
+                                component={RouterLink}
+                                to="/"
+                              >
+                                Logout
+                              </Button>
+                          </div>
+
+                          </span>
                         </div>
 
-                        <div class="selfrecyclezz">
-                          <Button
-                            variant="contained"
-                            color="white"
-                            size="large"
-                            component={RouterLink}
-                            to="/onemap"
-                          >
-                            Self-Recycle
-                          </Button>
-                        </div>
-                      
-
-                          <br />
-                          <Button
-                            variant="contained"
-                            color="white"
-                            size="large"
-                            onClick={() => firebaseapp.auth().signOut()}
-                            component={RouterLink}
-                            to="/"
-                          >
-                            Logout
-                          </Button>
-                        </div>
-
-                        </span>
                       ) : (
                         <div>
                           <p>Not logged in </p>
@@ -243,13 +248,13 @@ class Home extends Component {
                           </Button>
                         </div>
                       )}
-                  </p>
+                  {/* </p> */}
                 </div>
 
              
 
               <div class="profile_image">
-                <img style={{minHeight: '300px', minWidth: '300px'}} src={require("../../components/image/recycle.png")}/>
+                <img style={{minHeight: '250px', minWidth: '250px'}} src={require("../../components/image/recycle.png")}/>
               </div>
             </div>
 

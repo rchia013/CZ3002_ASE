@@ -146,10 +146,10 @@ section#glass {
 
 section#profile_details {
   background-color: #2b8fad;
-  background: url("https://image.freepik.com/free-photo/recycling-emblem-around-trash-black-background_23-2148115739.jpg")
+  /* background: url("https://image.freepik.com/free-photo/recycling-emblem-around-trash-black-background_23-2148115739.jpg")
     no-repeat center center/ cover;
   box-shadow: 0 3000px rgba(0, 0, 0, 0.4) inset;
-  filter: brightness(1.1);
+  filter: brightness(1.1); */
   }
 
 .letsgopage {
@@ -208,14 +208,17 @@ section#profile_details {
 
 .profile_header {
   float: left;
-}
-
-.profile_container {
-  float: left;
   width: 40%;
   margin-left: 130px;
   margin-top: 170px;
 }
+
+/* .profile_container {
+  float: left;
+  width: 40%;
+  margin-left: 130px;
+  margin-top: 170px;
+} */
 
 .bigger_div {
   height: 100vh;
@@ -224,10 +227,11 @@ section#profile_details {
 
 .profile_image {
   float: right;
-  margin-top: 15%;
-  margin-right: 10%;
+  margin-top: 0%;
+  margin-right: 5%;
   height: 30vh;
   width: 30vw;
+  top: 0%;
 }
 
 .button_span {
@@ -235,11 +239,29 @@ section#profile_details {
   align-items: center;
   justify-content: space-between;
   margin-top: 16px;
-  width: 50%;
+  width: 90%;
 }
 
 .login_details {
-  width: 30vw;
-  height: 20%;
+  width: 60vw;
+  height: 100vh;
+  float: bottom;
+  margin-left: 0%;
+  margin-right: 0%;
+  padding-right: 0%;
+}
+
+/* .details {
+  height: 100%;
+  width: 100%;
+} */
+
+.logout_button {
   float: left;
-  top: 100%;
+
+
+}
+
+.subdetails {
+  float: left;
+}
