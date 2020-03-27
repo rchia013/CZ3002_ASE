@@ -21,6 +21,7 @@ import Admin from "./pages/admin/admin.js";
 import Vouchers from "./pages/vouchers/vouchers.js";
 import Adminorders from "./pages/admin/adminOrders.js"
 import Adminschedule from "./pages/admin/adminSchedule"
+import Adminitems from "./pages/admin/adminItemUpdate"
 import RVouchers from "./pages/vouchers/redeemvouchers.js";
 
 // This is a functional component. If you need additional functionaility, it can be changed to a
@@ -58,6 +59,7 @@ function App() {
           <Route path="/vouchers" component={Vouchers} />
           <Route path="/adminorders" exact component={Adminorders} />
           <Route path="/adminschedule" exact component={Adminschedule} />
+          <Route path="/adminitems" exact component={Adminitems} />
           <Route path="/redeemvouchers" exact component={RVouchers} />
         </Switch>
       </div>

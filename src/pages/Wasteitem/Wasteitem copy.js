@@ -16,6 +16,7 @@ import lightbulbImg from '../../components/image/light.jpg'
 import florescenttubeImg from '../../components/image/florescenttube.jpg'
 import fairylightsImg from '../../components/image/fairylights.jpg'
 import Navbar2 from '../../components/navbar2/navbar2.js'
+import { firebaseapp, base } from "../../base.js";
 
 
 
@@ -29,8 +30,62 @@ class Wasteitem extends Component{
         this.setState(
             this.props.location.state
         )
+        this.setState({['Batteries Points']: 0,
+                        ['Batteries Weight']: 0,
+                        ['Computer Points']: 0,
+                        ['Computer Weight']: 0,
+                        ['Fairy Lights Points']: 0,
+                        ['Fairy Lights Weight']: 0,
+                        ['Florescent Tubes Points']: 0,
+                        ['Florescent Tubes Weight']: 0,
+                        ['Glass Bottles Points']: 0,
+                        ['Glass Bottles Weight']: 0,
+                        ['Light Bulb Points']: 0,
+                        ['Light Bulb Weight']: 0,
+                        ['Mason Jar Points']: 0,
+                        ['Mason Jar Weight']: 0,
+                        ['Phones Points']: 0,
+                        ['Phones Weight']: 0,
+                        ['Plastic Bag Points']: 0,
+                        ['Plastic Bag Weight']: 0,
+                        ['Plastic Bottles Points']: 0,
+                        ['Plastic Bottles Weight']: 0,
+                        ['Shampoo Bottles Points']: 0,
+                        ['Shampoo Bottles Weight']: 0})
+
+        this.getItems()
     }
     
+    getItems() {
+        base.fetch("items/", {
+          context: this,
+          then(data) {
+            this.setState({ ['Batteries Points']: data['Batteries Points'],
+                            ['Batteries Weight']: data['Batteries Weight'],
+                            ['Computer Points']: data['Computer Points'],
+                            ['Computer Weight']: data['Computer Weight'],
+                            ['Fairy Lights Points']: data['Fairy Lights Points'],
+                            ['Fairy Lights Weight']: data['Fairy Lights Weight'],
+                            ['Florescent Tubes Points']: data['Florescent Tubes Points'],
+                            ['Florescent Tubes Weight']: data['Florescent Tubes Weight'],
+                            ['Glass Bottles Points']: data['Glass Bottles Points'],
+                            ['Glass Bottles Weight']: data['Glass Bottles Weight'],
+                            ['Light Bulb Points']: data['Light Bulb Points'],
+                            ['Light Bulb Weight']: data['Light Bulb Weight'],
+                            ['Mason Jar Points']: data['Mason Jar Points'],
+                            ['Mason Jar Weight']: data['Mason Jar Weight'],
+                            ['Phones Points']: data['Phones Points'],
+                            ['Phones Weight']: data['Phones Weight'],
+                            ['Plastic Bag Points']: data['Plastic Bag Points'],
+                            ['Plastic Bag Weight']: data['Plastic Bag Weight'],
+                            ['Plastic Bottles Points']: data['Plastic Bottles Points'],
+                            ['Plastic Bottles Weight']: data['Plastic Bottles Weight'],
+                            ['Shampoo Bottles Points']: data['Shampoo Bottles Points'],
+                            ['Shampoo Bottles Weight']: data['Shampoo Bottles Weight'] });
+          }
+        })
+      }
+
     // Handle Change to text fields
     // Honestly not entirely clear how this works, but I believe it's the handleChange('[input]')
     // which determines which fields are updated in props. Something like that :)    
@@ -130,7 +185,7 @@ class Wasteitem extends Component{
 
             // Handling state (points only)
             this.setState({[title]: quantity})
-            this.setState({[title]: weight})
+            // this.setState({[title]: weight})
 
         
         }
@@ -186,8 +241,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Plastic Bottles</span>
                             <img class="shop-item-image" src={plasticImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">5 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Plastic Bottles Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Plastic Bottles Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -195,8 +250,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Plastic Bag</span>
                             <img class="shop-item-image" src={plasticbagImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">5 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Plastic Bag Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Plastic Bag Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -204,8 +259,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Shampoo Bottles</span>
                             <img class="shop-item-image" src={shampooImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">5 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Shampoo Bottles Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Shampoo Bottles Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -220,8 +275,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Batteries</span>
                             <img class="shop-item-image" src={batteriesImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">5 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Batteries Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Batteries Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -229,8 +284,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Phones</span>
                             <img class="shop-item-image" src={phonesImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">10 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Phones Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Phones Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -238,8 +293,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Computer</span>
                             <img class="shop-item-image" src={computerImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">10 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Computer Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Computer Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -253,8 +308,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Mason Jar</span>
                             <img class="shop-item-image" src={masonjarImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">5 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Mason Jar Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Mason Jar Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -262,8 +317,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Glass Bottles</span>
                             <img class="shop-item-image" src={glassbottleImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">5 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Glass Bottles Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Glass Bottles Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -278,8 +333,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Light Bulb</span>
                             <img class="shop-item-image" src={lightbulbImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">5 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Light Bulb Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Light Bulb Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -287,8 +342,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Florescent Tubes</span>
                             <img class="shop-item-image" src={florescenttubeImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">5 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Florescent Tubes Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Florescent Tubes Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
@@ -296,8 +351,8 @@ class Wasteitem extends Component{
                             <span class="shop-item-title">Fairy Lights</span>
                             <img class="shop-item-image" src={fairylightsImg} />
                             <div class="shop-item-details">
-                                <span class="shop-item-points">5 points</span>
-                                <span class="shop-item-weight">1 kg</span>
+                                <span class="shop-item-points">{this.state['Fairy Lights Points']} points</span>
+                                <span class="shop-item-weight">{this.state['Fairy Lights Weight']} kg</span>
                                 <button class="btn btn-primary shop-item-button" type="button" onClick={this.addToCartClicked}>ADD TO CART</button>
                             </div>
                         </div>
