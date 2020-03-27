@@ -383,9 +383,9 @@ class Wasteitem extends Component{
                 </div>
 
                 {/* Conditional rendering for button */}
-                {(this.state.points == 0) ?
+                {((this.state.points == 0) || ((this.state.weight<10)&&(this.state.selfrecycle==false))) ?
                 <Button 
-                    className="btn-recycle"
+                    className="btn-recycle-disabled"
                     disabled
                     variant="contained" color="auto" size="large">
                     RECYCLE

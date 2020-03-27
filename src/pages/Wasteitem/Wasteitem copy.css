@@ -304,6 +304,16 @@ html, body {
 
 }
 
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.btn-recycle-disabled.MuiButton-containedSizeLarge.MuiButton-sizeLarge{
+    display: block;
+    margin: 40px auto 80px auto;
+    font-size: 1.5em;
+    text-align: center;
+    width: 10.5em;
+    position: inherit;
+
+}
+
 .MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiPaper-elevation4 {
     background-color: #f3ebdf;
     width: 90opx;
