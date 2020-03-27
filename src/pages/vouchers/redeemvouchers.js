@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { firebaseapp, database } from "../../base.js";
+import { firebaseapp } from "../../base.js";
 import { Button } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import "../Home/Home.css";
@@ -12,48 +12,70 @@ const vouchersRef = firebaseapp
   .ref()
   .child("vouchers");
 
+const db = firebaseapp.database().ref();
 var temp = null;
 
 class RVouchers extends Component {
-  state = { user: null, update: false, points: "updating..." };
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      update: false,
+      loaded: false,
+      points: "updating...",
+      userCurrentVouchers: null,
+      alerted: false
+    };
+    this.handleRedeem = this.handleRedeem.bind(this);
+  }
 
   handleRedeem = e => {
-    var counter = 0;
-    vouchersRef
-      .child(e.target.id)
-      .child("count")
-      .on("value", snap => {
-        counter = snap.val();
-      });
-    counter--;
+    var temp = e.target.id; //have to store this in a temporary variable bcoz firebase read is async.
+    var currPoints = 0;
+    var cost = 0;
+    var count = 0;
 
-    firebaseapp
-      .database()
-      .ref("vouchers/" + e.target.id)
-      .update({
-        count: counter
-      });
+    db.once("value").then(snap => {
+      console.log("supposed to happen first");
+      currPoints = snap
+        .child("users")
+        .child(this.state.user.uid)
+        .child("points")
+        .val();
+      cost = snap
+        .child("vouchers")
+        .child(temp)
+        .child("cost")
+        .val();
+      count = snap
+        .child("vouchers")
+        .child(temp)
+        .child("count")
+        .val();
 
-    firebaseapp
-      .database()
-      .ref("users/" + this.state.user.uid + "/vouchers/" + e.target.id)
-      .set({ name: e.target.id });
+      count--;
+      if (currPoints - cost < 0) {
+        this.setState({ alerted: true });
+      } else {
+        db.child("vouchers")
+          .child(temp)
+          .update({ count: count });
+        db.child("users")
+          .child(this.state.user.uid)
+          .update({ points: currPoints - cost });
+
+        db.child("users")
+          .child(this.state.user.uid)
+          .child("vouchers")
+          .child(temp)
+          .update({ name: temp });
+      }
+    });
   };
 
-  refresh = () => {
-    this.setState({ update: true });
-    firebaseapp
-      .database()
-      .ref("users/" + this.state.user.uid + "/points")
-      .on("value", snap => {
-        this.setState({
-          points: snap.val()
-        });
-      });
-  };
   togglePopup = () => {
     this.setState({
-      error: false
+      alerted: false
     });
   };
   // Checks status and adds user to state
@@ -61,7 +83,33 @@ class RVouchers extends Component {
   checkStatus() {
     firebaseapp.auth().onAuthStateChanged(user => {
       if (user != null) {
-        this.setState({ user: user });
+        firebaseapp
+          .database()
+          .ref("users/" + user.uid + "/vouchers/")
+          .on("value", snap => {
+            if (snap.val() === null) {
+              this.setState({
+                userCurrentVouchers: ["snap.val()"],
+                user: user,
+                loaded: true
+              });
+            } else {
+              this.setState({
+                userCurrentVouchers: snap.val(),
+                user: user,
+                loaded: true
+              });
+            }
+          });
+
+        firebaseapp
+          .database()
+          .ref("users/" + user.uid + "/points")
+          .on("value", snap => {
+            this.setState({
+              points: snap.val()
+            });
+          });
 
         // Dealing with admin
         firebaseapp
@@ -72,8 +120,6 @@ class RVouchers extends Component {
               admin: idTokenResult.claims.admin
             });
           });
-
-        // console.log("done setting state");
       } else {
         this.setState({ user: null });
       }
@@ -90,126 +136,118 @@ class RVouchers extends Component {
   }
 
   render() {
-    // console.log(this.state.vouchers);
-    var temp1 = 1;
-    if (this.state.vouchers != null) {
-      temp = Object.keys(this.state.vouchers).map(key => {
-        firebaseapp
-          .database()
-          .ref("users/" + this.state.user.uid + "/vouchers")
-          .on("value", snap => {
-            if (snap.hasChild(key)) {
-              console.log(key);
-              temp1 = false;
-            } else {
-              temp1 = true;
-            }
-          });
-        if (temp === 1) {
-          return null;
-        }
-        if (temp1 === true) {
-          return (
-            <div
-              class="vouchers"
-              style={{
-                backgroundColor: "lightgrey"
-              }}
-            >
-              <h2
+    if (this.state.loaded) {
+      var tempArray = Object.keys(this.state.userCurrentVouchers);
+      if (this.state.vouchers != null) {
+        temp = Object.keys(this.state.vouchers).map(key => {
+          if (tempArray.includes(key)) {
+            return (
+              <div
+                key={key}
+                class="vouchers"
                 style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  color: "black"
+                  backgroundColor: "grey"
                 }}
               >
-                {key}
-              </h2>
-              <div>{this.state.vouchers[key]["desc"]}</div>
-              <div style={{ color: "red" }}>
-                Cost: {this.state.vouchers[key]["cost"]} points
+                <h2
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    color: "black"
+                  }}
+                >
+                  {key}
+                </h2>
+                <div>{this.state.vouchers[key]["desc"]}</div>
+                <div style={{ color: "red" }}>
+                  Cost: {this.state.vouchers[key]["cost"]} points
+                </div>
+                <button disabled id={key}>
+                  Redeemed
+                </button>
               </div>
-              <button id={key} onClick={this.handleRedeem}>
-                Redeem
-              </button>
-            </div>
-          );
-        } else if (temp1 === false) {
-          return (
-            <div
-              class="vouchers"
-              style={{
-                backgroundColor: "grey"
-              }}
-            >
-              <h2
+            );
+          } else {
+            return (
+              <div
+                class="vouchers"
                 style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  color: "black"
+                  backgroundColor: "lightgrey"
                 }}
               >
-                {key}
-              </h2>
-              <div>{this.state.vouchers[key]["desc"]}</div>
-              <div style={{ color: "red" }}>
-                Cost: {this.state.vouchers[key]["cost"]} points
+                <h2
+                  style={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    color: "black"
+                  }}
+                >
+                  {key}
+                </h2>
+                <div>{this.state.vouchers[key]["desc"]}</div>
+                <div style={{ color: "red" }}>
+                  Cost: {this.state.vouchers[key]["cost"]} points
+                </div>
+                <button id={key} onClick={this.handleRedeem}>
+                  Redeem
+                </button>
               </div>
-              <button disabled id={key} onClick={this.handleRedeem}>
-                Redeemed
-              </button>
-            </div>
-          );
-        }
-      });
+            );
+          }
+        });
+      }
     }
 
-    if (temp1 !== 1) {
-      if (this.state.user !== null) {
-        return (
-          <div
-            style={{
-              overflowY: "scroll",
-              height: "100vh",
-              display: "flex",
-              flexWrap: "wrap",
-              clear: "both"
-            }}
-          >
-            <NavBar2></NavBar2>
-            <h2
-              style={{
-                marginTop: "100px",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                color: "white"
-              }}
-            >
-              Current Points: {this.state.points}
-            </h2>
-            <div
-              class="voucher-container1"
-              style={{ border: "2px solid black", marginTop: "10px" }}
-            >
-              <h1>Current Vouchers</h1>
-              <div class="voucher">{temp}</div>
+    return this.state.loaded ? (
+      <div>
+        {this.state.alerted ? (
+          <div className="alertbody">
+            <div className="alert">
+              Voucher cost exceeds available amount of points! &emsp;
+              <Button
+                style={{ position: "relative", bottom: "0px" }}
+                variant="contained"
+                onClick={this.togglePopup}
+              >
+                Return
+              </Button>
             </div>
           </div>
-        );
-      } else {
-        return null;
-      }
-    } else {
-      return (
-        <div>
-          <h2>Please wait 10 seconds for the page to load...</h2>
-          <button onClick={this.refresh}>
-            Click Here if page is still not loading
-          </button>
+        ) : null}
+        <div
+          style={{
+            overflowY: "scroll",
+            height: "100vh",
+            display: "flex",
+            flexWrap: "wrap",
+            clear: "both"
+          }}
+        >
+          <NavBar2></NavBar2>
+          <h2
+            style={{
+              marginTop: "100px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              color: "white"
+            }}
+          >
+            Current Points: {this.state.points}
+          </h2>
+          <div
+            class="voucher-container1"
+            style={{ border: "2px solid black", marginTop: "10px" }}
+          >
+            <h1>Current Vouchers</h1>
+            <div class="voucher">{temp}</div>
+          </div>
         </div>
-      );
-    }
+        );
+      </div>
+    ) : (
+      <div>Loading... Please Wait for a moment.</div>
+    );
   }
 }
 export default RVouchers;
