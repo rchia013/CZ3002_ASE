@@ -2,6 +2,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+**Requirements**
+
+Loaders to install:
+
+### `npm install --save-dev html-loader`
+
+1) Go to node_modules -> react-script -> config -> webpack.config.js
+2) Add the following under 'rules':
+       '{
+            test:/\.html$/i,
+            loader:'html-loader',
+        },'
+
 In the project directory, you can run:
 
 ### `npm start`
