@@ -28,7 +28,8 @@ class Profile2 extends Component {
     admin: null,
     user: null,
     dialog: false,
-    snackbar: false
+    snackbar: false,
+    passworddialog: false
   };
 
   // Checks status and adds user to state
@@ -78,7 +79,8 @@ class Profile2 extends Component {
             userDetails: data,
             address: data.address,
             zip: data.zip,
-            phone: data.phone
+            phone: data.phone,
+            name: this.state.user.displayName
           });
         }
       }
@@ -96,9 +98,18 @@ class Profile2 extends Component {
     this.setState({ [input]: e.target.value });
   };
 
+  handlePasswordReset = e => {
+    firebaseapp.auth().sendPasswordResetEmail(this.state.user.email)
+    this.setState({ passworddialog: true })
+  }
+
   handleClickOpen = e => {
     this.setState({ dialog: true });
   };
+
+  handlePasswordClose = e => {
+    this.setState({ passworddialog: false })
+  }
 
   handleClose = e => {
     if (this.state.userDetails != null) {
@@ -106,10 +117,11 @@ class Profile2 extends Component {
         dialog: false,
         address: this.state.userDetails.address,
         zip: this.state.userDetails.zip,
-        phone: this.state.userDetails.phone
+        phone: this.state.userDetails.phone,
+        name: this.state.user.displayName
       });
     } else {
-      this.setState({ dialog: false, address: "", zip: "", phone: "" });
+      this.setState({ dialog: false, address: "", zip: "", phone: "", name: "" });
     }
   };
 
@@ -125,6 +137,9 @@ class Profile2 extends Component {
 
     this.setState({ dialog: false, userDetails: userDetailsUpdate });
 
+    firebaseapp.auth().currentUser.updateProfile({
+      displayName: this.state.name
+    })
     return firebase
       .database()
       .ref()
@@ -263,6 +278,14 @@ class Profile2 extends Component {
                   variant="contained"
                   color="auto"
                   size="large"
+                  onClick={this.handlePasswordReset}
+                >
+                  Reset Password
+                </Button>
+                <Button
+                  variant="contained"
+                  color="auto"
+                  size="large"
                   component={RouterLink}
                   to="/redeemvouchers"
                 >
@@ -278,6 +301,9 @@ class Profile2 extends Component {
                         <DialogContentText>
                             Enter your particulars
                         </DialogContentText>
+                        <TextField className="edit-particulars" id="Name" label="Name" variant="outlined" margin="normal" 
+                            value={this.state.name} 
+                            onChange={this.handleTextChange("name")} />
                         <TextField className="edit-particulars" id="address" label="Address" variant="outlined" margin="normal" 
                             value={this.state.address} 
                             onChange={this.handleTextChange("address")} />
@@ -296,7 +322,21 @@ class Profile2 extends Component {
                           Confirm
                       </Button>
                     </DialogActions>
-                  </Dialog>
+                </Dialog>
+
+                <Dialog open={this.state.passworddialog} onClose={this.handleClose} aria-labelledby="edit-particulars-dialog">
+                    <DialogTitle id="edit-particulars-dialog">Password Reset</DialogTitle>
+                    <DialogContent id="edit-particulars-dialog">
+                        <DialogContentText>
+                            A confirmation email has been sent to your registered email account. Please follow the link in the email to reset your password.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions id="edit-particulars-dialog">
+                      <Button onClick={this.handlePasswordClose} color="primary">
+                          OK
+                      </Button>
+                    </DialogActions>
+                </Dialog>
             </section>
             <section class="orderHistory">
               <div class="userorderHistory">
