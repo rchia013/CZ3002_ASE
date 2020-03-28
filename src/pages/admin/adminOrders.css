@@ -44,3 +44,11 @@
     background-color: lightcoral;
     font-weight: bold;
 }
+
+.MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader{
+    background-color: lightgray;
+  }
+  
+  .MuiTableCell-root.MuiTableCell-body.table-cell-scheduled{
+    background-color: whitesmoke;
+  }

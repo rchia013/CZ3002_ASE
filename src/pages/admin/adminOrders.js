@@ -108,24 +108,30 @@ class adminOrders extends Component {
       var listItems2 = (
         <TableBody>
             {userOrders.map((d) =>
+            (d.calendarEvents!=null) ?
             <TableRow>              
-              <TableCell align="right">{d.key}</TableCell>
-              <TableCell className="name" align="right">{d.name}</TableCell>
-              <TableCell align="right">{d['Plastic Bottles']}</TableCell>
-              <TableCell align="right">{d['Plastic Bag']}</TableCell>
-              <TableCell align="right">{d['Shampoo Bottles']}</TableCell>
-              <TableCell align="right">{d['Batteries']}</TableCell>
-              <TableCell align="right">{d['Phones']}</TableCell>
-              <TableCell align="right">{d['Computer']}</TableCell>
-              <TableCell align="right">{d['Mason Jar']}</TableCell>
-              <TableCell align="right">{d['Glass Bottles']}</TableCell>
-              <TableCell align="right">{d['Light Bulb']}</TableCell>
-              <TableCell align="right">{d['Florescent Tubes']}</TableCell>
-              <TableCell align="right">{d['Fairy Lights']}</TableCell>
-              <TableCell align="right">{d.address}</TableCell>
-              <TableCell align="right">{d.zip}</TableCell>
-              <TableCell align="right">{d.phone}</TableCell>
-              <TableCell align="right">{d['points']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d.key}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d.name}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Plastic Bottles']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Plastic Bag']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Shampoo Bottles']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Batteries']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Phones']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Computer']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Mason Jar']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Glass Bottles']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Light Bulb']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Florescent Tubes']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['Fairy Lights']}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{(d.calendarEvents!=null) ? d.calendarEvents.start.substr(0, d.calendarEvents.start.indexOf("T")) : null}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{(d.calendarEvents!=null) ? d.calendarEvents.start.substr(d.calendarEvents.start.indexOf("T")+1) : null}
+                                      {(d.calendarEvents!=null) ? <p class="table_text"> - </p> : null}
+                                      {(d.calendarEvents!=null) ? d.calendarEvents.end.substr(d.calendarEvents.end.indexOf("T")+1) : null}
+                                      </TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d.address}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d.zip}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d.phone}</TableCell>
+              <TableCell className="table-cell-scheduled" align="right">{d['points']}</TableCell>
             
 
               {/* For order approval */}
@@ -138,7 +144,43 @@ class adminOrders extends Component {
               </Button>
               }</TableCell>
 
-            </TableRow>)}
+            </TableRow> : 
+            <TableRow>              
+            <TableCell align="right">{d.key}</TableCell>
+            <TableCell className="name" align="right">{d.name}</TableCell>
+            <TableCell align="right">{d['Plastic Bottles']}</TableCell>
+            <TableCell align="right">{d['Plastic Bag']}</TableCell>
+            <TableCell align="right">{d['Shampoo Bottles']}</TableCell>
+            <TableCell align="right">{d['Batteries']}</TableCell>
+            <TableCell align="right">{d['Phones']}</TableCell>
+            <TableCell align="right">{d['Computer']}</TableCell>
+            <TableCell align="right">{d['Mason Jar']}</TableCell>
+            <TableCell align="right">{d['Glass Bottles']}</TableCell>
+            <TableCell align="right">{d['Light Bulb']}</TableCell>
+            <TableCell align="right">{d['Florescent Tubes']}</TableCell>
+            <TableCell align="right">{d['Fairy Lights']}</TableCell>
+            <TableCell align="right">{(d.calendarEvents!=null) ? d.calendarEvents.start.substr(0, d.calendarEvents.start.indexOf("T")) : null}</TableCell>
+            <TableCell align="right">{(d.calendarEvents!=null) ? d.calendarEvents.start.substr(d.calendarEvents.start.indexOf("T")+1) : null}
+                                    {(d.calendarEvents!=null) ? <p class="table_text"> - </p> : null}
+                                    {(d.calendarEvents!=null) ? d.calendarEvents.end.substr(d.calendarEvents.end.indexOf("T")+1) : null}
+                                    </TableCell>
+            <TableCell align="right">{d.address}</TableCell>
+            <TableCell align="right">{d.zip}</TableCell>
+            <TableCell align="right">{d.phone}</TableCell>
+            <TableCell align="right">{d['points']}</TableCell>
+          
+
+            {/* For order approval */}
+            <TableCell align="right">{((d.approved == null) || (d.approved !=true)) ? 
+            <Button className="approve-btn" variant="contained" color="auto" size="large" onClick={()=>this.approveOrder(d.id, d.points, d.key)}>
+              Approve
+            </Button>:
+            <Button className="approved-btn" variant="contained" color="auto" size="large" disabled>
+              Approved
+            </Button>
+            }</TableCell>
+
+          </TableRow>)}
         </TableBody>)
     } else
     {
@@ -170,6 +212,8 @@ class adminOrders extends Component {
                         <TableCell align="right">Light Bulb</TableCell>
                         <TableCell align="right">Florescent Tubes</TableCell>
                         <TableCell align="right">Fairy Lights</TableCell>
+                        <TableCell className="address" align="right">Date</TableCell>
+                        <TableCell className="address" align="right">Pickup Window</TableCell>
                         <TableCell className="address" align="right">Address</TableCell>
                         <TableCell align="right">ZIP</TableCell>
                         <TableCell align="right">Contact No</TableCell>
