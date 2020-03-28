@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { firebaseapp, base } from "../../base.js";
-import { Redirect } from "react-router";
 import Admin from "../admin/admin.js";
 import Navbar2 from "../../components/navbar2/navbar2";
 import "./Profile2.css";
@@ -12,7 +11,9 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { Grid, TextField, Paper } from "@material-ui/core";
+import { Snackbar, TextField, Paper } from "@material-ui/core";
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -21,13 +22,13 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
 var firebase = require("firebase");
-var loginStatus = false;
 
 class Profile2 extends Component {
   state = {
     admin: null,
     user: null,
-    dialog: false
+    dialog: false,
+    snackbar: false
   };
 
   // Checks status and adds user to state
@@ -60,12 +61,10 @@ class Profile2 extends Component {
   }
 
   getUserOrders() {
-    base.fetch("orders/" + this.state.user.uid, {
+    base.bindToState("orders/" + this.state.user.uid, {
       context: this,
+      state: 'orderdata',
       asArray: true,
-      then(data) {
-        this.setState({ orderdata: data });
-      }
     });
   }
 
@@ -84,6 +83,12 @@ class Profile2 extends Component {
         }
       }
     });
+  }
+
+  deleteOrder(user_id, orderID){
+    firebaseapp.database().ref('/orders/' + user_id + '/' + orderID).remove()
+    this.setState({ snackbar:true })
+    // Firebase updated
   }
 
   // For editing particulars
@@ -126,6 +131,13 @@ class Profile2 extends Component {
       .update(updates);
   };
 
+  handleSnackClose = (e, reason) => {
+    if (reason === "clickaway"){
+      return
+    }
+    this.setState({ snackbar: false })
+  }
+
   render() {
     console.log(this.state);
 
@@ -159,6 +171,17 @@ class Profile2 extends Component {
               <TableCell className="table-cell-scheduled" align="right">{d.zip}</TableCell>
               <TableCell className="table-cell-scheduled" align="right">{d.phone}</TableCell>
               <TableCell className="table-cell-scheduled" align="right">{((d.approved == null) || (d.approved !=true)) ? <p class="table_text">Pending</p> : d['points']}</TableCell>
+
+              {/* For order approval */}
+              <TableCell className="table-cell-scheduled" align="right">{((d.approved == null) || (d.approved !=true)) ? 
+                <Button className="delete-btn" variant="contained" color="auto" size="large" onClick={()=>this.deleteOrder(d.id, d.key)}>
+                  Delete
+                </Button>:
+                <Button className="approved-btn" variant="contained" color="auto" size="large" disabled>
+                  Approved
+                </Button>
+              }</TableCell>
+
             </TableRow> : 
             <TableRow>
             <TableCell align="right">{d.key}</TableCell>
@@ -182,6 +205,17 @@ class Profile2 extends Component {
             <TableCell align="right">{d.zip}</TableCell>
             <TableCell align="right">{d.phone}</TableCell>
             <TableCell align="right">{((d.approved == null) || (d.approved !=true)) ? <p class="table_text">Pending</p> : d['points']}</TableCell>
+
+            {/* For order approval */}
+            <TableCell align="right">{((d.approved == null) || (d.approved !=true)) ? 
+              <Button className="delete-btn" variant="contained" color="auto" size="large" onClick={()=>this.deleteOrder(d.id, d.key)}>
+                Delete
+              </Button>:
+              <Button className="delete-btn" variant="contained" color="auto" size="large" disabled>
+                Approved
+              </Button>
+              }</TableCell>
+
           </TableRow>)}
         </TableBody>)
     } else
@@ -290,6 +324,7 @@ class Profile2 extends Component {
                         <TableCell align="right">ZIP</TableCell>
                         <TableCell align="right">Contact No</TableCell>
                         <TableCell align="right">Points Earned</TableCell>
+                        <TableCell align="center">Status</TableCell>
                       </TableRow>
                     </TableHead>
                     {listItems2}
@@ -309,92 +344,26 @@ class Profile2 extends Component {
               </div>
               </div>
             </section>
-
-                {/* <Dialog
-                  open={this.state.dialog}
-                  onClose={this.handleClose}
-                  aria-labelledby="edit-particulars-dialog"
-                >
-                  <DialogTitle id="edit-particulars-dialog">
-                    Edit Particulars
-                  </DialogTitle>
-                  <DialogContent id="edit-particulars-dialog">
-                    <DialogContentText>
-                      Enter your particulars
-                    </DialogContentText>
-                    <TextField
-                      className="edit-particulars"
-                      id="address"
-                      label="Address"
-                      variant="outlined"
-                      margin="normal"
-                      value={this.state.address}
-                      onChange={this.handleTextChange("address")}
-                    />
-                    <TextField
-                      className="edit-particulars"
-                      id="zip"
-                      label="ZIP Code"
-                      variant="outlined"
-                      margin="normal"
-                      value={this.state.zip}
-                      onChange={this.handleTextChange("zip")}
-                    />
-                    <TextField
-                      className="edit-particulars"
-                      id="phone"
-                      label="Contact No"
-                      variant="outlined"
-                      margin="normal"
-                      value={this.state.phone}
-                      onChange={this.handleTextChange("phone")}
-                    />
-                  </DialogContent>
-                  <DialogActions id="edit-particulars-dialog">
-                    <Button onClick={this.handleClose} color="primary">
-                      Cancel
-                    </Button>
-                    <Button onClick={this.handleSubmitandClose} color="primary">
-                      Confirm
-                    </Button>
-                  </DialogActions>
-                </Dialog> */}
-              {/* </section> */}
-              {/* <section class="orderHistory">
-                <div class="userorderHistory">
-                  <h2>Order History</h2>
-                  <Paper className="user_order_table_paper">
-                    <TableContainer className="user_order_table_container">
-                      <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>Order ID</TableCell>
-                            <TableCell align="right">Plastic Bottles</TableCell>
-                            <TableCell align="right">Plastic Bag</TableCell>
-                            <TableCell align="right">Shampoo Bottles</TableCell>
-                            <TableCell align="right">Batteries</TableCell>
-                            <TableCell align="right">Phones</TableCell>
-                            <TableCell align="right">Computer</TableCell>
-                            <TableCell align="right">Mason Jar</TableCell>
-                            <TableCell align="right">Glass Bottles</TableCell>
-                            <TableCell align="right">Light Bulb</TableCell>
-                            <TableCell align="right">
-                              Florescent Tubes
-                            </TableCell>
-                            <TableCell align="right">Fairy Lights</TableCell>
-                            <TableCell className="address" align="right">
-                              Address
-                            </TableCell>
-                            <TableCell align="right">ZIP</TableCell>
-                            <TableCell align="right">Contact No</TableCell>
-                            <TableCell align="right">Points Earned</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        {listItems2}
-                      </Table>
-                    </TableContainer>
-                  </Paper> */}
           </div>
+
+          <Snackbar
+            className="profile-snackbar"
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+            open={this.state.snackbar}
+            autoHideDuration={2000}
+            onClose={this.handleSnackClose}
+            message="Success! Refresh the page to update!"
+            action={
+              <React.Fragment>
+                <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleSnackClose}>
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </React.Fragment>
+            }
+          />
           </div>)}
       </div>
                   

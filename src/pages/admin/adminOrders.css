@@ -47,8 +47,13 @@
 
 .MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader{
     background-color: lightgray;
-  }
+}
   
-  .MuiTableCell-root.MuiTableCell-body.table-cell-scheduled{
-    background-color: whitesmoke;
-  }
+.MuiTableCell-root.MuiTableCell-body.table-cell-scheduled{
+    background-color: #D8D8D8;
+}
+
+.MuiPaper-root.MuiSnackbarContent-root.MuiPaper-elevation6,
+.MuiSnackbar-root.MuiSnackbar-anchorOriginBottomLeft.admin-snackbar{
+  background: #d6ffbd;
+}

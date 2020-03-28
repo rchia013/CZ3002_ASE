@@ -33,7 +33,7 @@ class Admin extends Component {
               color="primary"
               size="large"
               component={RouterLink}
-              to="/calendar"
+              to="/adminschedule"
             >
               View Schedule
             </Button>

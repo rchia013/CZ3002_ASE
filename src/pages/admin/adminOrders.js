@@ -10,7 +10,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { Paper } from '@material-ui/core';
+import { Paper, Snackbar } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 
@@ -21,7 +23,9 @@ class adminOrders extends Component {
     admin: null,
     user: null,
     dialog: false,
-    orderdata: []
+    loading: true,
+    orderdata: [],
+    snackbar: false
   };
 
   // Checks status and adds user to state
@@ -52,37 +56,40 @@ class adminOrders extends Component {
 
 
   getOrders() {
-    base.fetch("orders/", {
+    this.setState({loading: true})
+    base.bindToState("orders/", {
       context: this,
       asArray: true,
-      then(data) {
-        this.setState({ userdata: data} );
-
-        
-          var userList = data
-          if (userList!=null){
-            for(var i=0; i<userList.length; i++){
-              this.getUserOrders(userList[i].key)
-            }
+      state: 'userdata',
+      then(){
+        var userList = this.state.userdata
+        if (userList!=null){
+          for(var i=0; i<userList.length; i++){
+            this.getUserOrders(userList[i])
           }
+        }
       }
+      
     })
   }
-    
 
   getUserOrders(arg) {
-    base.fetch("orders/" + arg, {
-      context: this,
-      asArray: true,
-      then(data) {
-        var updatedorderdata = this.state.orderdata.concat(data)
-        console.log('orderdata')
-        console.log(updatedorderdata)
-        this.setState({ orderdata: updatedorderdata });
+    console.log(arg)
+
+    // Getting each user's orderID ("key": userID)
+    var orderID = Object.keys(arg)
+    var data = []
+    for (var i=0; i<orderID.length; i++){
+      if(orderID[i]!="key"){
+        arg[orderID[i]].key = orderID[i]
+        data = data.concat(arg[orderID[i]])
       }
-    });
+    }
+    var updatedorderdata = this.state.orderdata.concat(data)
+    this.setState({ orderdata: updatedorderdata });
   }
 
+  
   approveOrder(user_id, addPoints, orderID){
     var userpointsRef = firebaseapp.database().ref('/users/' + user_id + '/points')
     userpointsRef.once('value').then(function(snapshot){
@@ -91,18 +98,30 @@ class adminOrders extends Component {
         updates['/orders/' + user_id + '/' + orderID + '/approved'] = true
         return firebase.database().ref().update(updates)
       })
-    console.log("approved submit")
-    this.getOrders()
+    this.setState({ snackbar: true })
     // Firebase updated
   }
 
+  deleteOrder(user_id, orderID){
+    var userpointsRef = firebaseapp.database().ref('/orders/' + user_id + '/' + orderID).remove()
+    this.setState({ snackbar: true })
+    // Firebase updated
+  }
+
+  handleSnackClose = (e, reason) => {
+    if (reason === "clickaway"){
+      return
+    }
+    this.setState({ snackbar: false })
+  }
+
+
   render() {
-    console.log(this.state)
+    console.log("orderdata")
+    console.log(this.state.orderdata)
 
     // Table rows
     var userOrders = this.state.orderdata
-    console.log("userOrders")
-    console.log(userOrders)
     if (userOrders!=null){
       console.log("updating again")
       var listItems2 = (
@@ -135,10 +154,13 @@ class adminOrders extends Component {
             
 
               {/* For order approval */}
-              <TableCell align="right">{((d.approved == null) || (d.approved !=true)) ? 
-              <Button className="approve-btn" variant="contained" color="auto" size="large" onClick={()=>this.approveOrder(d.id, d.points, d.key)}>
+              <TableCell className="table-cell-scheduled" align="right">{((d.approved == null) || (d.approved !=true)) ? 
+              <div><Button className="approve-btn" variant="contained" color="auto" size="large" onClick={()=>this.approveOrder(d.id, d.points, d.key)}>
                 Approve
-              </Button>:
+              </Button>
+              <Button className="approve-btn" variant="contained" color="auto" size="large" onClick={()=>this.deleteOrder(d.id, d.key)}>
+                Reject
+              </Button></div>:
               <Button className="approved-btn" variant="contained" color="auto" size="large" disabled>
                 Approved
               </Button>
@@ -172,15 +194,19 @@ class adminOrders extends Component {
 
             {/* For order approval */}
             <TableCell align="right">{((d.approved == null) || (d.approved !=true)) ? 
-            <Button className="approve-btn" variant="contained" color="auto" size="large" onClick={()=>this.approveOrder(d.id, d.points, d.key)}>
+            <div><Button className="approve-btn" variant="contained" color="auto" size="large" onClick={()=>this.approveOrder(d.id, d.points, d.key)}>
               Approve
-            </Button>:
+            </Button>
+            <Button className="approve-btn" variant="contained" color="auto" size="large" onClick={()=>this.deleteOrder(d.id, d.key)}>
+              Reject
+            </Button></div>:
             <Button className="approved-btn" variant="contained" color="auto" size="large" disabled>
               Approved
             </Button>
             }</TableCell>
 
           </TableRow>)}
+        
         </TableBody>)
     } else
     {
@@ -236,6 +262,25 @@ class adminOrders extends Component {
                   Home
                 </Button>
               </div>
+
+              <Snackbar
+                className="admin-snackbar"
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                open={this.state.snackbar}
+                autoHideDuration={2000}
+                onClose={this.handleSnackClose}
+                message="Success! Refresh the page to update!"
+                action={
+                  <React.Fragment>
+                    <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleSnackClose}>
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
+                }
+              />
             </section>
           </div>
         )

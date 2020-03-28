@@ -3,7 +3,6 @@ import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { firebaseapp, base } from "../../base.js";
 import './adminItemUpdate.css'
-import Calendar from '../calendar/calendar.jsx'
 
 import { Grid, Paper, TextField } from '@material-ui/core';
 
@@ -232,6 +231,15 @@ class adminItemUpdate extends Component {
               onClick={() => this.updateFirebase()}>
               Confirm!
             </Button>
+            <Button
+                variant="contained"
+                color="auto"
+                size="large"
+                component={RouterLink}
+                to="/"
+              >
+            Home
+          </Button>
           </Grid>
           
 

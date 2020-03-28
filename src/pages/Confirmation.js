@@ -225,7 +225,7 @@ class Confirmation extends Component{
                         >
                         {(this.submissionCondition()) ?
 
-                            ((this.state.weight<10) ?
+                            (((this.state.weight<10) && (this.state.selfrecycle==false)) ?
                                 // Case where weight <10, display onemap
                                 <Button 
                                     className="confirm_btn"

@@ -113,5 +113,21 @@ body {
 }
 
 .MuiTableCell-root.MuiTableCell-body.table-cell-scheduled{
-  background-color: whitesmoke;
+  background-color: #D8D8D8;
 }
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.approved-btn{
+  background-color: #bad4aa;
+  font-weight: bold;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.delete-btn{
+  background-color: lightcoral;
+  font-weight: bold;
+}
+
+.MuiPaper-root.MuiSnackbarContent-root.MuiPaper-elevation6,
+.MuiSnackbar-root.MuiSnackbar-anchorOriginBottomLeft.profile-snackbar{
+  background: #d6ffbd;
+}
+
