@@ -5,20 +5,20 @@ import { firebaseapp, base } from "../../base.js";
 import { Redirect } from "react-router";
 import Admin from "../admin/admin.js";
 import Navbar2 from "../../components/navbar2/navbar2";
-import './Profile2.css'
+import "./Profile2.css";
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { Grid, TextField, Paper } from '@material-ui/core';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { Grid, TextField, Paper } from "@material-ui/core";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
 var firebase = require("firebase");
 var loginStatus = false;
@@ -69,8 +69,8 @@ class Profile2 extends Component {
     });
   }
 
-  getUserDetails(){
-    base.fetch("users/" + this.state.user.uid , {
+  getUserDetails() {
+    base.fetch("users/" + this.state.user.uid, {
       context: this,
       //asArray: true,
       then(data) {
@@ -127,7 +127,6 @@ class Profile2 extends Component {
   };
 
   render() {
-
     console.log(this.state);
 
     // Table rows
@@ -194,8 +193,10 @@ class Profile2 extends Component {
     // Note that you can only return one html element, so in this case i wrapped everything in
     // <div class="home_content">
     return (
-      <div >
-        <div class="profile_navbar"><Navbar2 /></div>
+      <div>
+        <div class="profile_navbar">
+          <Navbar2 />
+        </div>
         {this.state.admin ? (
           <div class="admin_content">
             <Admin />
@@ -295,25 +296,110 @@ class Profile2 extends Component {
                   </Table>
                 </TableContainer>
               </Paper>
-
               <div class="test_button">
-                <Button
-                  variant="contained"
-                  color="auto"
-                  size="large"
-                  component={RouterLink}
-                  to="/"
-                >
-                  Home
-                </Button>
+                    <Button
+                      variant="contained"
+                      color="auto"
+                      size="large"
+                      component={RouterLink}
+                      to="/"
+                    >
+                      Home
+                    </Button>
               </div>
               </div>
             </section>
-              </div>
+
+                {/* <Dialog
+                  open={this.state.dialog}
+                  onClose={this.handleClose}
+                  aria-labelledby="edit-particulars-dialog"
+                >
+                  <DialogTitle id="edit-particulars-dialog">
+                    Edit Particulars
+                  </DialogTitle>
+                  <DialogContent id="edit-particulars-dialog">
+                    <DialogContentText>
+                      Enter your particulars
+                    </DialogContentText>
+                    <TextField
+                      className="edit-particulars"
+                      id="address"
+                      label="Address"
+                      variant="outlined"
+                      margin="normal"
+                      value={this.state.address}
+                      onChange={this.handleTextChange("address")}
+                    />
+                    <TextField
+                      className="edit-particulars"
+                      id="zip"
+                      label="ZIP Code"
+                      variant="outlined"
+                      margin="normal"
+                      value={this.state.zip}
+                      onChange={this.handleTextChange("zip")}
+                    />
+                    <TextField
+                      className="edit-particulars"
+                      id="phone"
+                      label="Contact No"
+                      variant="outlined"
+                      margin="normal"
+                      value={this.state.phone}
+                      onChange={this.handleTextChange("phone")}
+                    />
+                  </DialogContent>
+                  <DialogActions id="edit-particulars-dialog">
+                    <Button onClick={this.handleClose} color="primary">
+                      Cancel
+                    </Button>
+                    <Button onClick={this.handleSubmitandClose} color="primary">
+                      Confirm
+                    </Button>
+                  </DialogActions>
+                </Dialog> */}
+              {/* </section> */}
+              {/* <section class="orderHistory">
+                <div class="userorderHistory">
+                  <h2>Order History</h2>
+                  <Paper className="user_order_table_paper">
+                    <TableContainer className="user_order_table_container">
+                      <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                          <TableRow>
+                            <TableCell>Order ID</TableCell>
+                            <TableCell align="right">Plastic Bottles</TableCell>
+                            <TableCell align="right">Plastic Bag</TableCell>
+                            <TableCell align="right">Shampoo Bottles</TableCell>
+                            <TableCell align="right">Batteries</TableCell>
+                            <TableCell align="right">Phones</TableCell>
+                            <TableCell align="right">Computer</TableCell>
+                            <TableCell align="right">Mason Jar</TableCell>
+                            <TableCell align="right">Glass Bottles</TableCell>
+                            <TableCell align="right">Light Bulb</TableCell>
+                            <TableCell align="right">
+                              Florescent Tubes
+                            </TableCell>
+                            <TableCell align="right">Fairy Lights</TableCell>
+                            <TableCell className="address" align="right">
+                              Address
+                            </TableCell>
+                            <TableCell align="right">ZIP</TableCell>
+                            <TableCell align="right">Contact No</TableCell>
+                            <TableCell align="right">Points Earned</TableCell>
+                          </TableRow>
+                        </TableHead>
+                        {listItems2}
+                      </Table>
+                    </TableContainer>
+                  </Paper> */}
           </div>
-        )}
+          </div>)}
       </div>
-    );
+                  
+                  
+    )
   }
 }
 

@@ -152,6 +152,10 @@ class Confirmation extends Component{
             <Navbar2/>
             <div class="confirmation_page">  
                 <div class="confirmation_content">
+                {((this.state.selfrecycle==true)||(this.state.weight<10)) ? null : 
+                <Grid className="calendarGrid" xs = {12}>
+                <Calendar calEvents={this.state.calendarEvents} handleUpdate={this.getCalUpdate}/>
+                </Grid>}
                 <Grid
                 className="Checkout"
                 container
@@ -163,7 +167,7 @@ class Confirmation extends Component{
                     container 
                     className="orderGrid"
                     direction="column"
-                    justify="center"
+                    justify="right"
                     alignItems="center"
                     spacing={3}>
                         <Grid className="orderGrid_item" item>
@@ -182,7 +186,7 @@ class Confirmation extends Component{
                             {((this.state['Fairy Lights']!=null) || (this.state['Fairy Lights']!=null))?<p>No of Fary Lights: {this.state['Fairy Lights']}</p>:null}
                             {(this.state.points!=null)?<p>Total points: {this.state.points}</p>:null}
                             {(this.state.weight!=null)?<p>Total weight: {this.state.weight}kg</p>:null}
-                            <p><small>Note that minimum of 10kg is required for scheduled orders</small></p>
+                            {/* <p><small>Note that minimum of 10kg is required for scheduled orders</small></p> */}
                         </Paper>
                         </Grid>
 
@@ -249,8 +253,7 @@ class Confirmation extends Component{
                     </Grid> 
                 </Grid>
 
-                {((this.state.selfrecycle==true)||(this.state.weight<10)) ? null : <Grid className="calendarGrid">
-                <Calendar calEvents={this.state.calendarEvents} handleUpdate={this.getCalUpdate}/></Grid>}
+
 
                 </div>
             </div>

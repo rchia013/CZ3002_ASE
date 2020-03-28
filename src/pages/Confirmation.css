@@ -4,14 +4,15 @@
     width: 100%;
     justify-content: center;
     overflow-y: scroll;
+    background-color: white;
 }
 
 .confirmation_content{
     display: flex;
     height:90vh;
     width: 90vw;
-    justify-content: center;
-    /* align-items: center; */
+    justify-content: left;
+    align-items: center;
 }
 
 .confirmation_content p{
@@ -21,31 +22,31 @@
 .MuiPaper-root.paperback.MuiPaper-elevation1.MuiPaper-rounded {
     width:90%; 
     padding: 2rem;
+    align-items: left;
     /* margin: 2rem; */
 }
 
 .MuiFormControl-root.MuiTextField-root.schedule-form {
-    width:100%;
+    width:70%;
 }
 
-.MuiButtonBase-root.MuiButton-root.MuiButton-contained.append-user-details{
-    align-self: center;
-    justify-self: center;
-}
 
-.orderGrid {
-    /* padding:.5rem; */
-    width:90%;
-    justify-content: center;
-}
+    /* .orderGrid {
+         padding:.5rem; 
+        width:100%;
+        justify-content: right;
+    } */
 
 .MuiGrid-root.Checkout,
 .MuiGrid-root.calendarGrid{
-    padding-top: 12vh;
+    padding-top: 20vh;
+    
 }
 
 .MuiGrid-root.orderGrid_item {
-    width:100%;
+    width:80%;
+    padding-right: 100vh;
+    align-items: center;
 }
 
 .MuiGrid-root.calendarGrid{
@@ -56,3 +57,16 @@
     width:100%;
     z-index: 1;
 }
+
+.MuiGrid-align-items-xs-center {
+    align-items:left;
+}
+
+    
+
+
+.MuiPaper-root.paperback.MuiPaper-root.paperback.MuiPaper-elevation1.MuiPaper-rounded{
+    border-radius: 40px;
+    box-shadow: 10px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
