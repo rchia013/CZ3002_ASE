@@ -3,17 +3,6 @@ import { Link as RouterLink} from 'react-router-dom';
 import { AppBar, Tabs, Tab, Paper} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import './Wasteitem copy.css'
-import Navbar from '../../components/navbar2/navbar2.js'
-import plasticImg from '../../components/image/plastic.jpg'
-import plasticbagImg from '../../components/image/plasticbag.jpg'
-import shampooImg from '../../components/image/shampoo.jpg'
-import masonjarImg from '../../components/image/masonjar.jpg'
-import glassbottleImg from '../../components/image/glassbottles.jpg'
-import batteriesImg from '../../components/image/batteries.jpg'
-import phonesImg from '../../components/image/phone.jpg'
-import computerImg from '../../components/image/computer.jpg'
-import lightbulbImg from '../../components/image/light.jpg'
-import florescenttubeImg from '../../components/image/florescenttube.jpg'
 import fairylightsImg from '../../components/image/fairylights.jpg'
 import Navbar2 from '../../components/navbar2/navbar2.js'
 import { firebaseapp, base } from "../../base.js";
@@ -239,7 +228,7 @@ class Wasteitem extends Component{
                             <div class="shop-items">
                         <div class="shop-item">
                             <span class="shop-item-title">Plastic Bottles</span>
-                            <img class="shop-item-image" src={plasticImg} />
+                            <img class="shop-item-image" src="/plastic-bottle.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Plastic Bottles Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Plastic Bottles Weight']} kg</span>
@@ -248,7 +237,7 @@ class Wasteitem extends Component{
                         </div>
                         <div class="shop-item">
                             <span class="shop-item-title">Plastic Bag</span>
-                            <img class="shop-item-image" src={plasticbagImg} />
+                            <img class="shop-item-image" src="/plastic-bag.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Plastic Bag Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Plastic Bag Weight']} kg</span>
@@ -257,7 +246,7 @@ class Wasteitem extends Component{
                         </div>
                         <div class="shop-item">
                             <span class="shop-item-title">Shampoo Bottles</span>
-                            <img class="shop-item-image" src={shampooImg} />
+                            <img class="shop-item-image" src="/shampoo-bottle.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Shampoo Bottles Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Shampoo Bottles Weight']} kg</span>
@@ -273,7 +262,7 @@ class Wasteitem extends Component{
                             <div class="shop-items">
                         <div class="shop-item">
                             <span class="shop-item-title">Batteries</span>
-                            <img class="shop-item-image" src={batteriesImg} />
+                            <img class="shop-item-image" src="/battery.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Batteries Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Batteries Weight']} kg</span>
@@ -282,7 +271,7 @@ class Wasteitem extends Component{
                         </div>
                         <div class="shop-item">
                             <span class="shop-item-title">Phones</span>
-                            <img class="shop-item-image" src={phonesImg} />
+                            <img class="shop-item-image" src="mobile-phone.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Phones Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Phones Weight']} kg</span>
@@ -291,7 +280,7 @@ class Wasteitem extends Component{
                         </div>
                         <div class="shop-item">
                             <span class="shop-item-title">Computer</span>
-                            <img class="shop-item-image" src={computerImg} />
+                            <img class="shop-item-image" src= "/laptop.png"/>
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Computer Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Computer Weight']} kg</span>
@@ -306,7 +295,7 @@ class Wasteitem extends Component{
                             <div class="shop-items">
                         <div class="shop-item">
                             <span class="shop-item-title">Mason Jar</span>
-                            <img class="shop-item-image" src={masonjarImg} />
+                            <img class="shop-item-image" src="mason-jar.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Mason Jar Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Mason Jar Weight']} kg</span>
@@ -315,7 +304,7 @@ class Wasteitem extends Component{
                         </div>
                         <div class="shop-item">
                             <span class="shop-item-title">Glass Bottles</span>
-                            <img class="shop-item-image" src={glassbottleImg} />
+                            <img class="shop-item-image" src="/glass-bottle.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Glass Bottles Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Glass Bottles Weight']} kg</span>
@@ -331,7 +320,7 @@ class Wasteitem extends Component{
                             <div class="shop-items">
                         <div class="shop-item">
                             <span class="shop-item-title">Light Bulb</span>
-                            <img class="shop-item-image" src={lightbulbImg} />
+                            <img class="shop-item-image" src="/lightbulb.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Light Bulb Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Light Bulb Weight']} kg</span>
@@ -340,7 +329,7 @@ class Wasteitem extends Component{
                         </div>
                         <div class="shop-item">
                             <span class="shop-item-title">Florescent Tubes</span>
-                            <img class="shop-item-image" src={florescenttubeImg} />
+                            <img class="shop-item-image" src="Florescent-lamp.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Florescent Tubes Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Florescent Tubes Weight']} kg</span>
@@ -349,7 +338,7 @@ class Wasteitem extends Component{
                         </div>
                         <div class="shop-item">
                             <span class="shop-item-title">Fairy Lights</span>
-                            <img class="shop-item-image" src={fairylightsImg} />
+                            <img class="shop-item-image" src="/fairy-lights.png" />
                             <div class="shop-item-details">
                                 <span class="shop-item-points">{this.state['Fairy Lights Points']} points</span>
                                 <span class="shop-item-weight">{this.state['Fairy Lights Weight']} kg</span>
@@ -364,7 +353,7 @@ class Wasteitem extends Component{
 
                 
 
-            <div class="greencart">
+            <div class="greencart" style = {{border: '4px solid grey'}}>
                 <h2 class="section-header">GREEN CART</h2>
                 <div class="cart-row">
                     <span class="cart-item cart-header cart-column">ITEM</span>
@@ -388,7 +377,8 @@ class Wasteitem extends Component{
                     className="btn-recycle-disabled"
                     disabled
                     variant="contained" color="auto" size="large">
-                    RECYCLE
+                    Minimum of 10kg Required!
+                    
                 </Button> :
                 <Button 
                     className="btn-recycle"

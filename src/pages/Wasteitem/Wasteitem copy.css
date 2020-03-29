@@ -31,7 +31,6 @@
 .waste_items {
     height: 100%;
     width: 100vw;
-    
 }
 
 .waste_items h2{
@@ -45,8 +44,9 @@
 
 }
 
+
 .greencart h2{
-    color: #f4f4f4
+    color: black;
 }
 
 .section .GreenCart{
@@ -85,11 +85,10 @@ html, body {
 .section-header {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: normal;
-    color: #f4f4f4;
     text-align: center;
     font-size: 1.9em;
     margin-top: 0em;
-    background-color: rgb(76, 84, 90);
+    background-color: #e9d7be;
 }
 
 
@@ -149,7 +148,7 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .shop-item-details {
@@ -162,14 +161,14 @@ html, body {
 .shop-item-points {
     width: 50%;
     color: black;
-    margin-left: 25px;
+    margin-left: 20px;
 }
 
 .shop-item-weight {
     
     width: 50%;
     color: black;
-    margin-left: 25px;
+    margin-left: 20px;
 }
 
 .shop-items {
@@ -181,7 +180,7 @@ html, body {
 .cart-header {
     font-weight: bold;
     font-size: 1.25em;
-    color: #f4f4f4;
+    color: black;
     
 }
 
@@ -219,7 +218,7 @@ html, body {
 }
 
 .cart-item-title {
-    color: #f4f4f4;
+    color: black;
     margin-left: .5em;
     font-size: 1.2em;
 }
@@ -231,7 +230,7 @@ html, body {
 }
 
 .btn-danger {
-    color: white;
+    color: black;
     background-color: slategrey;
     border: none;
     border-radius: .3em;
@@ -261,7 +260,6 @@ html, body {
     justify-content: center;
     margin-top: 40px;
     margin-right: 10px;
-    
 
 }
 
@@ -269,7 +267,7 @@ html, body {
     
     font-weight: bold;
     font-size: 1.5em;
-    color: #f4f4f4;
+    color: black;
     margin-right: 20px;
 
 }
@@ -283,24 +281,26 @@ html, body {
 
 }
 .cart-total-points {
-    color: #f4f4f4;
+    color: black;
     margin-right:20px;
     font-size: 1.5em;
 }
 
 .cart-total-weight {
-    color: #f4f4f4;
+    color:black;
     font-size: 1.5em;
 }
 
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.btn-recycle.MuiButton-containedSizeLarge.MuiButton-sizeLarge{
     display: block;
     margin: 40px auto 80px auto;
-    font-size: 1.5em;
+    font-size: 2em;
+    font-weight: 1000;
     text-align: center;
     width: 10.5em;
     position: inherit;
-    background-color: #99c97b;
+    background-color:   #bad4aa;
+    
 
 }
 
@@ -308,9 +308,11 @@ html, body {
     display: block;
     margin: 40px auto 80px auto;
     font-size: 1.5em;
+    font-weight: 1000;
     text-align: center;
     width: 10.5em;
     position: inherit;
+    background-color:  light-grey;
 
 }
 
@@ -322,5 +324,10 @@ html, body {
 
 .MuiPaper-root.shop-item-paper.MuiPaper-elevation3{
     width: 100%;
+}
 
+
+.greencart{
+    border-color: #333;
+    background-color: #e9d7be;
 }

@@ -142,7 +142,8 @@ class Home extends Component {
         </section>
 
         <section id="letsgo">
-          <div class="letsgopage">
+
+          {/* <div class="letsgopage">
             <div class="schedulepickup">
               <Button
                 id="pickupbutton"
@@ -174,7 +175,7 @@ class Home extends Component {
                 Self-Recycle
               </Button>
             </div>
-          </div>
+          </div> */}
         </section>
 
         <section id="profile_details">
