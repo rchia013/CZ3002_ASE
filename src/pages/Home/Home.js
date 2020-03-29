@@ -11,8 +11,7 @@ import { green, white } from "@material-ui/core/colors";
 var loginStatus2 = false;
 class Home extends Component {
   // Functions/Methods, if any, go here. See other pages for example
-  state = { user: null };
-
+  state = { user: null }
   // Checks status and adds user to state
   checkStatus() {
     firebaseapp.auth().onAuthStateChanged(user => {
@@ -32,7 +31,7 @@ class Home extends Component {
     return (
       <div class="home_content">
         {/*import Navbar as a component*/}
-        <Navbar />
+        <Navbar/>
 
         {/* These are the sections that appear on the page. Smooth scrolling is implemented in CSS
                   because everything else is too advanced for me. Removing CSS would just make it a
