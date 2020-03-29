@@ -5,24 +5,27 @@
   /* position: relative; */
   margin: 0px;
   font-family: Raleway;
-  color: #777;
+  color: beige;
   justify-content: space-evenly;
   align-items: center;
 }
 
 .admin-components {
-  font-size: 30px;
-  color: white;
+  font-size: 25px;
+  color: grey;
   word-wrap: normal;
   justify-content: center;
 }
 
 .container-test {
-  margin-top: 200px;
-  width: 100%;
+  margin-top: 80px;
+  width: 30%;
   display: flex;
-  position: relative;
-  justify-content: space-evenly;
+  /* position: relative; */
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
   /* border: solid 2px blue; */
 }
 

@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import { firebaseapp, database } from "../../base.js";
-import { Button } from "@material-ui/core";
+import { Button, Icon } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import "../Home/Home.css";
 import "./vouchers.css";
 import Popup from "../admin/popup.js";
+import { Snackbar, TextField, Paper } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import AddIcon from "@material-ui/icons/Add";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 const vouchersRef = firebaseapp
   .database()
@@ -19,7 +28,7 @@ class Vouchers extends Component {
     cost: null,
     error: false,
     vouchers: null,
-    titleError: false
+    dialog: false
   };
 
   handleTitle = e => {
@@ -37,6 +46,12 @@ class Vouchers extends Component {
   handleCost = e => {
     this.setState({
       cost: e.target.value
+    });
+  };
+
+  handleCount = e => {
+    this.setState({
+      count: e.target.value
     });
   };
 
@@ -65,7 +80,8 @@ class Vouchers extends Component {
     if (
       this.state.title === "" ||
       this.state.desc === "" ||
-      this.state.cost === null
+      this.state.cost === null ||
+      this.state.count === null
     ) {
       this.setState({
         error: true
@@ -78,7 +94,7 @@ class Vouchers extends Component {
           {
             desc: this.state.desc,
             cost: this.state.cost,
-            count: 100
+            count: this.state.count
           },
           function(error) {
             if (error) {
@@ -89,14 +105,20 @@ class Vouchers extends Component {
           }
         );
     }
-    document.getElementById("form1").reset();
+    this.toggleDialog();
     this.setState({
       desc: "",
       title: "",
-      cost: null
+      cost: null,
+      count: null
     });
   };
 
+  toggleDialog = () => {
+    this.setState({
+      dialog: !this.state.dialog
+    });
+  };
   togglePopup = () => {
     this.setState({
       error: false
@@ -140,7 +162,7 @@ class Vouchers extends Component {
     var temp = null;
     if (this.state.vouchers != null) {
       temp = Object.keys(this.state.vouchers).map(key => (
-        <div class="vouchers" style={{ backgroundColor: "lightgrey" }}>
+        <div class="vouchers" style={{ backgroundColor: "#fff7e6" }}>
           <h2
             style={{
               display: "flex",
@@ -154,6 +176,7 @@ class Vouchers extends Component {
           <div style={{ color: "red" }}>
             Cost: {this.state.vouchers[key]["cost"]} points
           </div>
+          <p>Remaining: {this.state.vouchers[key]["count"]} copies</p>
           <button id={key} onClick={this.handleDelete}>
             Delete
           </button>
@@ -202,7 +225,8 @@ class Vouchers extends Component {
             height: "100vh",
             display: "flex",
             flexWrap: "wrap",
-            clear: "both"
+            clear: "both",
+            backgroundColor: "beige"
           }}
         >
           <div class="navbar">
@@ -218,59 +242,95 @@ class Vouchers extends Component {
             </nav>
           </div>
           <div class="voucher-container1">
-            <h1>Current Vouchers</h1>
+            <h1 style={{ color: "black", height: "10%" }}>
+              Current Vouchers
+              <IconButton onClick={this.toggleDialog}>
+                <AddIcon />
+              </IconButton>
+            </h1>
             <div class="voucher">{temp}</div>
           </div>
-          <div class="add-voucher">
-            <h2 class="heading2">Add Voucher</h2>
-            <form id="form1">
-              <div id="input1">
-                <label for="title">Title:&nbsp;</label>
-                <input
+          <div>
+            <Dialog
+              open={this.state.dialog}
+              onClose={this.toggleDialog}
+              aria-labelledby="edit-particulars-dialog"
+            >
+              <DialogTitle id="edit-particulars-dialog">
+                Add Vouchers
+              </DialogTitle>
+              <DialogContent id="edit-particulars-dialog">
+                <DialogContentText>Enter the voucher details</DialogContentText>
+                <TextField
                   required
-                  type="text"
-                  placeholder="Title"
-                  id="title"
-                  style={{ width: "40%" }}
+                  className="edit-particulars"
+                  label="Title"
+                  variant="outlined"
+                  margin="normal"
                   onChange={this.handleTitle}
-                ></input>
-                <label for="cost" style={{ marginLeft: "10px" }}>
-                  Cost:&nbsp;
-                </label>
-                <input
+                />
+                <TextField
                   required
-                  type="number"
-                  placeholder="Number of Points"
-                  id="cost"
-                  style={{ width: "20%" }}
-                  onChange={this.handleCost}
-                ></input>
-              </div>
-              <div id="input2">
-                <label for="desc">Description:&nbsp;</label>
-                <textarea
-                  required
-                  id="clear2"
-                  type="text"
-                  id="desc"
-                  style={{
-                    width: "100%",
-                    height: "100px",
-                    justifyContent: "flex-start",
-                    display: "flex",
-                    alignItems: "flex-start"
-                  }}
+                  className="edit-particulars"
+                  label="Description"
+                  variant="outlined"
+                  margin="normal"
+                  multiline="true"
+                  rows="3"
                   onChange={this.handleDesc}
-                ></textarea>
-              </div>
-            </form>
-            <Button id="submitbutton" onClick={this.handleSubmit}>
-              Submit
-            </Button>
+                />
+                <TextField
+                  required
+                  className="edit-particulars"
+                  label="Cost"
+                  variant="outlined"
+                  margin="normal"
+                  type="number"
+                  onChange={this.handleCost}
+                />
+                <TextField
+                  required
+                  className="edit-particulars"
+                  label="Count"
+                  variant="outlined"
+                  margin="normal"
+                  type="number"
+                  onChange={this.handleCount}
+                />
+              </DialogContent>
+              <DialogActions id="edit-particulars-dialog">
+                <Button onClick={this.toggleDialog} color="primary">
+                  Cancel
+                </Button>
+                <Button onClick={this.handleSubmit} color="primary">
+                  Confirm
+                </Button>
+              </DialogActions>
+            </Dialog>
           </div>
-          {this.state.error ? (
-            <Popup text="INVALID INPUT" closePopup={this.togglePopup} />
-          ) : null}
+          <Snackbar
+            className="profile-snackbar"
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "left"
+            }}
+            open={this.state.error}
+            autoHideDuration={2000}
+            onClose={this.togglePopup}
+            message="Your input is invalid! Try again."
+            action={
+              <React.Fragment>
+                <IconButton
+                  size="small"
+                  aria-label="close"
+                  color="inherit"
+                  onClick={this.togglePopup}
+                >
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              </React.Fragment>
+            }
+          />
         </div>
       );
     }
