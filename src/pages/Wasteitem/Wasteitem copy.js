@@ -364,7 +364,7 @@ class Wasteitem extends Component{
 
                 
 
-            <div class="greencart">
+            <div class="greencart" style = {{border: '4px solid grey'}}>
                 <h2 class="section-header">GREEN CART</h2>
                 <div class="cart-row">
                     <span class="cart-item cart-header cart-column">ITEM</span>
