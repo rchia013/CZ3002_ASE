@@ -294,11 +294,13 @@ html, body {
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.btn-recycle.MuiButton-containedSizeLarge.MuiButton-sizeLarge{
     display: block;
     margin: 40px auto 80px auto;
-    font-size: 1.5em;
+    font-size: 2em;
+    font-weight: 1000;
     text-align: center;
     width: 10.5em;
     position: inherit;
-    background-color:   black;
+    background-color:   #bad4aa;
+    
 
 }
 
@@ -306,9 +308,11 @@ html, body {
     display: block;
     margin: 40px auto 80px auto;
     font-size: 1.5em;
+    font-weight: 1000;
     text-align: center;
     width: 10.5em;
     position: inherit;
+    background-color:  light-grey;
 
 }
 
@@ -320,7 +324,6 @@ html, body {
 
 .MuiPaper-root.shop-item-paper.MuiPaper-elevation3{
     width: 100%;
-
 }
 
 

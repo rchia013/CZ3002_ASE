@@ -377,7 +377,8 @@ class Wasteitem extends Component{
                     className="btn-recycle-disabled"
                     disabled
                     variant="contained" color="auto" size="large">
-                    RECYCLE
+                    Minimum of 10kg Required!
+                    
                 </Button> :
                 <Button 
                     className="btn-recycle"
