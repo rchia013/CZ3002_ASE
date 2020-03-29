@@ -44,6 +44,7 @@
 
 }
 
+
 .greencart h2{
     color: black;
 }
@@ -147,7 +148,7 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .shop-item-details {
@@ -160,14 +161,14 @@ html, body {
 .shop-item-points {
     width: 50%;
     color: black;
-    margin-left: 25px;
+    margin-left: 20px;
 }
 
 .shop-item-weight {
     
     width: 50%;
     color: black;
-    margin-left: 25px;
+    margin-left: 20px;
 }
 
 .shop-items {
