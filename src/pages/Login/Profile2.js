@@ -12,8 +12,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Snackbar, TextField, Paper } from "@material-ui/core";
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -64,8 +64,8 @@ class Profile2 extends Component {
   getUserOrders() {
     base.bindToState("orders/" + this.state.user.uid, {
       context: this,
-      state: 'orderdata',
-      asArray: true,
+      state: "orderdata",
+      asArray: true
     });
   }
 
@@ -87,9 +87,12 @@ class Profile2 extends Component {
     });
   }
 
-  deleteOrder(user_id, orderID){
-    firebaseapp.database().ref('/orders/' + user_id + '/' + orderID).remove()
-    this.setState({ snackbar:true })
+  deleteOrder(user_id, orderID) {
+    firebaseapp
+      .database()
+      .ref("/orders/" + user_id + "/" + orderID)
+      .remove();
+    this.setState({ snackbar: true });
     // Firebase updated
   }
 
@@ -99,17 +102,17 @@ class Profile2 extends Component {
   };
 
   handlePasswordReset = e => {
-    firebaseapp.auth().sendPasswordResetEmail(this.state.user.email)
-    this.setState({ passworddialog: true })
-  }
+    firebaseapp.auth().sendPasswordResetEmail(this.state.user.email);
+    this.setState({ passworddialog: true });
+  };
 
   handleClickOpen = e => {
     this.setState({ dialog: true });
   };
 
   handlePasswordClose = e => {
-    this.setState({ passworddialog: false })
-  }
+    this.setState({ passworddialog: false });
+  };
 
   handleClose = e => {
     if (this.state.userDetails != null) {
@@ -121,7 +124,13 @@ class Profile2 extends Component {
         name: this.state.user.displayName
       });
     } else {
-      this.setState({ dialog: false, address: "", zip: "", phone: "", name: "" });
+      this.setState({
+        dialog: false,
+        address: "",
+        zip: "",
+        phone: "",
+        name: ""
+      });
     }
   };
 
@@ -139,7 +148,7 @@ class Profile2 extends Component {
 
     firebaseapp.auth().currentUser.updateProfile({
       displayName: this.state.name
-    })
+    });
     return firebase
       .database()
       .ref()
@@ -147,11 +156,11 @@ class Profile2 extends Component {
   };
 
   handleSnackClose = (e, reason) => {
-    if (reason === "clickaway"){
-      return
+    if (reason === "clickaway") {
+      return;
     }
-    this.setState({ snackbar: false })
-  }
+    this.setState({ snackbar: false });
+  };
 
   render() {
     console.log(this.state);
@@ -162,80 +171,189 @@ class Profile2 extends Component {
       console.log(temporders2);
       var listItems2 = (
         <TableBody>
-            {temporders2.map((d) => 
-            (d.calendarEvents!=null) ?
-            <TableRow>
-              <TableCell className="table-cell-scheduled" align="right">{d.key}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Plastic Bottles']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Plastic Bag']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Shampoo Bottles']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Batteries']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Phones']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Computer']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Mason Jar']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Glass Bottles']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Light Bulb']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Florescent Tubes']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d['Fairy Lights']}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{(d.calendarEvents!=null) ? d.calendarEvents.start.substr(0, d.calendarEvents.start.indexOf("T")) : null}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{(d.calendarEvents!=null) ? d.calendarEvents.start.substr(d.calendarEvents.start.indexOf("T")+1) : null}
-                                      {(d.calendarEvents!=null) ? <p class="table_text"> - </p> : null}
-                                      {(d.calendarEvents!=null) ? d.calendarEvents.end.substr(d.calendarEvents.end.indexOf("T")+1) : null}
-                                      </TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d.address}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d.zip}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{d.phone}</TableCell>
-              <TableCell className="table-cell-scheduled" align="right">{((d.approved == null) || (d.approved !=true)) ? <p class="table_text">Pending</p> : d['points']}</TableCell>
+          {temporders2.map(d =>
+            d.calendarEvents != null ? (
+              <TableRow>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d.key}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Plastic Bottles"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Plastic Bag"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Shampoo Bottles"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Batteries"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Phones"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Computer"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Mason Jar"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Glass Bottles"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Light Bulb"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Florescent Tubes"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d["Fairy Lights"]}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d.calendarEvents != null
+                    ? d.calendarEvents.start.substr(
+                        0,
+                        d.calendarEvents.start.indexOf("T")
+                      )
+                    : null}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d.calendarEvents != null
+                    ? d.calendarEvents.start.substr(
+                        d.calendarEvents.start.indexOf("T") + 1
+                      )
+                    : null}
+                  {d.calendarEvents != null ? (
+                    <p class="table_text"> - </p>
+                  ) : null}
+                  {d.calendarEvents != null
+                    ? d.calendarEvents.end.substr(
+                        d.calendarEvents.end.indexOf("T") + 1
+                      )
+                    : null}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d.address}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d.zip}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d.phone}
+                </TableCell>
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d.approved == null || d.approved != true ? (
+                    <p class="table_text">Pending</p>
+                  ) : (
+                    d["points"]
+                  )}
+                </TableCell>
 
-              {/* For order approval */}
-              <TableCell className="table-cell-scheduled" align="right">{((d.approved == null) || (d.approved !=true)) ? 
-                <Button className="delete-btn" variant="contained" color="auto" size="large" onClick={()=>this.deleteOrder(d.id, d.key)}>
-                  Delete
-                </Button>:
-                <Button className="approved-btn" variant="contained" color="auto" size="large" disabled>
-                  Approved
-                </Button>
-              }</TableCell>
+                {/* For order approval */}
+                <TableCell className="table-cell-scheduled" align="right">
+                  {d.approved == null || d.approved != true ? (
+                    <Button
+                      className="delete-btn"
+                      variant="contained"
+                      color="auto"
+                      size="large"
+                      onClick={() => this.deleteOrder(d.id, d.key)}
+                    >
+                      Delete
+                    </Button>
+                  ) : (
+                    <Button
+                      className="approved-btn"
+                      variant="contained"
+                      color="auto"
+                      size="large"
+                      disabled
+                    >
+                      Approved
+                    </Button>
+                  )}
+                </TableCell>
+              </TableRow>
+            ) : (
+              <TableRow>
+                <TableCell align="right">{d.key}</TableCell>
+                <TableCell align="right">{d["Plastic Bottles"]}</TableCell>
+                <TableCell align="right">{d["Plastic Bag"]}</TableCell>
+                <TableCell align="right">{d["Shampoo Bottles"]}</TableCell>
+                <TableCell align="right">{d["Batteries"]}</TableCell>
+                <TableCell align="right">{d["Phones"]}</TableCell>
+                <TableCell align="right">{d["Computer"]}</TableCell>
+                <TableCell align="right">{d["Mason Jar"]}</TableCell>
+                <TableCell align="right">{d["Glass Bottles"]}</TableCell>
+                <TableCell align="right">{d["Light Bulb"]}</TableCell>
+                <TableCell align="right">{d["Florescent Tubes"]}</TableCell>
+                <TableCell align="right">{d["Fairy Lights"]}</TableCell>
+                <TableCell align="right">
+                  {d.calendarEvents != null
+                    ? d.calendarEvents.start.substr(
+                        0,
+                        d.calendarEvents.start.indexOf("T")
+                      )
+                    : null}
+                </TableCell>
+                <TableCell align="right">
+                  {d.calendarEvents != null
+                    ? d.calendarEvents.start.substr(
+                        d.calendarEvents.start.indexOf("T") + 1
+                      )
+                    : null}
+                  {d.calendarEvents != null ? (
+                    <p class="table_text"> - </p>
+                  ) : null}
+                  {d.calendarEvents != null
+                    ? d.calendarEvents.end.substr(
+                        d.calendarEvents.end.indexOf("T") + 1
+                      )
+                    : null}
+                </TableCell>
+                <TableCell align="right">{d.address}</TableCell>
+                <TableCell align="right">{d.zip}</TableCell>
+                <TableCell align="right">{d.phone}</TableCell>
+                <TableCell align="right">
+                  {d.approved == null || d.approved != true ? (
+                    <p class="table_text">Pending</p>
+                  ) : (
+                    d["points"]
+                  )}
+                </TableCell>
 
-            </TableRow> : 
-            <TableRow>
-            <TableCell align="right">{d.key}</TableCell>
-            <TableCell align="right">{d['Plastic Bottles']}</TableCell>
-            <TableCell align="right">{d['Plastic Bag']}</TableCell>
-            <TableCell align="right">{d['Shampoo Bottles']}</TableCell>
-            <TableCell align="right">{d['Batteries']}</TableCell>
-            <TableCell align="right">{d['Phones']}</TableCell>
-            <TableCell align="right">{d['Computer']}</TableCell>
-            <TableCell align="right">{d['Mason Jar']}</TableCell>
-            <TableCell align="right">{d['Glass Bottles']}</TableCell>
-            <TableCell align="right">{d['Light Bulb']}</TableCell>
-            <TableCell align="right">{d['Florescent Tubes']}</TableCell>
-            <TableCell align="right">{d['Fairy Lights']}</TableCell>
-            <TableCell align="right">{(d.calendarEvents!=null) ? d.calendarEvents.start.substr(0, d.calendarEvents.start.indexOf("T")) : null}</TableCell>
-            <TableCell align="right">{(d.calendarEvents!=null) ? d.calendarEvents.start.substr(d.calendarEvents.start.indexOf("T")+1) : null}
-                                    {(d.calendarEvents!=null) ? <p class="table_text"> - </p> : null}
-                                    {(d.calendarEvents!=null) ? d.calendarEvents.end.substr(d.calendarEvents.end.indexOf("T")+1) : null}
-                                    </TableCell>
-            <TableCell align="right">{d.address}</TableCell>
-            <TableCell align="right">{d.zip}</TableCell>
-            <TableCell align="right">{d.phone}</TableCell>
-            <TableCell align="right">{((d.approved == null) || (d.approved !=true)) ? <p class="table_text">Pending</p> : d['points']}</TableCell>
-
-            {/* For order approval */}
-            <TableCell align="right">{((d.approved == null) || (d.approved !=true)) ? 
-              <Button className="delete-btn" variant="contained" color="auto" size="large" onClick={()=>this.deleteOrder(d.id, d.key)}>
-                Delete
-              </Button>:
-              <Button className="delete-btn" variant="contained" color="auto" size="large" disabled>
-                Approved
-              </Button>
-              }</TableCell>
-
-          </TableRow>)}
-        </TableBody>)
-    } else
-    {
-      var listItems2 = (<p>Nothing yet</p>);
+                {/* For order approval */}
+                <TableCell align="right">
+                  {d.approved == null || d.approved != true ? (
+                    <Button
+                      className="delete-btn"
+                      variant="contained"
+                      color="auto"
+                      size="large"
+                      onClick={() => this.deleteOrder(d.id, d.key)}
+                    >
+                      Delete
+                    </Button>
+                  ) : (
+                    <Button
+                      className="delete-btn"
+                      variant="contained"
+                      color="auto"
+                      size="large"
+                      disabled
+                    >
+                      Approved
+                    </Button>
+                  )}
+                </TableCell>
+              </TableRow>
+            )
+          )}
+        </TableBody>
+      );
+    } else {
+      var listItems2 = <p>Nothing yet</p>;
     }
 
     // Return is basically the html for whatever you want displayed.
@@ -332,20 +450,29 @@ class Profile2 extends Component {
                           Confirm
                       </Button>
                     </DialogActions>
+
                 </Dialog>
 
-                <Dialog open={this.state.passworddialog} onClose={this.handleClose} aria-labelledby="edit-particulars-dialog">
-                    <DialogTitle id="edit-particulars-dialog">Password Reset</DialogTitle>
-                    <DialogContent id="edit-particulars-dialog">
-                        <DialogContentText>
-                            A confirmation email has been sent to your registered email account. Please follow the link in the email to reset your password.
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions id="edit-particulars-dialog">
-                      <Button onClick={this.handlePasswordClose} color="primary">
-                          OK
-                      </Button>
-                    </DialogActions>
+                <Dialog
+                  open={this.state.passworddialog}
+                  onClose={this.handleClose}
+                  aria-labelledby="edit-particulars-dialog"
+                >
+                  <DialogTitle id="edit-particulars-dialog">
+                    Password Reset
+                  </DialogTitle>
+                  <DialogContent id="edit-particulars-dialog">
+                    <DialogContentText>
+                      A confirmation email has been sent to your registered
+                      email account. Please follow the link in the email to
+                      reset your password.
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions id="edit-particulars-dialog">
+                    <Button onClick={this.handlePasswordClose} color="primary">
+                      OK
+                    </Button>
+                  </DialogActions>
                 </Dialog>
             </section>
             <section class="orderHistory">
@@ -382,6 +509,7 @@ class Profile2 extends Component {
                 </TableContainer>
               </Paper>
               <div class="test_button">
+
                     <Button
                       variant="contained"
                       color="auto"
@@ -391,34 +519,38 @@ class Profile2 extends Component {
                     >
                       Home
                     </Button>
-              </div>
-              </div>
-            </section>
-          </div>
+                  </div>
+                </div>
+              </section>
+            </div>
 
-          <Snackbar
-            className="profile-snackbar"
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            open={this.state.snackbar}
-            autoHideDuration={2000}
-            onClose={this.handleSnackClose}
-            message="Success! Refresh the page to update!"
-            action={
-              <React.Fragment>
-                <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleSnackClose}>
-                  <CloseIcon fontSize="small" />
-                </IconButton>
-              </React.Fragment>
-            }
-          />
-          </div>)}
+            <Snackbar
+              className="profile-snackbar"
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left"
+              }}
+              open={this.state.snackbar}
+              autoHideDuration={2000}
+              onClose={this.handleSnackClose}
+              message="Success! Refresh the page to update!"
+              action={
+                <React.Fragment>
+                  <IconButton
+                    size="small"
+                    aria-label="close"
+                    color="inherit"
+                    onClick={this.handleSnackClose}
+                  >
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                </React.Fragment>
+              }
+            />
+          </div>
+        )}
       </div>
-                  
-                  
-    )
+    );
   }
 }
 
