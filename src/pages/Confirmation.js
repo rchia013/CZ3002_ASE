@@ -152,10 +152,6 @@ class Confirmation extends Component{
             <Navbar2/>
             <div class="confirmation_page">  
                 <div class="confirmation_content">
-                {((this.state.selfrecycle==true)||(this.state.weight<10)) ? null : 
-                <Grid className="calendarGrid" xs = {12}>
-                <Calendar calEvents={this.state.calendarEvents} handleUpdate={this.getCalUpdate}/>
-                </Grid>}
                 <Grid
                 className="Checkout"
                 container
@@ -252,6 +248,10 @@ class Confirmation extends Component{
                         </Grid>
                     </Grid> 
                 </Grid>
+                {((this.state.selfrecycle==true)||(this.state.weight<10)) ? null : 
+                <Grid className="calendarGrid" xs = {12}>
+                <Calendar calEvents={this.state.calendarEvents} handleUpdate={this.getCalUpdate}/>
+                </Grid>}
 
 
 

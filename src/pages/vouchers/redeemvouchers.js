@@ -151,7 +151,7 @@ class RVouchers extends Component {
       if (this.state.vouchers != null) {
         console.log(this.state.vouchers)
         temp = Object.keys(this.state.vouchers).map(key => {
-          if (tempArray.includes(key)) {
+          if (tempArray.includes(key)) {  
             return (
               <div
                 key={key}
@@ -183,7 +183,7 @@ class RVouchers extends Component {
               <div
                 class="vouchers"
                 style={{
-                  backgroundColor: "lightgrey"
+                  backgroundColor: "white"
                 }}
               >
                 <h2
@@ -241,7 +241,7 @@ class RVouchers extends Component {
               width: "100%",
               display: "flex",
               justifyContent: "center",
-              color: "white"
+              color: "black"
             }}
           >
             Current Points: {this.state.points}
