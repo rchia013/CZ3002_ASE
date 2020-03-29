@@ -2,7 +2,7 @@ body{
   color: red;
 }
 .map-container {
-  display:flex;
+  display: flex;
   /* flex-direction: column; */
   justify-content: center;
   height: 100vh;
@@ -11,7 +11,7 @@ body{
 }
 
 .map-contents {
-  display:flex;
+  display: flex;
   flex-direction: column;
   /* justify-content: center; */
   height: 80vh;
@@ -33,7 +33,7 @@ body{
   position: absolute;
   top: 5%;
   right: 5vw;
-  height: 10%;
+  height: 13%;
   display: flex;
   padding: 5px;
   flex-direction: column;
@@ -52,5 +52,3 @@ body{
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.onemapBtns {
   height: 5vh;
 }
-
-
