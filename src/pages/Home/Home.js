@@ -251,7 +251,7 @@ class Home extends Component {
                     </div>
                   </span>
                   <p class="subdetails">
-                    Logged in as {this.state.user.displayName}
+                    Logged in as {this.state.user.displayName.toUpperCase()}
                   </p>
                 </div>
               ) : (

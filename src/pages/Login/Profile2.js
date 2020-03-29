@@ -256,7 +256,7 @@ class Profile2 extends Component {
             <section class="user">
               {(this.state.user!=null) ? 
               (<div class="user_welcome">
-                <h1>Welcome {this.state.user.displayName}</h1>
+                <h1>Welcome {this.state.user.displayName.toUpperCase()}</h1>
                 <Paper className="particulars-paper">
                     <h3>My Particulars</h3>
                     { ((this.state.userDetails==null) ||  (Object.entries(this.state.userDetails).length==0))?
@@ -291,9 +291,19 @@ class Profile2 extends Component {
                 >
                   Redeem Vouchers
                 </Button>    
-                <p><small>Scroll down to see Order History</small></p>
+                <p ><small>Scroll down to see Order History</small></p>
               </div>) 
-              : (<h1>Currently not logged in</h1>)}
+              : (<div>
+                <h1 style = {{color: "black"}}>Currently not logged in</h1>
+                <Button
+                variant="contained"
+                color="white"
+                size="large"
+                component={RouterLink}
+                to="/login">
+                  Login
+                </Button>
+              </div>)}
               
                 <Dialog open={this.state.dialog} onClose={this.handleClose} aria-labelledby="edit-particulars-dialog">
                     <DialogTitle id="edit-particulars-dialog">Edit Particulars</DialogTitle>
@@ -340,7 +350,7 @@ class Profile2 extends Component {
             </section>
             <section class="orderHistory">
               <div class="userorderHistory">
-              <h2>Order History</h2>
+              <h2 style={{ color: 'black' }}>Order History</h2>
               <Paper className="user_order_table_paper">
                 <TableContainer className="user_order_table_container">
                   <Table stickyHeader aria-label="sticky table">
