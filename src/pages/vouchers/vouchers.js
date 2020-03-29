@@ -162,7 +162,7 @@ class Vouchers extends Component {
     var temp = null;
     if (this.state.vouchers != null) {
       temp = Object.keys(this.state.vouchers).map(key => (
-        <div class="vouchers" style={{ backgroundColor: "#fff7e6" }}>
+        <div class="vouchers" style={{ color: "white" }}>
           <h2
             style={{
               display: "flex",

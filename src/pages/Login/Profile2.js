@@ -392,6 +392,7 @@ class Profile2 extends Component {
                 >
                   Edit Particulars
                 </Button>
+                <br></br>
                 <Button
                   variant="contained"
                   color="auto"
@@ -400,6 +401,7 @@ class Profile2 extends Component {
                 >
                   Reset Password
                 </Button>
+                <br></br>
                 <Button
                   variant="contained"
                   color="auto"
@@ -408,7 +410,18 @@ class Profile2 extends Component {
                   to="/redeemvouchers"
                 >
                   Redeem Vouchers
-                </Button>    
+                </Button> 
+                <br></br>
+                <Button
+                        variant="contained"
+                        color="white"
+                        size="large"
+                        onClick={() => firebaseapp.auth().signOut()}
+                        component={RouterLink}
+                        to="/"
+                      >
+                        Logout
+                      </Button>   
                 <p ><small>Scroll down to see Order History</small></p>
               </div>) 
               : (<div>
