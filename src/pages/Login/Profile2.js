@@ -370,117 +370,87 @@ class Profile2 extends Component {
           </div>
         ) : (
           <div class="profile_page">
-            <div class="profile_content">
-              <section class="user">
-                {this.state.user != null ? (
-                  <div class="user_welcome">
-                    <h1>Welcome {this.state.user.displayName}</h1>
-                    <Paper className="particulars-paper">
-                      <h3>My Particulars</h3>
-                      {this.state.userDetails == null ||
-                      Object.entries(this.state.userDetails).length == 0 ? (
-                        <p class="empty-description">
-                          Nothing yet! Click on Edit Particulars to update!
-                        </p>
-                      ) : (
-                        <p>
-                          Address: {this.state.userDetails.address} <br />
-                          ZIP Code: S{this.state.userDetails.zip} <br />
-                          Phone: {this.state.userDetails.phone} <br />
-                          Total points: {this.state.userDetails.points}
-                        </p>
-                      )}
-                    </Paper>
-                    <Button
-                      variant="contained"
-                      color="auto"
-                      size="large"
-                      onClick={this.handleClickOpen}
-                    >
-                      Edit Particulars
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="auto"
-                      size="large"
-                      onClick={this.handlePasswordReset}
-                    >
-                      Reset Password
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="auto"
-                      size="large"
-                      component={RouterLink}
-                      to="/redeemvouchers"
-                    >
-                      Redeem Vouchers
-                    </Button>
-                    <p>
-                      <small>Scroll down to see Order History</small>
-                    </p>
-                  </div>
-                ) : (
-                  <h1>Currently not logged in</h1>
-                )}
-
-                <Dialog
-                  open={this.state.dialog}
-                  onClose={this.handleClose}
-                  aria-labelledby="edit-particulars-dialog"
+          <div class="profile_content">
+            <section class="user">
+              {(this.state.user!=null) ? 
+              (<div class="user_welcome">
+                <h1>Welcome {this.state.user.displayName.toUpperCase()}</h1>
+                <Paper className="particulars-paper">
+                    <h3>My Particulars</h3>
+                    { ((this.state.userDetails==null) ||  (Object.entries(this.state.userDetails).length==0))?
+                        <p class="empty-description">Nothing yet! Click on Edit Particulars to update!</p> :
+                        <p>Address: {this.state.userDetails.address} <br />
+                            ZIP Code: S{this.state.userDetails.zip} <br />
+                            Phone: {this.state.userDetails.phone} <br />
+                            Total points: {this.state.userDetails.points}</p>}
+                </Paper>
+                <Button
+                  variant="contained"
+                  color="auto"
+                  size="large"
+                  onClick={this.handleClickOpen}
                 >
-                  <DialogTitle id="edit-particulars-dialog">
-                    Edit Particulars
-                  </DialogTitle>
-                  <DialogContent id="edit-particulars-dialog">
-                    <DialogContentText>
-                      Enter your particulars
-                    </DialogContentText>
-                    <TextField
-                      className="edit-particulars"
-                      id="Name"
-                      label="Name"
-                      variant="outlined"
-                      margin="normal"
-                      value={this.state.name}
-                      onChange={this.handleTextChange("name")}
-                    />
-                    <TextField
-                      className="edit-particulars"
-                      id="address"
-                      label="Address"
-                      variant="outlined"
-                      margin="normal"
-                      value={this.state.address}
-                      onChange={this.handleTextChange("address")}
-                    />
-                    <TextField
-                      className="edit-particulars"
-                      id="zip"
-                      label="ZIP Code"
-                      variant="outlined"
-                      margin="normal"
-                      value={this.state.zip}
-                      onChange={this.handleTextChange("zip")}
-                    />
-                    <TextField
-                      className="edit-particulars"
-                      id="phone"
-                      label="Contact No"
-                      variant="outlined"
-                      margin="normal"
-                      value={this.state.phone}
-                      onChange={this.handleTextChange("phone")}
-                    />
-                  </DialogContent>
-                  <DialogActions id="edit-particulars-dialog">
-                    <Button onClick={this.handleClose} color="primary">
-                      Cancel
-                    </Button>
-                    <Button onClick={this.handleSubmitandClose} color="primary">
-                      Confirm
-                    </Button>
-                  </DialogActions>
+                  Edit Particulars
+                </Button>
+                <Button
+                  variant="contained"
+                  color="auto"
+                  size="large"
+                  onClick={this.handlePasswordReset}
+                >
+                  Reset Password
+                </Button>
+                <Button
+                  variant="contained"
+                  color="auto"
+                  size="large"
+                  component={RouterLink}
+                  to="/redeemvouchers"
+                >
+                  Redeem Vouchers
+                </Button>    
+                <p ><small>Scroll down to see Order History</small></p>
+              </div>) 
+              : (<div>
+                <h1 style = {{color: "black"}}>Currently not logged in</h1>
+                <Button
+                variant="contained"
+                color="white"
+                size="large"
+                component={RouterLink}
+                to="/login">
+                  Login
+                </Button>
+              </div>)}
+              
+                <Dialog open={this.state.dialog} onClose={this.handleClose} aria-labelledby="edit-particulars-dialog">
+                    <DialogTitle id="edit-particulars-dialog">Edit Particulars</DialogTitle>
+                    <DialogContent id="edit-particulars-dialog">
+                        <DialogContentText>
+                            Enter your particulars
+                        </DialogContentText>
+                        <TextField className="edit-particulars" id="Name" label="Name" variant="outlined" margin="normal" 
+                            value={this.state.name} 
+                            onChange={this.handleTextChange("name")} />
+                        <TextField className="edit-particulars" id="address" label="Address" variant="outlined" margin="normal" 
+                            value={this.state.address} 
+                            onChange={this.handleTextChange("address")} />
+                        <TextField className="edit-particulars" id="zip" label="ZIP Code" variant="outlined" margin="normal"
+                            value={this.state.zip} 
+                            onChange={this.handleTextChange("zip")} />
+                        <TextField className="edit-particulars" id="phone" label="Contact No" variant="outlined" margin="normal" 
+                            value={this.state.phone} 
+                            onChange={this.handleTextChange("phone")} />
+                    </DialogContent>
+                    <DialogActions id="edit-particulars-dialog">
+                      <Button onClick={this.handleClose} color="primary">
+                          Cancel
+                      </Button>
+                      <Button onClick={this.handleSubmitandClose} color="primary">
+                          Confirm
+                      </Button>
+                    </DialogActions>
+
                 </Dialog>
 
                 <Dialog
@@ -504,49 +474,42 @@ class Profile2 extends Component {
                     </Button>
                   </DialogActions>
                 </Dialog>
-              </section>
-              <section class="orderHistory">
-                <div class="userorderHistory">
-                  <h2>Order History</h2>
-                  <Paper className="user_order_table_paper">
-                    <TableContainer className="user_order_table_container">
-                      <Table stickyHeader aria-label="sticky table">
-                        <TableHead>
-                          <TableRow>
-                            <TableCell>Order ID</TableCell>
-                            <TableCell align="right">Plastic Bottles</TableCell>
-                            <TableCell align="right">Plastic Bag</TableCell>
-                            <TableCell align="right">Shampoo Bottles</TableCell>
-                            <TableCell align="right">Batteries</TableCell>
-                            <TableCell align="right">Phones</TableCell>
-                            <TableCell align="right">Computer</TableCell>
-                            <TableCell align="right">Mason Jar</TableCell>
-                            <TableCell align="right">Glass Bottles</TableCell>
-                            <TableCell align="right">Light Bulb</TableCell>
-                            <TableCell align="right">
-                              Florescent Tubes
-                            </TableCell>
-                            <TableCell align="right">Fairy Lights</TableCell>
-                            <TableCell className="address" align="right">
-                              Date
-                            </TableCell>
-                            <TableCell className="address" align="right">
-                              Pickup Window
-                            </TableCell>
-                            <TableCell className="address" align="right">
-                              Address
-                            </TableCell>
-                            <TableCell align="right">ZIP</TableCell>
-                            <TableCell align="right">Contact No</TableCell>
-                            <TableCell align="right">Points Earned</TableCell>
-                            <TableCell align="center">Status</TableCell>
-                          </TableRow>
-                        </TableHead>
-                        {listItems2}
-                      </Table>
-                    </TableContainer>
-                  </Paper>
-                  <div class="test_button">
+            </section>
+            <section class="orderHistory">
+              <div class="userorderHistory">
+              <h2 style={{ color: 'black' }}>Order History</h2>
+              <Paper className="user_order_table_paper">
+                <TableContainer className="user_order_table_container">
+                  <Table stickyHeader aria-label="sticky table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Order ID</TableCell>
+                        <TableCell align="right">Plastic Bottles</TableCell>
+                        <TableCell align="right">Plastic Bag</TableCell>
+                        <TableCell align="right">Shampoo Bottles</TableCell>
+                        <TableCell align="right">Batteries</TableCell>
+                        <TableCell align="right">Phones</TableCell>
+                        <TableCell align="right">Computer</TableCell>
+                        <TableCell align="right">Mason Jar</TableCell>
+                        <TableCell align="right">Glass Bottles</TableCell>
+                        <TableCell align="right">Light Bulb</TableCell>
+                        <TableCell align="right">Florescent Tubes</TableCell>
+                        <TableCell align="right">Fairy Lights</TableCell>
+                        <TableCell className="address" align="right">Date</TableCell>
+                        <TableCell className="address" align="right">Pickup Window</TableCell>
+                        <TableCell className="address" align="right">Address</TableCell>
+                        <TableCell align="right">ZIP</TableCell>
+                        <TableCell align="right">Contact No</TableCell>
+                        <TableCell align="right">Points Earned</TableCell>
+                        <TableCell align="center">Status</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    {listItems2}
+                  </Table>
+                </TableContainer>
+              </Paper>
+              <div class="test_button">
+
                     <Button
                       variant="contained"
                       color="auto"
