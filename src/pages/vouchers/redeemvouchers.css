@@ -9,6 +9,11 @@
   padding: 5px;
 }
 
+.alice-carousel__stage-item {
+  box-sizing: border-box;
+  /* height: 400px; */
+}
+
 .voucher-container {
   display: flex;
   justify-content: center;
