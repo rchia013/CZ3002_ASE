@@ -10,12 +10,6 @@ import { makeStyles, Grid, TextField, Paper } from '@material-ui/core';
 import { sizing } from '@material-ui/system';
 import './Confirmation.css' 
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-
 // This component receives Props (aka variables/state) from previous page(Wasteitem)
 // It prints the state from the previous page, passed through the Link from react-router
 // Authentication to firebase is done in base.js
@@ -23,7 +17,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 class Confirmation extends Component{
     
     // State for Confirmation depends on props passed from Wasteitem
-    state = { calendarEvents: null, address: "", zip: "", phone: "", confirmdialog: false  }
+    state = { calendarEvents: null, address: "", zip: "", phone: "" }
     
 
     // This runs when component mounts (basically when it appears on the page
@@ -63,39 +57,7 @@ class Confirmation extends Component{
 
     // Send update to firebase
     // Can also be tweaked to include completion callback
-    updateFirebase = () => {
-
-        // Handling user details
-        var user_email = this.state.user.email
-        var user_id = this.state.user.uid
-        var user_name = this.state.user.displayName
-        
-
-        // Removing unnecessary info
-        delete this.state.user
-        delete this.state.userDetails
-        delete this.state.tab
-
-        var orderdetails = this.state
-        var newOrderKey = firebase.database().ref().child('orders').push().key;
-        console.log(orderdetails)
-        var updates = {}
-        updates['/orders/' + user_id + '/' + newOrderKey] = orderdetails
-        // Firebase updated
-
-        // Sending confirmation email
-        const templateParams = {
-            to_name: user_name,
-            order_id: newOrderKey,
-            to_email: user_email
-        };
-        emailjs.send('gmail','template_8MKL7Ui0_clone', templateParams, 'user_v3HTSBe6LX8JIwU6pC5w0')
-
-        this.setState({ confirmdialog: true })
-        return firebase.database().ref().update(updates)
-    }
-
-    // Handles user particulars
+        // Handles user particulars
     getUserDetails(){
         console.log("fetching user details")
         base.fetch("users/" + this.state.user.uid , {
@@ -150,13 +112,10 @@ class Confirmation extends Component{
         this.setState({[input]: e.target.value})
     }
 
-    handleConfirmClose = (e, reason) => {
-        if (reason === "clickaway") {
-          return;
-        }
-        this.setState({ snackbar: false });
-      };
-    
+    cleanData = e => {
+        delete this.state.user
+    }
+
 
   render(){
     // console.log is useful for debugging, you can see it update in Chrome under Inspect Element > Console
@@ -233,8 +192,7 @@ class Confirmation extends Component{
                             </Paper>
                             </Grid>}
 
-                        <Grid item
-                        >
+                        <Grid item>
                         {(this.submissionCondition()) ?
 
                             (((this.state.weight<10) && (this.state.selfrecycle==false)) ?
@@ -242,23 +200,23 @@ class Confirmation extends Component{
                                 <Button 
                                     className="confirm_btn"
                                     variant="contained" color="primary" size="large" color="auto" 
-                                    onClick={() => this.updateFirebase()}>
-                                    {/* component={RouterLink} to={{ pathname:"/onemap", state: {displayselfrecycle:false} }}> */}
-                                    Confirm!
+                                    onClick={this.cleanData}
+                                    component={RouterLink} to={{ pathname:"/finalconfirmation", state: this.state.points }}>
+                                    Next
                                 </Button>:
-                                <Button 
+                                <Button     
                                     className="confirm_btn"
                                     variant="contained" color="primary" size="large" color="auto" 
-                                    onClick={() => this.updateFirebase()}>
-                                    {/* component={RouterLink} to="/"> */}
-                                    Confirm!
+                                    onClick={this.cleanData}
+                                    component={RouterLink} to={{ pathname:"/finalconfirmation", state: this.state }}>
+                                    Next
                                 </Button>) :
 
                         <Button 
                             className="confirm_btn"
                             variant="contained" color="primary" size="large" color="auto" 
                             disabled>
-                            Confirm!
+                            Next
                         </Button>}
 
                         </Grid>
@@ -270,26 +228,7 @@ class Confirmation extends Component{
                 </Grid>}
 
 
-                <Dialog
-                  open={this.state.confirmdialog}
-                  onClose={this.handleConfirmClose}
-                  aria-labelledby="edit-particulars-dialog"
-                >
-                  <DialogTitle id="edit-particulars-dialog">
-                    Password Reset
-                  </DialogTitle>
-                  <DialogContent id="edit-particulars-dialog">
-                    <DialogContentText>
-                      Success! A confirmation email has been sent to your registered
-                      email account.
-                    </DialogContentText>
-                  </DialogContent>
-                  <DialogActions id="edit-particulars-dialog">
-                    <Button onClick={this.handleConfirmClose} color="primary" component={RouterLink} to="/">
-                      OK
-                    </Button>
-                  </DialogActions>
-                </Dialog>
+                
 
                 </div>
             </div>
