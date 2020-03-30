@@ -96,6 +96,8 @@ class Wasteitem extends Component{
         var input = event.target
         if(isNaN(input.value) || input.value <= 0){
             input.value = 1
+        }else{
+            input.value = (Math.round(input.value))
         }
 
         this.updateCartTotal()
@@ -135,7 +137,7 @@ class Wasteitem extends Component{
         <span class="cart-points cart-column">${points}</span>
         <span class="cart-weight cart-column">${weight}</span>
         <div class="cart-quantity cart-column">
-            <input class="cart-quantity-input" type="number" value="1">
+            <input class="cart-quantity-input" type="number" value="1" step="1" pattern="[0-9]">
             <button class="btn btn-danger" type="button">REMOVE</button>
         </div> `
         
