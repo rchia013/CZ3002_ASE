@@ -46,3 +46,7 @@
 a.fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-end{
     background: greenyellow;
 }
+
+a.fc-time-grid-event.fc-event.fc-start.fc-end{
+    background: greenyellow;
+}
