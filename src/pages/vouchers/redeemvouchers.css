@@ -14,6 +14,7 @@
   justify-content: center;
   background: url("/account-bg1.jpg") no-repeat center center/ cover;
   height: 100vh;
+  align-items: center;
 }
 
 .vouchers {
@@ -33,5 +34,30 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   /* border-radius: 10px  ; */
-  /* image needs to be 24:10 ratio for it to display properly */
+  /* image needs to be about 2:1 ratio for it to display abit nicely */
+}
+
+.alert {
+  color: black;
+  border: 2px solid black;
+  background-color: beige;
+  height: 20%;
+  margin-top: 200px;
+  width: 40%;
+  padding: 20px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  z-index: 999;
+}
+.alertbody {
+  background-color: rgba(211, 211, 211, 0.5);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  z-index: 999;
 }
