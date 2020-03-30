@@ -9,18 +9,36 @@ import { firebaseapp } from '../../base.js'
 
 class Navbar2 extends Component {
 
-  state = {user: null}
+  state = {user: null, loading: true}
 
   componentDidMount(){
-    this.setState({ user: firebaseapp.auth().currentUser })
+    firebaseapp.auth().onAuthStateChanged((user) => {
+      if (user!=null) {
+          this.setState({ user: user, loading: false });
+      } else {
+          this.setState({ user: null, loading: false });
+      }
+    });
   }
-  render() {
 
+  checkStatus() {
+    firebaseapp.auth().onAuthStateChanged((user) => {
+            if (user!=null) {
+                this.setState({ user: user });
+            } else {
+                this.setState({ user: null });
+      }
+    });
+
+}
+
+  render() {
 
     return (
             <div class="navbar">
                 {/* Bar that appears at the top */}
                 {/* Apparently using #home jumps to that section on the page based on Section id */}
+                {(this.state.loading==true) ? null : 
                 <ul>
                     <li><RouterLink to =  "/">Home</RouterLink></li>
                     {(this.state.user==null) ? 
@@ -33,6 +51,7 @@ class Navbar2 extends Component {
                     <li><RouterLink to={{ pathname:'/waste-items', state: {selfrecycle: false}}}>Schedule Pick-Up</RouterLink></li>}
                     <li><RouterLink to = "/profile">My Account</RouterLink></li>
                 </ul>
+                }
             </div>
     );
 
