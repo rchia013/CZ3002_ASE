@@ -25,7 +25,6 @@ class Navbar2 extends Component {
     firebaseapp.auth().onAuthStateChanged((user) => {
             if (user!=null) {
                 this.setState({ user: user });
-                this.getUserDetails()
             } else {
                 this.setState({ user: null });
       }
