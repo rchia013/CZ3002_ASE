@@ -92,6 +92,9 @@ class RVouchers2 extends Component {
           )
           .then(() => {
             this.setState({ success: true });
+            setTimeout(() => {
+              window.location.reload();
+            }, 2500);
           });
       }
     });
@@ -179,29 +182,41 @@ class RVouchers2 extends Component {
           if (tempArray.includes(key)) {
             return (
               <div
-                key={key}
                 class="vouchers"
                 style={{
-                  backgroundColor: "grey",
+                  backgroundColor: "lightgrey",
                   height: "300px"
                 }}
               >
-                <h2
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    color: "black"
-                  }}
-                >
-                  {key}
-                </h2>
-                <div>{this.state.vouchers[key]["desc"]}</div>
-                <div style={{ color: "red" }}>
-                  Cost: {this.state.vouchers[key]["cost"]} points
+                <img
+                  class="voucher_images"
+                  src={this.state.vouchers[key]["url"]}
+                ></img>
+                <div class="voucher_description">
+                  <h2
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      color: "black"
+                    }}
+                  >
+                    {key}
+                  </h2>
+                  <div style={{ height: "40px" }}>
+                    {this.state.vouchers[key]["desc"]}
+                  </div>
+                  <div style={{ color: "red" }}>
+                    Cost: {this.state.vouchers[key]["cost"]} points
+                  </div>
+                  <button
+                    id={key}
+                    style={{ position: "relative", bottom: "0px" }}
+                    onClick={this.handleRedeem}
+                    disabled
+                  >
+                    Redeemed
+                  </button>
                 </div>
-                <button disabled id={key}>
-                  Redeemed
-                </button>
               </div>
             );
           } else {
@@ -250,8 +265,22 @@ class RVouchers2 extends Component {
 
     return this.state.loaded ? (
       <div class="voucher-container">
+        {this.state.alerted ? (
+          <div className="alertbody">
+            <div className="alert">
+              Voucher cost exceeds available amount of points! &emsp;
+              <Button
+                style={{ position: "relative", bottom: "0px" }}
+                variant="contained"
+                onClick={this.togglePopup}
+              >
+                Return
+              </Button>
+            </div>
+          </div>
+        ) : null}
         <Navbar2></Navbar2>
-        <div style={{ height: "381px", marginTop: "58px", width: "50%" }}>
+        <div style={{ height: "381px", marginTop: "58px", width: "40%" }}>
           <AliceCarousel
             autoHeight={true}
             duration={400}
@@ -260,7 +289,7 @@ class RVouchers2 extends Component {
             fadeOutAnimation={true}
             mouseDragEnabled={true}
             autoPlayInterval={2000}
-            autoPlayDirection="rtl"
+            autoPlayDirection="ltr"
             autoPlayActionDisabled={true}
             onSlideChange={this.onSlideChange}
             onSlideChanged={this.onSlideChanged}
@@ -268,6 +297,30 @@ class RVouchers2 extends Component {
             {temp}
           </AliceCarousel>
         </div>
+        <h2
+          style={{
+            marginTop: "100px",
+            width: "50%",
+            display: "flex",
+            justifyContent: "center",
+            color: "black",
+            // border: "2px solid black",
+            position: "absolute",
+            bottom: "20px"
+          }}
+        >
+          Current Points: {this.state.points}
+        </h2>
+        <Snackbar
+          open={this.state.success}
+          autoHideDuration={3000}
+          onClose={this.toggleSnackbar}
+        >
+          <Alert onClose={this.toggleSnackbar} severity="success">
+            Successfully redeemed voucher! Check your email for further details.
+            Page will now reload....
+          </Alert>
+        </Snackbar>
       </div>
     ) : (
       <div>Loading... Please Wait for a moment.</div>
