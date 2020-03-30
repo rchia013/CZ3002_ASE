@@ -19,10 +19,10 @@ import Profile from "./pages/Login/Profile.js";
 import Profile2 from "./pages/Login/Profile2.js";
 import Admin from "./pages/admin/admin.js";
 import Vouchers from "./pages/vouchers/vouchers.js";
-import Adminorders from "./pages/admin/adminOrders.js"
-import Adminschedule from "./pages/admin/adminSchedule"
-import Adminitems from "./pages/admin/adminItemUpdate"
-import RVouchers from "./pages/vouchers/redeemvouchers.js";
+import Adminorders from "./pages/admin/adminOrders.js";
+import Adminschedule from "./pages/admin/adminSchedule";
+import Adminitems from "./pages/admin/adminItemUpdate";
+import RVouchers2 from "./pages/vouchers/redeemvouchers2.js";
 
 // This is a functional component. If you need additional functionaility, it can be changed to a
 // class based component. As of now, its just a glorified routing thing so not necessary.
@@ -60,7 +60,7 @@ function App() {
           <Route path="/adminorders" exact component={Adminorders} />
           <Route path="/adminschedule" exact component={Adminschedule} />
           <Route path="/adminitems" exact component={Adminitems} />
-          <Route path="/redeemvouchers" exact component={RVouchers} />
+          <Route path="/redeemvouchers" exact component={RVouchers2} />
         </Switch>
       </div>
     </Router>
