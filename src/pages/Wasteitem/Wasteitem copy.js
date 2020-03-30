@@ -374,24 +374,49 @@ class Wasteitem extends Component{
                 </div>
 
                 {/* Conditional rendering for button */}
-                {((this.state.points == 0) || ((this.state.weight<10)&&(this.state.selfrecycle==false))) ?
-                <Button 
-                    className="btn-recycle-disabled"
-                    disabled
-                    variant="contained" color="auto" size="large">
-                    Minimum of 10kg Required!
-                    
-                </Button> :
-                <Button 
-                    className="btn-recycle"
-                    variant="contained" color="auto" size="large" 
-                    component={RouterLink} 
-                    to={{
-                        pathname:'/Confirmation', 
-                        state: this.state
-                    }}>
-                    RECYCLE
-                </Button>}
+                {
+                    (this.state.selfrecycle == true) ?                   
+                           ( (this.state.points == 0) ?
+
+                                <Button 
+                                className="btn-recycle-disabled"
+                                disabled
+                                variant="contained" color="auto" size="large">
+                                Please add 1 item to cart!
+                                </Button>
+                                :
+                                <Button 
+                                className="btn-recycle"
+                                variant="contained" color="auto" size="large" 
+                                component={RouterLink} 
+                                to={{
+                                    pathname:'/Confirmation', 
+                                    state: this.state
+                                }}>
+                                RECYCLE
+                            </Button>) :
+
+                                ((this.state.points == 0) || this.state.weight<10) ?
+
+                                <Button 
+                                className="btn-recycle-disabled"
+                                disabled
+                                variant="contained" color="auto" size="large">
+                                Minimum 10kg Required!
+                                
+                                </Button> 
+                                :
+                                <Button 
+                                className="btn-recycle"
+                                variant="contained" color="auto" size="large" 
+                                component={RouterLink} 
+                                to={{
+                                    pathname:'/Confirmation', 
+                                    state: this.state
+                                }}>
+                                RECYCLE
+                            </Button>             
+                }
             </div>
             </div>
 

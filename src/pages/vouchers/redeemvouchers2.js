@@ -4,11 +4,13 @@ import { Button } from "@material-ui/core";
 import emailjs from "emailjs-com";
 import { Link as RouterLink } from "react-router-dom";
 import "../Home/Home.css";
-import "./vouchers.css";
+import "./redeemvouchers.css";
 import Popup from "../admin/popup.js";
 import NavBar2 from "../../components/navbar2/navbar2.js";
 import { Alert } from "@material-ui/lab";
 import { Snackbar } from "@material-ui/core";
+import AliceCarousel from "react-alice-carousel";
+import Navbar2 from "../../components/navbar2/navbar2.js";
 
 const vouchersRef = firebaseapp
   .database()
@@ -18,7 +20,7 @@ const vouchersRef = firebaseapp
 const db = firebaseapp.database().ref();
 var temp = null;
 
-class RVouchers extends Component {
+class RVouchers2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -101,7 +103,15 @@ class RVouchers extends Component {
     });
   };
   // Checks status and adds user to state
+  onSlideChange(e) {
+    console.log("Item`s position during a change: ", e.item);
+    console.log("Slide`s position during a change: ", e.slide);
+  }
 
+  onSlideChanged(e) {
+    console.log("Item`s position after changes: ", e.item);
+    console.log("Slide`s position after changes: ", e.slide);
+  }
   toggleSnackbar = () => {
     this.setState({ success: !this.state.success });
   };
@@ -172,7 +182,8 @@ class RVouchers extends Component {
                 key={key}
                 class="vouchers"
                 style={{
-                  backgroundColor: "grey"
+                  backgroundColor: "grey",
+                  height: "300px"
                 }}
               >
                 <h2
@@ -198,25 +209,38 @@ class RVouchers extends Component {
               <div
                 class="vouchers"
                 style={{
-                  backgroundColor: "white"
+                  backgroundColor: "white",
+                  height: "300px"
                 }}
               >
-                <h2
-                  style={{
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    color: "black"
-                  }}
-                >
-                  {key}
-                </h2>
-                <div>{this.state.vouchers[key]["desc"]}</div>
-                <div style={{ color: "red" }}>
-                  Cost: {this.state.vouchers[key]["cost"]} points
+                <img
+                  class="voucher_images"
+                  src={this.state.vouchers[key]["url"]}
+                ></img>
+                <div class="voucher_description">
+                  <h2
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      color: "black"
+                    }}
+                  >
+                    {key}
+                  </h2>
+                  <div style={{ height: "40px" }}>
+                    {this.state.vouchers[key]["desc"]}
+                  </div>
+                  <div style={{ color: "red" }}>
+                    Cost: {this.state.vouchers[key]["cost"]} points
+                  </div>
+                  <button
+                    id={key}
+                    style={{ position: "relative", bottom: "0px" }}
+                    onClick={this.handleRedeem}
+                  >
+                    Redeem
+                  </button>
                 </div>
-                <button id={key} onClick={this.handleRedeem}>
-                  Redeem
-                </button>
               </div>
             );
           }
@@ -225,65 +249,29 @@ class RVouchers extends Component {
     }
 
     return this.state.loaded ? (
-      <div>
-        {this.state.alerted ? (
-          <div className="alertbody">
-            <div className="alert">
-              Voucher cost exceeds available amount of points! &emsp;
-              <Button
-                style={{ position: "relative", bottom: "0px" }}
-                variant="contained"
-                onClick={this.togglePopup}
-              >
-                Return
-              </Button>
-            </div>
-          </div>
-        ) : null}
-        <div
-          style={{
-            overflowY: "scroll",
-            height: "100vh",
-            display: "flex",
-            flexWrap: "wrap",
-            clear: "both",
-            backgroundColor: "beige"
-          }}
-        >
-          <NavBar2></NavBar2>
-          <h2
-            style={{
-              marginTop: "100px",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              color: "black"
-            }}
+      <div class="voucher-container">
+        <Navbar2></Navbar2>
+        <div style={{ height: "381px", marginTop: "58px", width: "50%" }}>
+          <AliceCarousel
+            autoHeight={true}
+            duration={400}
+            autoPlay={true}
+            startIndex={1}
+            fadeOutAnimation={true}
+            mouseDragEnabled={true}
+            autoPlayInterval={2000}
+            autoPlayDirection="rtl"
+            autoPlayActionDisabled={true}
+            onSlideChange={this.onSlideChange}
+            onSlideChanged={this.onSlideChanged}
           >
-            Current Points: {this.state.points}
-          </h2>
-          <div
-            class="voucher-container1"
-            style={{ border: "2px solid black", marginTop: "10px" }}
-          >
-            <h1>Current Vouchers</h1>
-            <div class="voucher">{temp}</div>
-          </div>
+            {temp}
+          </AliceCarousel>
         </div>
-        );
-        <Snackbar
-          open={this.state.success}
-          autoHideDuration={3000}
-          onClose={this.toggleSnackbar}
-        >
-          <Alert onClose={this.toggleSnackbar} severity="success">
-            Successfully redeemed voucher! Check your email for further details.
-          </Alert>
-        </Snackbar>
       </div>
     ) : (
       <div>Loading... Please Wait for a moment.</div>
     );
   }
 }
-export default RVouchers;
+export default RVouchers2;
