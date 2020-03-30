@@ -17,7 +17,7 @@
 .voucher-container {
   display: flex;
   justify-content: center;
-  background: url("/account-bg1.jpg") no-repeat center center/ cover;
+  background: url("/background2.png") no-repeat center center/ cover;
   height: 100vh;
   align-items: center;
 }

@@ -376,7 +376,7 @@ class Wasteitem extends Component{
                 {/* Conditional rendering for button */}
                 {
                     (this.state.selfrecycle == true) ?                   
-                           ( (this.state.points == 0) ?
+                           ((this.state.points == 0) ?
 
                                 <Button 
                                 className="btn-recycle-disabled"
@@ -390,7 +390,7 @@ class Wasteitem extends Component{
                                 variant="contained" color="auto" size="large" 
                                 component={RouterLink} 
                                 to={{
-                                    pathname:'/Confirmation', 
+                                    pathname:'/finalconfirmation', 
                                     state: this.state
                                 }}>
                                 RECYCLE

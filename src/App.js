@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./pages/Home/Home.js";
 import Wasteitems from "./pages/Wasteitem/Wasteitem copy.js";
 import Confirmation from "./pages/Confirmation.js";
+import Confirmation2 from "./pages/Confirmation2.js";
 import History from "./pages/History.js";
 import GoogleMapPage from "./googlemaps/googlemaps.js";
 import Onemap from "./onemap/onemap2.js";
@@ -40,6 +41,7 @@ function App() {
           <Route path="/categorypage" component={Categorypage} />
           <Route path="/waste-items" component={Wasteitems} />
           <Route path="/confirmation" component={Confirmation} />
+          <Route path="/finalconfirmation" component={Confirmation2} />
 
           {/* There is currently no link/button to History. You can access it manually by
                 typing '/history' to the end of 'localhost:3000'. I have only ever worked with 

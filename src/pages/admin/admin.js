@@ -79,7 +79,7 @@ class Admin extends Component {
                 to="/adminitems"
                 style={{ backgroundColor: "lightgrey" }}
               >
-                Edit Waste Selection
+                Edit Category Page
               </Button>
             </div>
           </div>
