@@ -25,6 +25,7 @@ class Vouchers extends Component {
     user: null,
     title: "",
     desc: "",
+    url: "",
     cost: null,
     error: false,
     vouchers: null,
@@ -40,6 +41,12 @@ class Vouchers extends Component {
   handleDesc = e => {
     this.setState({
       desc: e.target.value
+    });
+  };
+
+  handleURL = e => {
+    this.setState({
+      url: e.target.value
     });
   };
 
@@ -81,7 +88,8 @@ class Vouchers extends Component {
       this.state.title === "" ||
       this.state.desc === "" ||
       this.state.cost === null ||
-      this.state.count === null
+      this.state.count === null ||
+      this.state.url === ""
     ) {
       this.setState({
         error: true
@@ -94,7 +102,8 @@ class Vouchers extends Component {
           {
             desc: this.state.desc,
             cost: this.state.cost,
-            count: this.state.count
+            count: this.state.count,
+            url: this.state.url
           },
           function(error) {
             if (error) {
@@ -110,7 +119,8 @@ class Vouchers extends Component {
       desc: "",
       title: "",
       cost: null,
-      count: null
+      count: null,
+      url: ""
     });
   };
 
@@ -162,7 +172,7 @@ class Vouchers extends Component {
     var temp = null;
     if (this.state.vouchers != null) {
       temp = Object.keys(this.state.vouchers).map(key => (
-        <div class="vouchers" style={{ color: "white" }}>
+        <div class="vouchers" style={{ color: "white", padding: "10px" }}>
           <h2
             style={{
               display: "flex",
@@ -242,7 +252,7 @@ class Vouchers extends Component {
             </nav>
           </div>
           <div class="voucher-container1">
-            <h1 style={{ color: "black", height: "10%" }}>
+            <h1 style={{ color: "black", height: "50px" }}>
               Current Vouchers
               <IconButton onClick={this.toggleDialog}>
                 <AddIcon />
@@ -297,6 +307,16 @@ class Vouchers extends Component {
                   type="number"
                   onChange={this.handleCount}
                 />
+                <TextField
+                  required
+                  className="edit-particulars"
+                  label="Image URL Link (2:1 ratio or higher)"
+                  variant="outlined"
+                  margin="normal"
+                  onChange={this.handleURL}
+                >
+                  {/* Please ensure the image is the ratio of 2:1 or higher */}
+                </TextField>
               </DialogContent>
               <DialogActions id="edit-particulars-dialog">
                 <Button onClick={this.toggleDialog} color="primary">
