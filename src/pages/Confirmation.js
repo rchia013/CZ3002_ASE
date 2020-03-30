@@ -125,8 +125,8 @@ class Confirmation extends Component{
         if (window.confirm('Would you like to add an event to ' + arg.dateStr + ' ?')) {
             // var title = window.prompt("Enter the title");
             var title = "Schedule pickup"
-            var starttime = window.prompt("Enter the start time");
-            var endtime = window.prompt("Enter the end time");
+            var starttime = window.prompt("Enter the start time(HH:MM:SS)");
+            var endtime = window.prompt("Enter the end time(HH:MM:SS)");
             var calUpdate = {
                 title: title,
                 start:arg.dateStr + 'T' + starttime,

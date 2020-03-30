@@ -35,3 +35,14 @@
 .adminSchedule_home_btn{
     margin:0;
 }
+
+
+.fc-view.fc-dayGridMonth-view.fc-dayGrid-view{
+    font-style: unset;
+    font-weight: 1000;
+    color: aqua;
+}
+
+a.fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-end{
+    background: greenyellow;
+}
