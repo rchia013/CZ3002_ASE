@@ -10,6 +10,12 @@ import { makeStyles, Grid, TextField, Paper } from '@material-ui/core';
 import { sizing } from '@material-ui/system';
 import './Confirmation.css' 
 
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
 // This component receives Props (aka variables/state) from previous page(Wasteitem)
 // It prints the state from the previous page, passed through the Link from react-router
 // Authentication to firebase is done in base.js
@@ -17,7 +23,7 @@ import './Confirmation.css'
 class Confirmation extends Component{
     
     // State for Confirmation depends on props passed from Wasteitem
-    state = { calendarEvents: null, address: "", zip: "", phone: ""  }
+    state = { calendarEvents: null, address: "", zip: "", phone: "", confirmdialog: false  }
     
 
     // This runs when component mounts (basically when it appears on the page
@@ -84,6 +90,8 @@ class Confirmation extends Component{
             to_email: user_email
         };
         emailjs.send('gmail','template_8MKL7Ui0_clone', templateParams, 'user_v3HTSBe6LX8JIwU6pC5w0')
+
+        this.setState({ confirmdialog: true })
         return firebase.database().ref().update(updates)
     }
 
@@ -141,6 +149,14 @@ class Confirmation extends Component{
     handleTextChange = input => e => {
         this.setState({[input]: e.target.value})
     }
+
+    handleConfirmClose = (e, reason) => {
+        if (reason === "clickaway") {
+          return;
+        }
+        this.setState({ snackbar: false });
+      };
+    
 
   render(){
     // console.log is useful for debugging, you can see it update in Chrome under Inspect Element > Console
@@ -226,15 +242,15 @@ class Confirmation extends Component{
                                 <Button 
                                     className="confirm_btn"
                                     variant="contained" color="primary" size="large" color="auto" 
-                                    onClick={() => this.updateFirebase()}
-                                    component={RouterLink} to={{ pathname:"/onemap", state: {displayselfrecycle:false} }}>
+                                    onClick={() => this.updateFirebase()}>
+                                    {/* component={RouterLink} to={{ pathname:"/onemap", state: {displayselfrecycle:false} }}> */}
                                     Confirm!
                                 </Button>:
                                 <Button 
                                     className="confirm_btn"
                                     variant="contained" color="primary" size="large" color="auto" 
-                                    onClick={() => this.updateFirebase()}
-                                    component={RouterLink} to="/">
+                                    onClick={() => this.updateFirebase()}>
+                                    {/* component={RouterLink} to="/"> */}
                                     Confirm!
                                 </Button>) :
 
@@ -254,6 +270,26 @@ class Confirmation extends Component{
                 </Grid>}
 
 
+                <Dialog
+                  open={this.state.confirmdialog}
+                  onClose={this.handleConfirmClose}
+                  aria-labelledby="edit-particulars-dialog"
+                >
+                  <DialogTitle id="edit-particulars-dialog">
+                    Password Reset
+                  </DialogTitle>
+                  <DialogContent id="edit-particulars-dialog">
+                    <DialogContentText>
+                      Success! A confirmation email has been sent to your registered
+                      email account.
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions id="edit-particulars-dialog">
+                    <Button onClick={this.handleConfirmClose} color="primary" component={RouterLink} to="/">
+                      OK
+                    </Button>
+                  </DialogActions>
+                </Dialog>
 
                 </div>
             </div>
