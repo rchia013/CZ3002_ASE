@@ -172,7 +172,22 @@ class Vouchers extends Component {
     var temp = null;
     if (this.state.vouchers != null) {
       temp = Object.keys(this.state.vouchers).map(key => (
-        <div class="vouchers" style={{ color: "white", padding: "10px" }}>
+        <div
+          class="vouchers"
+          style={{
+            width: "60%",
+            color: "white",
+            padding: "10px",
+            backgroundColor: "white"
+            // backgroundImage: `url(${this.state.vouchers[key]["url"]})`,
+            // backgroundPosition: "center",
+            // backgroundSize: "cover"
+          }}
+        >
+          <img
+            src={this.state.vouchers[key]["url"]}
+            style={{ width: "100%" }}
+          />
           <h2
             style={{
               display: "flex",
@@ -258,7 +273,16 @@ class Vouchers extends Component {
                 <AddIcon />
               </IconButton>
             </h1>
-            <div class="voucher">{temp}</div>
+            <div
+              class="voucher"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap"
+              }}
+            >
+              {temp}
+            </div>
           </div>
           <div>
             <Dialog
