@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import "./Home.css";
 import { firebaseapp } from "../../base.js";
 import Navbar from "../../components/navbar2/navbar2.js";
-import { green, white } from "@material-ui/core/colors";
 
 // This is a class based component (forgot what it's proper name is called). The other option is
 // a functional component. Class based components offer more flexibility though.
@@ -140,42 +139,6 @@ class Home extends Component {
           </ul>
         </section>
 
-        <section id="letsgo">
-
-          {/* <div class="letsgopage">
-            <div class="schedulepickup">
-              <Button
-                id="pickupbutton"
-                variant="contained"
-                color="white"
-                size="large"
-                // style={{ color: "white" }}
-                component={RouterLink}
-                to={{
-                  pathname: "/waste-items",
-                  state: { selfrecycle: false }
-                }}
-              >
-                Schedule Pick Up
-              </Button>
-            </div>
-            <div class="selfrecycle">
-              <Button
-                id="recyclebutton"
-                variant="contained"
-                color="white"
-                size="large"
-                component={RouterLink}
-                to={{
-                  pathname: "/onemap",
-                  state: { selfrecycle: true }
-                }}
-              >
-                Self-Recycle
-              </Button>
-            </div>
-          </div> */}
-        </section>
 
         <section id="profile_details">
           <div class="bigger_div">

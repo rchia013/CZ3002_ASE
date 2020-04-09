@@ -4,7 +4,6 @@ import { Button, Icon } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import "../Home/Home.css";
 import "./vouchers.css";
-import Popup from "../admin/popup.js";
 import { Snackbar, TextField, Paper } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";

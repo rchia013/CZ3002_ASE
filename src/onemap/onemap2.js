@@ -11,10 +11,6 @@ import Navbar from "../components/navbar2/navbar2.js";
 import { Link as RouterLink} from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 
-// import { GoogleProvider } from "leaflet-geosearch";
-
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "leaflet/dist/images/marker-shadow.png";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -30,11 +26,6 @@ var myIcon = L.icon({
   popupAnchor: [0, -41]
 });
 
-// const provider = new GoogleProvider({
-//   params: {
-//     key: "AIzaSyAwBgI9uqnUAlslEI-48KZbaer7Ih0EUjw"
-//   }
-// });
 
 class Onemap2 extends Component {
   constructor(props) {
@@ -163,11 +154,6 @@ class Onemap2 extends Component {
               <span>Lighting Waste</span>
               <br></br>
             </label>
-            {/* <label>
-              <input type="checkbox"></input>
-              <span>Check me out</span>
-              <br></br>
-            </label> */}
           </div>
         </div>
 

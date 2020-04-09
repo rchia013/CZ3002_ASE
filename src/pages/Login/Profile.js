@@ -72,16 +72,6 @@ class Profile extends Component {
   render() {
     
 
-    // console.log(firebase.auth().currentUser)
-    // this.getUserOrders()
-    //console.log(firebase.auth().currentUser.displayName)
-    // Functions to be run should be put here. And other stuff that I'm probably not aware of.
-    // Note that ComponentWillMount() etc will be above in the function area (see Wasteitem.js)
-    // These special functions will, generally speaking, run before anything is loaded
-
-    // Return is basically the html for whatever you want displayed.
-    // Note that you can only return one html element, so in this case i wrapped everything in
-    // <div class="home_content">
     return (
       <div>
         {this.state.admin ? (

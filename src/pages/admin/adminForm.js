@@ -150,41 +150,6 @@ class AdminForm extends Component {
           </Alert>
         </Snackbar>
       </div>
-      // <div class="form">
-      //   <form id="form">
-      //     <input
-      //       type="email"
-      //       placeholder="User email"
-      //       onChange={this.handleChange}
-      //     ></input>
-      //     <Button variant="contained" onClick={this.handleSubmit}>
-      //       Make Admin
-      //     </Button>
-      //   </form>
-      //   <Snackbar
-      //     className="profile-snackbar"
-      //     anchorOrigin={{
-      //       vertical: "bottom",
-      //       horizontal: "left"
-      //     }}
-      //     open={this.state.success}
-      //     autoHideDuration={1000}
-      //     onClose={this.togglePopup}
-      //     message="Successfully added the user as admin!"
-      //     action={
-      //       <React.Fragment>
-      //         <IconButton
-      //           size="small"
-      //           aria-label="close"
-      //           color="inherit"
-      //           onClick={this.handlePopup}
-      //         >
-      //           <CloseIcon fontSize="small" />
-      //         </IconButton>
-      //       </React.Fragment>
-      //     }
-      //   />
-      // </div>
     );
   }
 }
