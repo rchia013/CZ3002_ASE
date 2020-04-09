@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Link as RouterLink} from 'react-router-dom';
-import { firebaseapp, base } from '../base.js'
-import firebase from 'firebase'
+import { firebaseapp, base } from '../../base.js'
 import Button from '@material-ui/core/Button'
-import emailjs from 'emailjs-com'
-import Calendar from './calendar/calendar.jsx'
-import Navbar2 from './../components/navbar2/navbar2.js'
-import { makeStyles, Grid, TextField, Paper } from '@material-ui/core';
-import { sizing } from '@material-ui/system';
+import Calendar from '../calendar/calendar.jsx'
+import Navbar2 from '../../components/navbar2/navbar2.js'
+import { Grid, TextField, Paper } from '@material-ui/core';
 import './Confirmation.css' 
 
 // This component receives Props (aka variables/state) from previous page(Wasteitem)

@@ -5,7 +5,7 @@ import { Map, TileLayer, Marker, Popup, GeoJSON } from "react-leaflet";
 import "./onemap.css";
 import ewastedata from "./e-waste-recycling-geojson.json";
 import lightingwastedata from "./lighting-waste-collection-points-geojson.json";
-import Navbar from "../components/navbar2/navbar2.js";
+import Navbar from "../../components/navbar2/navbar2.js";
 
 
 import { Link as RouterLink} from 'react-router-dom';
