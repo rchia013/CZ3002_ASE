@@ -1,11 +1,3 @@
-// var pics =[
-//   "../../components/image/plastic.jpg",
-//   "../../components/image/glass.jpg",
-//   "../../components/image/ewaste.jpg"
-// ]
-
-
-import React, { Component } from 'react';
 
 import plastic from '../../components/image/plastic.jpg';
 import glass from '../../components/image/glass.jpg';

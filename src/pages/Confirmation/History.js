@@ -4,9 +4,9 @@
 
 import React, { Component } from 'react';
 import { Link as RouterLink} from 'react-router-dom';
-import { base } from '../base.js'
+import { base } from '../../base.js'
 import Button from '@material-ui/core/Button'
-import './Wasteitem/Wasteitem.css'
+
 
 // This component receives props (aka variables/state) from previous page(Wasteitem)
 // It prints the state from the previous page, passed through the Link from react-router

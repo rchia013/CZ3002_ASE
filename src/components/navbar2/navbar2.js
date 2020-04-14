@@ -2,10 +2,8 @@
 import React, { Component } from 'react';
 import "../navbar/Navbar.css";
 import { Link as RouterLink } from 'react-router-dom';
-import Home from '../../pages/Home/Home.js';
 import { firebaseapp } from '../../base.js'
      
-
 
 class Navbar2 extends Component {
 

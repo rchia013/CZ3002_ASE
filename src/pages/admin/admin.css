@@ -1,8 +1,6 @@
 .admin {
   display: flex;
-  /* border: 2px solid black; */
   padding: 10px;
-  /* position: relative; */
   margin: 0px;
   font-family: Raleway;
   color: beige;
@@ -21,12 +19,9 @@
   margin-top: 80px;
   width: 30%;
   display: flex;
-  /* position: relative; */
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-
-  /* border: solid 2px blue; */
 }
 
 .form {
@@ -35,9 +30,7 @@
   margin: 40px auto;
   max-width: 300px;
   display: flex;
-  /* border: 2px solid black; */
   justify-content: center;
-  /* background-color: #777; */
 }
 
 #form {

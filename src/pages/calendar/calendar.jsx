@@ -32,13 +32,6 @@ export default class Calendar extends React.Component {
     });
   }
 
-  // updateFirebase = (caldetails) => {
-  //   // var caldetails = this.state
-  //   var newCalKey = firebase.database().ref().child('calendar').push().key;
-  //   var updates = {}
-  //   updates['/calendar/' + newCalKey] = caldetails
-  //   return firebase.database().ref().update(updates)
-  // }
 
   componentDidUpdate(prevProps){
     if (this.props.calEvents!=prevProps.calEvents){
@@ -51,28 +44,6 @@ export default class Calendar extends React.Component {
       this.forceUpdate()
     }
   }
-
-  // Reads data from firebase as an object
-  // Can try to clean up this data, super messy in this form
-  // getOrders(){
-  //     base.fetch('calendar', {
-  //         context: this,
-  //         asArray: true,
-  //         then(data){
-  //             console.log(data)
-  //             this.setState({calendarEvents: data})
-  //         }
-  //     })
-  // }
-
-  // eventRender() {
-  //   var tooltip = new Tooltip(info.el, {
-  //     title: info.event.extendedProps.key,
-  //     placement: 'top',
-  //     trigger: 'hover',
-  //     container: 'body'
-  //   });
-  // }
 
   render() {
 

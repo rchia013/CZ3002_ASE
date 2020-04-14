@@ -2,21 +2,16 @@ import React from "react";
 import "./App.css";
 import Home from "./pages/Home/Home.js";
 import Wasteitems from "./pages/Wasteitem/Wasteitem copy.js";
-import Confirmation from "./pages/Confirmation.js";
-import Confirmation2 from "./pages/Confirmation2.js";
-import History from "./pages/History.js";
-import GoogleMapPage from "./googlemaps/googlemaps.js";
-import Onemap from "./onemap/onemap2.js";
+import Confirmation from "./pages/Confirmation/Confirmation.js";
+import Confirmation2 from "./pages/Confirmation/Confirmation2.js";
+import History from "./pages/Confirmation/History.js";
+import Onemap from "./pages/onemap/onemap2.js";
 import Categorypage from "./pages/Categorypage/Categorypage.js";
 import DemoApp from "./pages/calendar/calendar.jsx";
-//import Plasticcat from "./pages/Categorypage/Plasticcat.js";
 import Lightingcat from "./pages/Categorypage/Lightingcat.js";
 import Test from "./pages/Categorypage/test.js";
-import Category from "./components/category/Category.js";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import GreenShoppingCart from "./pages/GreenCart/GreenShoppingCart.js";
 import Login from "./pages/Login/Login.js";
-import Profile from "./pages/Login/Profile.js";
 import Profile2 from "./pages/Login/Profile2.js";
 import Admin from "./pages/admin/admin.js";
 import Vouchers from "./pages/vouchers/vouchers.js";
@@ -42,18 +37,10 @@ function App() {
           <Route path="/waste-items" component={Wasteitems} />
           <Route path="/confirmation" component={Confirmation} />
           <Route path="/finalconfirmation" component={Confirmation2} />
-
-          {/* There is currently no link/button to History. You can access it manually by
-                typing '/history' to the end of 'localhost:3000'. I have only ever worked with 
-                API calls to MySQL (not even sure if it counts as API) but I used a secondary router
-                for that. Just keep in mind for when you try to link to data.gov API, may have to use
-                another router. */}
           <Route path="/history" component={History} />
-          <Route path="/map" component={GoogleMapPage} />
           <Route path="/onemap" component={Onemap} />
           <Route path="/lightingcat" component={Lightingcat} />
           <Route path="/test" component={Test} />
-          <Route path="/greenshoppingcart" component={GreenShoppingCart} />
           <Route path="/calendar" component={DemoApp} />
           <Route path="/login" component={Login} />
           <Route path="/profile" component={Profile2} />

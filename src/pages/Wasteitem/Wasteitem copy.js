@@ -3,7 +3,6 @@ import { Link as RouterLink} from 'react-router-dom';
 import { AppBar, Tabs, Tab, Paper} from '@material-ui/core';
 import Button from '@material-ui/core/Button'
 import './Wasteitem copy.css'
-import fairylightsImg from '../../components/image/fairylights.jpg'
 import Navbar2 from '../../components/navbar2/navbar2.js'
 import { firebaseapp, base } from "../../base.js";
 

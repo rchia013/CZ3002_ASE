@@ -10,30 +10,7 @@ var firebase = require('firebase');
 
 
 
-/* Commented since apparently already initiated
 
-var firebaseConfig = {
-    apiKey: "AIzaSyAJC89W4Ri_RMi47vXwaB--Krtjz83_FRY",
-    authDomain: "neadatabase.firebaseapp.com",
-    databaseURL: "https://neadatabase.firebaseio.com",
-    projectId: "neadatabase",
-    storageBucket: "neadatabase.appspot.com",
-    messagingSenderId: "545938314026",
-    appId: "1:545938314026:web:4f2a985d905f3eb3224453",
-    measurementId: "G-9H01WLR7DF"
-  };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-*/
-
-/*ui.start('#firebaseui-auth-container', {
-    signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID
-    ],
-    // Other config options...
-});*/
 
   // Initialize the FirebaseUI Widget using Firebase.
     
