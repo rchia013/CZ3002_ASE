@@ -99,12 +99,18 @@ class adminOrders extends Component {
         return firebase.database().ref().update(updates)
       })
     this.setState({ snackbar: true })
+    setTimeout(() => {
+      window.location.reload();
+    }, 2500);
     // Firebase updated
   }
 
   deleteOrder(user_id, orderID){
     var userpointsRef = firebaseapp.database().ref('/orders/' + user_id + '/' + orderID).remove()
     this.setState({ snackbar: true })
+    setTimeout(() => {
+      window.location.reload();
+    }, 2500);
     // Firebase updated
   }
 

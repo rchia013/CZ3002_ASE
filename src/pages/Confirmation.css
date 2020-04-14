@@ -1,8 +1,9 @@
 .confirmation_page{
     background: url("/calendar-bg.jpg")no-repeat center center/ cover;
     display: flex;
-    height:100vh;
+    height:88vh;
     width: 100%;
+    margin-top: 12vh;
     justify-content: center;
     overflow-y: scroll;
     background-color: white;
@@ -10,10 +11,9 @@
 
 .confirmation_content{
     display: flex;
-    height:90vh;
+    height:auto;
     width: 90vw;
     justify-content: left;
-    align-items: center;
 }
 
 .confirmation_content p{
@@ -37,12 +37,6 @@
         width:100%;
         justify-content: right;
     } */
-
-.MuiGrid-root.Checkout,
-.MuiGrid-root.calendarGrid{
-    padding-top: 20vh;
-    
-}
 
 .MuiGrid-root.orderGrid_item {
     width:80%;

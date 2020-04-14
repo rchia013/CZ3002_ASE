@@ -337,7 +337,7 @@ class Profile2 extends Component {
                     </Button>
                   ) : (
                     <Button
-                      className="delete-btn"
+                      className="approved-btn"
                       variant="contained"
                       color="auto"
                       size="large"
