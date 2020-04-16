@@ -173,15 +173,6 @@ class Vouchers extends Component {
       temp = Object.keys(this.state.vouchers).map(key => (
         <div
           class="vouchers"
-          style={{
-            width: "60%",
-            color: "white",
-            padding: "10px",
-            backgroundColor: "white"
-            // backgroundImage: `url(${this.state.vouchers[key]["url"]})`,
-            // backgroundPosition: "center",
-            // backgroundSize: "cover"
-          }}
         >
           <img
             src={this.state.vouchers[key]["url"]}
@@ -196,12 +187,12 @@ class Vouchers extends Component {
           >
             {key}
           </h2>
-          <div>{this.state.vouchers[key]["desc"]}</div>
-          <div style={{ color: "red" }}>
+          <div class="voucherdesc">{this.state.vouchers[key]["desc"]}</div>
+          <div class="vouchercost" style={{ color: "red" }}>
             Cost: {this.state.vouchers[key]["cost"]} points
           </div>
           <p>Remaining: {this.state.vouchers[key]["count"]} copies</p>
-          <button id={key} onClick={this.handleDelete}>
+          <button class="voucherdelete" id={key} onClick={this.handleDelete}>
             Delete
           </button>
         </div>
@@ -274,16 +265,10 @@ class Vouchers extends Component {
             </h1>
             <div
               class="voucher"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                flexWrap: "wrap"
-              }}
             >
               {temp}
-            </div>
 
-            <div class="adminSchedule_home_btn">
+              <div class="adminSchedule_home_btn">
                 <Button
                   variant="contained"
                   color="auto"
@@ -294,6 +279,9 @@ class Vouchers extends Component {
                   Back
                 </Button>
               </div>
+            </div>
+
+            
           </div>
           <div>
             <Dialog

@@ -32,6 +32,7 @@ class Admin extends Component {
             </div>
             <div style={{ margin: "15px" }}>
               <Button
+                className="adminpagebtn"
                 classes={{ label: "admin-components" }}
                 variant="contained"
                 color="auto"
@@ -45,6 +46,7 @@ class Admin extends Component {
             </div>
             <div style={{ margin: "15px" }}>
               <Button
+                className="adminpagebtn"
                 classes={{ label: "admin-components" }}
                 variant="contained"
                 color="primary"
@@ -58,6 +60,7 @@ class Admin extends Component {
             </div>
             <div style={{ margin: "15px" }}>
               <Button
+                className="adminpagebtn"
                 classes={{ label: "admin-components" }}
                 variant="contained"
                 color="primary"
@@ -71,6 +74,7 @@ class Admin extends Component {
             </div>
             <div style={{ margin: "15px" }}>
               <Button
+                className="adminpagebtn"
                 classes={{ label: "admin-components" }}
                 variant="contained"
                 color="primary"
@@ -85,6 +89,7 @@ class Admin extends Component {
 
             <div style={{ margin: "15px" }}>
               <Button
+                className="adminpagebtn"
                 classes={{ label: "admin-components" }}
                 variant="contained"
                 color="primary"

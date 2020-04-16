@@ -189,24 +189,44 @@ html, body {
 
 .cart-column {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     border-bottom:1px solid f4f4f4;
-    margin-right: 2em;
+    justify-content: space-evenly;
+    /* margin-right: 2em;
     margin-left: 2em;
     padding-bottom: 10px;
-    margin-top: 40px;
-
-
+    margin-top: 40px; */
 }
 
 .cart-row {
     display: flex;
+    justify-content: space-evenly;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    margin-top: 2vh;
 }
 
 
 .cart-item {
     flex:1;
+    /* display: flex; */
+    /* justify-content: space-evenly; */
 }
+
+.cart-item.cart-column {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-weight.cart-header.cart-column,
+.cart-points.cart-header.cart-column,
+.cart-item.cart-header.cart-column,
+.cart-quantity.cart-header.cart-column{
+    display: flex;
+    justify-content: center;
+    font-size: 3.5vmin;
+}
+
 
 .cart-points {
     flex: 1;
@@ -222,8 +242,12 @@ html, body {
 
 .cart-item-title {
     color: black;
-    margin-left: .5em;
-    font-size: 1.2em;
+    font-size: 2.5vmin;
+}
+
+.cart-points.cart-column,
+.cart-weight.cart-column{
+    font-size: 2.5vmin;
 }
 
 .cart-item-image {
@@ -238,6 +262,8 @@ html, body {
     border: none;
     border-radius: .3em;
     font-weight: bold;
+    font-size: 2.5vmin;
+    height: 5vh;
 }
 
 .btn-danger:hover {
@@ -245,22 +271,21 @@ html, body {
 }
 
 .cart-quantity-input {
-    height: 34px;
-    width: 50px;
-    border-radius: 5px;
-    border: 1px solid #bad4aa;
+    height: 5vh;
+    width: 5vw;
+    border-radius: 0.01rem;
+    border: .1rem solid #bad4aa;
     background-color: #eee;
     color: #333;
     padding: 0;
     text-align: center;
-    font-size: 1.2em;
-    margin-right: 25px;
+    font-size: 2.5vmin;
 }
 
 
 .cart-total {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-top: 40px;
     margin-right: 10px;
 
@@ -269,29 +294,28 @@ html, body {
 .cart-total-title {
     
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 3vmin;
     color: black;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 
 }
 
 .divider {
-    
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 3vmin;
     color: #f4f4f4;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 
 }
 .cart-total-points {
     color: black;
-    margin-right:20px;
-    font-size: 1.5em;
+    /* margin-right:20px; */
+    font-size: 3vmin;
 }
 
 .cart-total-weight {
     color:black;
-    font-size: 1.5em;
+    font-size: 3vmin;
 }
 
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.btn-recycle.MuiButton-containedSizeLarge.MuiButton-sizeLarge{

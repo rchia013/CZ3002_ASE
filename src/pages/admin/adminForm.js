@@ -81,6 +81,7 @@ class AdminForm extends Component {
       // }}
       >
         <Button
+          className="adminpagebtn"
           classes={{ label: "admin-components" }}
           variant="contained"
           color="auto"

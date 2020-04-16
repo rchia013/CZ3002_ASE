@@ -49,3 +49,8 @@
   border-radius: 10px;
   background-color: lightslategrey;
 }
+
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.adminpagebtn span{
+  font-size: 3vmin;
+}

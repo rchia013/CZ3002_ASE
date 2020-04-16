@@ -109,7 +109,7 @@ class Confirmation2 extends Component{
             <Navbar2/>
             {(this.state.loading)? null :
             <div class="confirmation_page">  
-                <div class="confirmation_content">
+                {/* <div class="confirmation_content"> */}
                 <Grid
                 className="Checkout"
                 container
@@ -121,7 +121,7 @@ class Confirmation2 extends Component{
                     container 
                     className="orderGrid"
                     direction="column"
-                    justify="right"
+                    justify="space-around"
                     alignItems="center"
                     spacing={3}>
                         <Grid className="orderGrid_item" item>
@@ -188,7 +188,7 @@ class Confirmation2 extends Component{
                   </DialogActions>
                 </Dialog>
 
-                </div>
+                {/* </div> */}
             </div>}
         </div>
     );

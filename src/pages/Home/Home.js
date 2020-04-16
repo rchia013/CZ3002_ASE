@@ -161,6 +161,7 @@ class Home extends Component {
                   <span class="button_span">
                     <div>
                       <Button
+                        className="homeloginbtn"
                         variant="contained"
                         color="white"
                         size="large"
@@ -173,6 +174,7 @@ class Home extends Component {
 
                     <div class="schedulepickupzz">
                       <Button
+                        className="homeloginbtn"
                         variant="contained"
                         color="white"
                         size="large"
@@ -188,6 +190,7 @@ class Home extends Component {
 
                     <div class="selfrecyclezz">
                       <Button
+                        className="homeloginbtn"
                         variant="contained"
                         color="white"
                         size="large"
@@ -201,6 +204,7 @@ class Home extends Component {
                     <div class="logout_button">
                       {/* <br /> */}
                       <Button
+                        className="homeloginbtn"
                         variant="contained"
                         color="white"
                         size="large"
@@ -220,6 +224,7 @@ class Home extends Component {
                 <div>
                   <p>Not logged in </p>
                   <Button
+                    className="homeloginbtn"
                     variant="contained"
                     color="white"
                     size="large"
