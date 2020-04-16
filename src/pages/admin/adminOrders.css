@@ -4,6 +4,9 @@
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+
+    background: url("/account-bg1.jpg") no-repeat center center/ cover;
+    box-shadow: 0 3000px rgba(0, 0, 0, 0.25) inset;
 }
 
 .orderHistory{
@@ -13,7 +16,7 @@
 }
 
 .orderHistory h2{
-    color: #f4f4f4
+    color: rgb(40,40,40);
 }
 
 .MuiPaper-root.admin_order_table_paper{
@@ -43,6 +46,7 @@
 .MuiButtonBase-root.MuiButton-root.MuiButton-contained.approve-btn{
     background-color: lightcoral;
     font-weight: bold;
+    margin-bottom: 0.1rem;
 }
 
 .MuiTableCell-root.MuiTableCell-head.MuiTableCell-stickyHeader{

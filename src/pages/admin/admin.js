@@ -12,7 +12,7 @@ class Admin extends Component {
   state = {};
   render() {
     return (
-      <div style={{ height: "1000px", backgroundColor: "beige" }}>
+      <div>
         <div class="admin">
           <div class="navbar">
             <nav class="navbar">
@@ -80,6 +80,20 @@ class Admin extends Component {
                 style={{ backgroundColor: "lightgrey" }}
               >
                 Edit Category Page
+              </Button>
+            </div>
+
+            <div style={{ margin: "15px" }}>
+              <Button
+                classes={{ label: "admin-components" }}
+                variant="contained"
+                color="primary"
+                size="small"
+                component={RouterLink}
+                to="/"
+                style={{ backgroundColor: "lightgrey" }}
+              >
+                Home
               </Button>
             </div>
           </div>

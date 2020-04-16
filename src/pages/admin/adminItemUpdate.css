@@ -1,11 +1,51 @@
 .admin-item-container{
-    display: flex;
+    /* display: flex;
+    flex-direction: column; */
     overflow-y: scroll;
     height: 100vh;
     width: 100vw;
+
+    background: url("/account-bg1.jpg") no-repeat center center/ cover;
+    box-shadow: 0 3000px rgba(0, 0, 0, 0.25) inset;
+}
+
+
+.admin-item-container::-webkit-scrollbar {
+    display: none;
+  }
+
+.admin-item-contents {
+    display: flex;
+    flex-direction: column;
+}
+.admin-item-header{
+    margin-top: 5vh;
+    margin-bottom: 2vh;
 }
 
 .MuiGrid-root.admin-items {
-    margin-top: 10vh;
     height: 80%;
+    align-content: space-around;
+}
+
+.MuiPaper-root.adminItemPaper {
+    display: flex;
+    margin: 1vh;
+    width: 50vw;
+    justify-content: space-around;
+}
+
+.MuiFormControl-root.MuiTextField-root.adminItemText {
+    margin: 1vw;
+}
+
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.adminItemUpdateconfirm_btn{
+    margin-top: 2vh;
+    background-color: #bad4aa;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.adminItemUpdatehome_btn{
+    margin-top: 1vh;
+    margin-bottom: 2vh;
 }

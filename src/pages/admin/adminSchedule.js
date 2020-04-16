@@ -122,9 +122,9 @@ class adminSchedule extends Component {
                   color="auto"
                   size="large"
                   component={RouterLink}
-                  to="/"
+                  to="/profile"
                 >
-                  Home
+                  Back
                 </Button>
               </div>
             </section>

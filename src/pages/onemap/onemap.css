@@ -49,6 +49,13 @@ body{
   margin-top: 50px;
 }
 
-.MuiButtonBase-root.MuiButton-root.MuiButton-contained.onemapBtns {
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.onemapBtns,
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.onemapBtnsProceed {
   height: 5vh;
+  margin: 0.5rem;
+}
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-contained.onemapBtnsProceed{
+  background-color: #bad4aa;
+  font-weight: bold;
 }

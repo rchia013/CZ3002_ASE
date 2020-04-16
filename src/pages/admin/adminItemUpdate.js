@@ -4,7 +4,9 @@ import Button from "@material-ui/core/Button";
 import { firebaseapp, base } from "../../base.js";
 import './adminItemUpdate.css'
 
-import { Grid, Paper, TextField } from '@material-ui/core';
+import { Grid, Paper, TextField, Snackbar } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 
@@ -32,7 +34,8 @@ class adminItemUpdate extends Component {
             ['Plastic Bottles Points']: 0,
             ['Plastic Bottles Weight']: 0,
             ['Shampoo Bottles Points']: 0,
-            ['Shampoo Bottles Weight']: 0
+            ['Shampoo Bottles Weight']: 0,
+            snackbar: false
   }
 
   // Checks status and adds user to state
@@ -101,6 +104,7 @@ class adminItemUpdate extends Component {
     var updates = {}
     updates['/items/'] = itemdetails
     // Firebase updated
+    this.setState({snackbar: true})
 
     return firebase.database().ref().update(updates)
   }
@@ -108,6 +112,14 @@ class adminItemUpdate extends Component {
   handleTextChange = input => e => {
     // itemdetails[input] = e.target.value
     this.setState({[input]: e.target.value})
+  }
+
+
+  handleSnackClose = (e, reason) => {
+    if (reason === "clickaway"){
+      return
+    }
+    this.setState({ snackbar: false })
   }
 
 
@@ -119,6 +131,8 @@ class adminItemUpdate extends Component {
     // <div class="home_content">
     return (
         <div class="admin-item-container">
+          <div class="admin-item-contents">
+          <h1 class="admin-item-header">Update Items</h1>
           <Grid
                 className="admin-items"
                 container
@@ -126,123 +140,144 @@ class adminItemUpdate extends Component {
                 justify="flex-start"
                 alignItems="center">
 
-            <Paper elevation={2}>
-            <TextField id="Plastic Bottles Weight" label="Plastic Bottles Weight" value={this.state['Plastic Bottles Weight']} 
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Plastic Bottles Weight" label="Plastic Bottles Weight" value={this.state['Plastic Bottles Weight']} 
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Plastic Bottles Weight")}/>
-            <TextField id="Plastic Bottles Points" label="Plastic Bottles Points" value={this.state['Plastic Bottles Points']}
+            <TextField className="adminItemText" id="Plastic Bottles Points" label="Plastic Bottles Points" value={this.state['Plastic Bottles Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Plastic Bottles Points")}/>
             </Paper>
 
-            <Paper elevation={2}>
-            <TextField id="Plastic Bag Weight" label="Plastic Bag Weight" value={this.state['Plastic Bag Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Plastic Bag Weight" label="Plastic Bag Weight" value={this.state['Plastic Bag Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Plastic Bag Weight")}/>
-            <TextField id="Plastic Bag Points" label="Plastic Bag Points" value={this.state['Plastic Bag Points']}
+            <TextField className="adminItemText" id="Plastic Bag Points" label="Plastic Bag Points" value={this.state['Plastic Bag Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Plastic Bag Points")}/>
             </Paper>
 
-            <Paper elevation={2}>
-            <TextField id="Shampoo Bottles Weight" label="Shampoo Bottles Weight" value={this.state['Shampoo Bottles Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Shampoo Bottles Weight" label="Shampoo Bottles Weight" value={this.state['Shampoo Bottles Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Shampoo Bottles Weight")}/>
-            <TextField id="Shampoo Bottles Points" label="Shampoo Bottles Points" value={this.state['Shampoo Bottles Points']}
+            <TextField className="adminItemText" id="Shampoo Bottles Points" label="Shampoo Bottles Points" value={this.state['Shampoo Bottles Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Shampoo Bottles Points")}/>
             </Paper>
 
-            <Paper elevation={2}>
-            <TextField id="Batteries Weight" label="Batteries Weight" value={this.state['Batteries Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Batteries Weight" label="Batteries Weight" value={this.state['Batteries Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Batteries Weight")}/>
-            <TextField id="Batteries Points" label="Batteries Points" value={this.state['Batteries Points']}
+            <TextField className="adminItemText" id="Batteries Points" label="Batteries Points" value={this.state['Batteries Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Batteries Points")}/>
             </Paper>
 
-            <Paper elevation={2}>
-            <TextField id="Phones Weight" label="Phones Weight" value={this.state['Phones Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Phones Weight" label="Phones Weight" value={this.state['Phones Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Phones Weight")}/>
-            <TextField id="Phones Points" label="Phones Points" value={this.state['Phones Points']}
+            <TextField className="adminItemText" id="Phones Points" label="Phones Points" value={this.state['Phones Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Phones Points")}/>
             </Paper>
 
-            <Paper elevation={2}>
-            <TextField id="Computer Weight" label="Computer Weight" value={this.state['Computer Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Computer Weight" label="Computer Weight" value={this.state['Computer Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Computer Weight")}/>
-            <TextField id="Computer Points" label="Computer Points" value={this.state['Computer Points']}
+            <TextField className="adminItemText" id="Computer Points" label="Computer Points" value={this.state['Computer Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Computer Points")}/>
             </Paper>
 
-            <Paper elevation={2}>
-            <TextField id="Mason Jar Weight" label="Mason Jar Weight" value={this.state['Mason Jar Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Mason Jar Weight" label="Mason Jar Weight" value={this.state['Mason Jar Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Mason Jar Weight")}/>
-            <TextField id="Mason Jar Points" label="Mason Jar Points" value={this.state['Mason Jar Points']}
+            <TextField className="adminItemText" id="Mason Jar Points" label="Mason Jar Points" value={this.state['Mason Jar Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Mason Jar Points")}/>
             </Paper>
             
-            <Paper elevation={2}>
-            <TextField id="Glass Bottles Weight" label="Glass Bottles Weight" value={this.state['Glass Bottles Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Glass Bottles Weight" label="Glass Bottles Weight" value={this.state['Glass Bottles Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Glass Bottles Weight")}/>
-            <TextField id="Glass Bottles Points" label="Glass Bottles Points" value={this.state['Glass Bottles Points']}
+            <TextField className="adminItemText" id="Glass Bottles Points" label="Glass Bottles Points" value={this.state['Glass Bottles Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Glass Bottles Points")}/>
             </Paper>
 
-            <Paper elevation={2}>
-            <TextField id="Light Bulb Weight" label="Light Bulb Weight" value={this.state['Light Bulb Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Light Bulb Weight" label="Light Bulb Weight" value={this.state['Light Bulb Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Light Bulb Weight")}/>
-            <TextField id="Light Bulb Points" label="Light Bulb Points" value={this.state['Light Bulb Points']}
+            <TextField className="adminItemText" id="Light Bulb Points" label="Light Bulb Points" value={this.state['Light Bulb Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Light Bulb Points")}/>
             </Paper>
 
-            <Paper elevation={2}>
-            <TextField id="Florescent Tubes Weight" label="Florescent Tubes Weight" value={this.state['Florescent Tubes Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Florescent Tubes Weight" label="Florescent Tubes Weight" value={this.state['Florescent Tubes Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Florescent Tubes Weight")}/>
-            <TextField id="Florescent Tubes Points" label="Florescent Tubes Points" value={this.state['Florescent Tubes Points']}
+            <TextField className="adminItemText" id="Florescent Tubes Points" label="Florescent Tubes Points" value={this.state['Florescent Tubes Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Florescent Tubes Points")}/>
             </Paper>
 
-            <Paper elevation={2}>
-            <TextField id="Fairy Lights Weight" label="Fairy Lights Weight" value={this.state['Fairy Lights Weight']}
+            <Paper elevation={2} className="adminItemPaper">
+            <TextField className="adminItemText" id="Fairy Lights Weight" label="Fairy Lights Weight" value={this.state['Fairy Lights Weight']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Fairy Lights Weight")}/>
-            <TextField id="Fairy Lights Points" label="Fairy Lights Points" value={this.state['Fairy Lights Points']}
+            <TextField className="adminItemText" id="Fairy Lights Points" label="Fairy Lights Points" value={this.state['Fairy Lights Points']}
                 variant="outlined" margin="normal"
                 onChange={this.handleTextChange("Fairy Lights Points")}/>
             </Paper>
 
             <Button 
-              className="confirm_btn"
+              className="adminItemUpdateconfirm_btn"
               variant="contained" color="primary" size="large" color="auto" 
               onClick={() => this.updateFirebase()}>
               Confirm!
             </Button>
             <Button
+                className="adminItemUpdatehome_btn"
                 variant="contained"
                 color="auto"
                 size="large"
                 component={RouterLink}
-                to="/"
+                to="/profile"
               >
-            Home
+            Back
           </Button>
           </Grid>
           
 
+          <Snackbar
+                className="adminItems-snackbar"
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                open={this.state.snackbar}
+                autoHideDuration={2000}
+                onClose={this.handleSnackClose}
+                message="Success! Details have been updated!"
+                action={
+                  <React.Fragment>
+                    <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleSnackClose}>
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                  </React.Fragment>
+                }
+              />
+
+          </div>
         </div>
       
     )

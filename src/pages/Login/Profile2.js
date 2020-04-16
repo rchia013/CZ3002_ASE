@@ -361,15 +361,15 @@ class Profile2 extends Component {
     // <div class="home_content">
     return (
       <div>
-        <div class="profile_navbar">
-          <Navbar2 />
-        </div>
         {this.state.admin ? (
           <div class="admin_content">
             <Admin />
           </div>
         ) : (
           <div class="profile_page">
+          <div class="profile_navbar">
+            <Navbar2 />
+          </div>
           <div class="profile_content">
             <section class="user">
               {(this.state.user!=null) ? 

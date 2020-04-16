@@ -169,7 +169,7 @@ class Onemap2 extends Component {
         </Button>
         {(this.state.displayselfrecycle==null) ?
         <Button
-          className="onemapBtns"
+          className="onemapBtnsProceed"
           variant="contained"
           color="auto"
           size="large"

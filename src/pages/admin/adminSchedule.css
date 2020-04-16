@@ -1,4 +1,6 @@
 .admin_schedule_container{
+    background: url("/account-bg1.jpg") no-repeat center center/ cover;
+    box-shadow: 0 3000px rgba(0, 0, 0, 0.25) inset;
     display:flex;
     justify-content: center;
     /* align-items: center; */
@@ -8,14 +10,18 @@
 }
 
 .admin_schedule{
-    margin-top: 10vh;
+    margin-top: 5vh;
     height: 90vh;
     width: 90vw;
-    /* overflow-y: scroll; */
+
+    background: transparent;
+    overflow-y: hidden; 
 }
 
 .header h2{
-    color: #f4f4f4
+    color: rgb(40,40,40);
+    font-size: 2rem;
+    margin-bottom: 1vh;
 }
 
 .calendar-container{
@@ -33,7 +39,7 @@
 }
 
 .adminSchedule_home_btn{
-    margin:0;
+    margin:2vh;
 }
 
 

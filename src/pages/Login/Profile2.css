@@ -4,7 +4,8 @@ body {
 }
 
 .user{
-  background: url("/account-bg1.jpg") no-repeat center center/ cover;
+  /* background: url("/account-bg1.jpg") no-repeat center center/ cover; */
+  background: transparent;
 }
 
 .table_text {
@@ -16,6 +17,8 @@ body {
 }
 
 .profile_page{
+  background: url("/account-bg1.jpg") no-repeat center center/ cover;
+  box-shadow: 0 3000px rgba(0, 0, 0, 0.25) inset;
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -27,12 +30,14 @@ body {
   scroll-snap-type: y mandatory;
 }
 
-.profile_navbar{
-    padding-bottom: 1rem;
+
+.profile_page::-webkit-scrollbar {
+  display: none;
 }
 
 .orderHistory{
-  background: url("/account-bg1.jpg") no-repeat center center/ cover;
+  /* background: url("/account-bg1.jpg") no-repeat center center/ cover; */
+    background:transparent;
     display:flex;
     flex-direction: column;
     width: 100vw;
@@ -84,7 +89,8 @@ body {
 }
 
 .user_welcome h1{
-  color: black;
+  color: rgb(40,40,40);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .user_welcome p{

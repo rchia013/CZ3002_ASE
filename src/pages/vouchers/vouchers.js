@@ -243,7 +243,7 @@ class Vouchers extends Component {
       );
     } else {
       return (
-        <div
+        <div class="admin-voucher-container"
           style={{
             overflowY: "scroll",
             height: "100vh",
@@ -282,6 +282,18 @@ class Vouchers extends Component {
             >
               {temp}
             </div>
+
+            <div class="adminSchedule_home_btn">
+                <Button
+                  variant="contained"
+                  color="auto"
+                  size="large"
+                  component={RouterLink}
+                  to="/profile"
+                >
+                  Back
+                </Button>
+              </div>
           </div>
           <div>
             <Dialog

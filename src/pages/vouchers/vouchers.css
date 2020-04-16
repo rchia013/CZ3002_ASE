@@ -1,4 +1,16 @@
 @import "../../../node_modules/react-alice-carousel/lib/alice-carousel.css";
+
+
+.admin-voucher-container {
+  background: url("/account-bg1.jpg") no-repeat center center/ cover;
+  box-shadow: 0 3000px rgba(0, 0, 0, 0.25) inset;
+}
+
+.admin-voucher-container::-webkit-scrollbar {
+  display: none;
+}
+
+
 .voucher-container1 {
   margin: 10px auto;
   margin-top: 100px;
