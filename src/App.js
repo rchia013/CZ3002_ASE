@@ -1,13 +1,21 @@
-import React from 'react';
-import './App.css';
-import Home from './pages/Home/Home.js'
-import Wasteitems from './pages/Wasteitem/Wasteitem.js'
-import Confirmation from './pages/Confirmation.js'
-import History from './pages/History.js'
-import GoogleMapPage from './googlemaps/googlemaps.js'
-import Onemap from './onemap/onemap.js'
+import React from "react";
+import "./App.css";
+import Home from "./pages/Home/Home.js";
+import Wasteitems from "./pages/Wasteitem/Wasteitem.js";
+import Confirmation from "./pages/Confirmation.js";
+import History from "./pages/History.js";
+import GoogleMapPage from "./googlemaps/googlemaps.js";
+import Onemap from "./onemap/onemap2.js";
 import Categorypage from "./pages/Categorypage/Categorypage.js";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import DemoApp from "./pages/calendar/calendar.jsx";
+//import Plasticcat from "./pages/Categorypage/Plasticcat.js";
+import Lightingcat from "./pages/Categorypage/Lightingcat.js";
+import Test from "./pages/Categorypage/test.js";
+import Category from "./components/category/Category.js";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import GreenShoppingCart from "./pages/GreenCart/GreenShoppingCart.js";
+import Login from "./pages/Login/Login.js";
+import Profile from "./pages/Login/Profile.js";
 
 // This is a functional component. If you need additional functionaility, it can be changed to a
 // class based component. As of now, its just a glorified routing thing so not necessary.
@@ -19,12 +27,12 @@ function App() {
   return (
     <Router>
       <div>
-          <Switch>
-            {/* Exact used for home path because if you don't everything directs there */}
-            <Route path="/" exact component={Home}/>
-            <Route path="/categorypage" component={Categorypage}/>
-            <Route path="/waste-items" component={Wasteitems}/>
-            <Route path="/confirmation" component={Confirmation}/>
+        <Switch>
+          {/* Exact used for home path because if you don't everything directs there */}
+          <Route path="/" exact component={Home} />
+          <Route path="/categorypage" component={Categorypage} />
+          <Route path="/waste-items" component={Wasteitems} />
+          <Route path="/confirmation" component={Confirmation} />
 
           {/* There is currently no link/button to History. You can access it manually by
                 typing '/history' to the end of 'localhost:3000'. I have only ever worked with 
@@ -34,6 +42,12 @@ function App() {
           <Route path="/history" component={History} />
           <Route path="/map" component={GoogleMapPage} />
           <Route path="/onemap" component={Onemap} />
+          <Route path="/lightingcat" component={Lightingcat} />
+          <Route path="/test" component={Test} />
+          <Route path="/greenshoppingcart" component={GreenShoppingCart} />
+          <Route path="/calendar" component={DemoApp} />
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
         </Switch>
       </div>
     </Router>

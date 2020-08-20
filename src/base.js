@@ -1,7 +1,10 @@
 // This is for linking to firebase
 // Possible to put in an .env file, but I don't wanna do it coz it looks complicated
 import Rebase from 're-base'
-import firebase from 'firebase'
+// import firebase from 'firebase'
+
+var firebase = require('firebase');
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyAJC89W4Ri_RMi47vXwaB--Krtjz83_FRY",
@@ -17,4 +20,6 @@ const firebaseConfig = {
   const app = firebase.initializeApp(firebaseConfig)
   const base = Rebase.createClass(app.database())
 
+
+  export default app
   export { base }

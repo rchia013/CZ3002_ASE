@@ -2,16 +2,31 @@ import React, { Component } from 'react';
 import { Link as RouterLink} from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 import './Home.css'
+import app from '../../base.js'
 import Navbar from '../../components/navbar/Navbar.js'
+var firebase = require('firebase');
+
 
 // This is a class based component (forgot what it's proper name is called). The other option is
 // a functional component. Class based components offer more flexibility though.
-
+var loginStatus
 class Home extends Component{
 
     // Functions/Methods, if any, go here. See other pages for example
 
+    checkStatus(){
+        var user = app.auth().currentUser;
+
+        if (user) {
+            return true
+        } else {
+            return false
+        }
+    }
+
   render(){
+
+    loginStatus = this.checkStatus()
 
     // Functions to be run should be put here. And other stuff that I'm probably not aware of.
     // Note that ComponentWillMount() etc will be above in the function area (see Wasteitem.js)
@@ -68,6 +83,58 @@ class Home extends Component{
                     component={RouterLink} to="/onemap">
                         View Onemap
                 </Button>
+                <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/lightingcat">
+                        View lightingcat
+                </Button>
+                <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/test">
+                        View test
+                </Button>
+                <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/greenshoppingcart">
+                        GreenShoppingCart
+                        
+                </Button>
+                <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/calendar">
+                        View Calendar
+                </Button>
+            </section>
+            <section id="profile_details">
+                <h1>Profile Details</h1>
+                <p>{loginStatus ? 
+                (
+                <div>
+                    <p> Logged in as {app.auth().currentUser.displayName}</p>
+                    <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/profile">
+                        View Profile
+                    </Button>
+                    
+                    <br />
+                    <Button 
+                    variant="contained" color="secondary" size="large" 
+                    onClick={() => app.auth().signOut()}
+                    component={RouterLink} to="/">
+                        Logout
+                    </Button>
+                </div>
+                )
+                :
+                (<div>
+                    <p>Not logged in </p>
+                    <Button 
+                    variant="contained" color="primary" size="large" 
+                    component={RouterLink} to="/login">
+                        Login
+                    </Button>
+                </div>)}</p>
             </section>
         </div>
     );
